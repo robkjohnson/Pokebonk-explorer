@@ -48,6 +48,17 @@ input[type=search]{min-width:220px}
 .card.sel{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
 .card .dex{color:var(--dim);font-size:11px;font-family:var(--mono)}
 .card .nm{font-weight:700;font-size:15px;margin:1px 0 5px}
+.pic{image-rendering:pixelated;border-radius:8px;background:#2a2638;flex:none;object-fit:cover}
+.card .pic{position:absolute;right:10px;bottom:10px;width:48px;height:48px;opacity:.95}
+.card{min-height:112px}
+.card .role{padding-right:54px}
+.ing{display:grid;grid-template-columns:14px minmax(0,1fr) auto;gap:6px;align-items:center;font-size:12px;margin:3px 0 0 2px}
+.ing .br{color:var(--dim);font-family:var(--mono)}
+.plan{counter-reset:step;margin:0;padding:0;list-style:none}
+.plan li{counter-increment:step;position:relative;padding:5px 0 5px 28px;border-bottom:1px dashed #2f2a42;font-size:13px}
+.plan li::before{content:counter(step);position:absolute;left:0;top:5px;width:20px;height:20px;border-radius:50%;background:var(--panel2);border:1px solid var(--line);color:var(--muted);font-size:11px;display:grid;place-items:center}
+.plan li.fz::before{background:#4a3a1a;border-color:#8a6a2a;color:#ffd27a}
+.plan .sub{display:block;color:var(--dim);font-size:12px}
 .card .role{color:var(--muted);font-size:12px;margin-top:5px}
 .card .stripe{position:absolute;left:0;top:0;bottom:0;width:4px}
 .card .star{position:absolute;right:9px;top:8px;font-size:11px;color:var(--accent2)}
@@ -117,7 +128,7 @@ h3:first-child{margin-top:0}
   <div class="ver" id="ver"></div>
 </header>
 <div id="app"></div>
-<footer style="padding:18px;color:var(--dim);font-size:12px;text-align:center">Unofficial fan tool for <a href="https://pokebonk.com/">PokéBonk</a> by Charcher. Data extracted from the game client <span id="fver"></span>. Pokémon is © Nintendo / Game Freak / The Pokémon Company; this site is not affiliated with them.</footer>
+<footer style="padding:18px;color:var(--dim);font-size:12px;text-align:center">Unofficial fan tool for <a href="https://pokebonk.com/">PokéBonk</a> by Charcher. Data extracted from the game client <span id="fver"></span>. Pokémon is © Nintendo / Game Freak / The Pokémon Company; this site is not affiliated with them.<br>Pokémon portraits are linked from <a href="https://sprites.pmdcollab.org/">PMD SpriteCollab</a> (CC BY-NC 4.0, credit to its artists) and are not hosted here.</footer>
 <script>
 const DATA = /*__POKEBONK_DATA__*/null;
 (() => {
@@ -264,6 +275,9 @@ function h(tag, attrs, ...kids) {
   return e;
 }
 const typeBadge = t => t ? h('span', {class:'type', style:{background:T_COLORS[t] || '#666'}}, typeName(t)) : '';
+// Portraits are linked (not copied) from PMD SpriteCollab, the same community art set the game uses.
+const PORTRAIT = id => `https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/${String(id).padStart(4, '0')}/Normal.png`;
+const portrait = (id, size = 40, extra = {}) => h('img', {class:'pic', src:PORTRAIT(id), alt:'', width:size, height:size, loading:'lazy', decoding:'async', referrerpolicy:'no-referrer', style:{width:size + 'px', height:size + 'px', ...(extra.style || {})}, onerror:e => { e.target.style.visibility = 'hidden'; }});
 const clsBadge = c => c ? h('span', {class:'cls'}, c === 'physical' ? 'Phys' : c === 'special' ? 'Spec' : cap(c)) : '';
 const fmt = (n, d = 1) => n == null || isNaN(n) ? '–' : (Math.abs(n) >= 100 ? Math.round(n).toLocaleString() : (+n).toFixed(d).replace(/\.0+$/, '').replace(/(\.\d*?)0+$/, '$1'));
 const pct = (n, d = 0) => n == null ? '–' : (n * 100).toFixed(d) + '%';
@@ -336,7 +350,7 @@ function viewPokemon() {
       h('div', {class:'stripe', style:{background:`linear-gradient(${T_COLORS[s.types[0]]},${T_COLORS[s.types[1] || s.types[0]]})`}}),
       p?.start ? h('span', {class:'star', title:'Starter'}, '★') : '',
       h('div', {class:'dex'}, '#' + String(s.id).padStart(3, '0'), p ? h('span', {class:'rank ' + p.rank, style:{marginLeft:'8px'}}, p.rank) : ''),
-      h('div', {class:'nm'}, s.name), h('div', {class:'row'}, s.types.map(typeBadge)),
+      portrait(s.id, 48), h('div', {class:'nm'}, s.name), h('div', {class:'row'}, s.types.map(typeBadge)),
       h('div', {class:'role'}, p ? `${p.role} · ${D.passives[p.passive]?.name || p.passive}` : (partnerOfSpecies.has(s.id) ? `Evolves from ${speciesById.get(partnerOfSpecies.get(s.id)).name} (partner line)` : 'Wild / ally only')));
   }));
   return h('div', {class:'layout'}, h('div', null, tb, chips, list.length ? grid : h('div', {class:'empty'}, 'No Pokémon match.')), h('div', {class:'detail panel pad'}, pokeDetail(S.selPoke)));
@@ -351,7 +365,7 @@ function pokeDetail(id) {
   const s = speciesById.get(id), p = partnerById.get(id), pas = p && D.passives[p.passive];
   const rootPartner = p ? p : partnerById.get(partnerOfSpecies.get(id));
   const head = h('div', null,
-    h('div', {class:'between'}, h('div', null, h('div', {class:'dim mono'}, '#' + String(s.id).padStart(3, '0')), h('h2', null, s.name)), p ? h('button', {class:'btn', onclick:() => startBuild(p.id)}, 'Start build →') : rootPartner ? h('button', {class:'btn ghost', onclick:() => { S.selPoke = rootPartner.id; render(); }}, `Open ${rootPartner.name}`) : ''),
+    h('div', {class:'between'}, h('div', {class:'row', style:{gap:'12px', flexWrap:'nowrap'}}, portrait(s.id, 72), h('div', null, h('div', {class:'dim mono'}, '#' + String(s.id).padStart(3, '0')), h('h2', null, s.name))), p ? h('button', {class:'btn', onclick:() => startBuild(p.id)}, 'Start build →') : rootPartner ? h('button', {class:'btn ghost', onclick:() => { S.selPoke = rootPartner.id; render(); }}, `Open ${rootPartner.name}`) : ''),
     h('div', {class:'row', style:{marginTop:'4px'}}, s.types.map(typeBadge), p ? h('span', {class:'rank ' + p.rank}, p.rank) : '', p ? h('span', {class:'muted'}, p.role) : '', s.legendary ? h('span', {class:'pill'}, 'Legendary') : '', s.mythical ? h('span', {class:'pill'}, 'Mythical') : ''));
   const parts = [head];
   if (!p) parts.push(h('div', {class:'box', style:{marginTop:'12px'}}, rootPartner ? `Not a League partner itself — it's an in-run evolution of ${rootPartner.name}.` : 'Not playable as a League partner (appears as a wild Pokémon / ally).'));
@@ -601,7 +615,7 @@ function viewBuild() {
   if (!b) {
     return h('div', {class:'layout wide'}, h('div', {class:'panel pad'},
       h('h2', null, 'Start a build'), h('p', {class:'muted'}, 'Pick a League partner here, or use "Start build" on a Pokémon / "Build with this" on a move.'),
-      h('div', {class:'chips'}, D.partners.slice().sort((a, b) => a.name.localeCompare(b.name)).map(p => h('span', {class:'chip', onclick:() => startBuild(p.id)}, p.name))),
+      h('div', {class:'chips'}, D.partners.slice().sort((a, b) => a.name.localeCompare(b.name)).map(p => h('span', {class:'chip', style:{paddingLeft:'3px'}, onclick:() => startBuild(p.id)}, portrait(p.id, 22, {style:{borderRadius:'50%'}}), p.name))),
       saved.length ? [h('h3', null, 'Saved builds'), savedList(saved)] : '',
       h('h3', null, 'Import'), importControls()));
   }
@@ -611,7 +625,7 @@ function viewBuild() {
   // column 1: partner + setup
   const col1 = h('div', {class:'panel pad'},
     h('div', {class:'between'}, h('input', {type:'text', value:b.name, style:{flex:1, fontWeight:'700'}, onchange:e => { b.name = e.target.value; }}), h('button', {class:'x', title:'Close build', onclick:() => { S.build = null; render(); }}, '×')),
-    h('div', {class:'row', style:{marginTop:'10px'}}, h('span', {class:'linkish', style:{fontWeight:700, fontSize:'16px'}, onclick:() => { S.selPoke = p.id; go('pokemon'); }}, p.name), speciesById.get(p.id).types.map(typeBadge), h('span', {class:'rank ' + p.rank}, p.rank)),
+    h('div', {class:'row', style:{marginTop:'10px'}}, portrait(b.stage || p.id, 56), h('span', {class:'linkish', style:{fontWeight:700, fontSize:'16px'}, onclick:() => { S.selPoke = p.id; go('pokemon'); }}, p.name), speciesById.get(p.id).types.map(typeBadge), h('span', {class:'rank ' + p.rank}, p.rank)),
     h('div', {class:'muted'}, p.role),
     C.pas ? h('div', {class:'box'}, h('div', {class:'t'}, C.pas.name), h('div', {style:{fontSize:'12px'}}, C.pas.desc)) : '',
     h('h3', null, 'Evolution stage'),
@@ -634,9 +648,12 @@ function viewBuild() {
       const f = fusionByKey.get(x.fusion), ma = moveByKey.get(x.a.key), mb = moveByKey.get(x.b.key);
       const low = [x.a, x.b].filter(y => y.level < 8);
       return h('div', {class:'slot', style:{borderColor:'#6b5a2a', background:'#2a2433'}}, h('span', {class:'n'}, i + 1),
-        h('div', null, h('div', null, h('span', {class:'linkish', style:{fontWeight:700}, onclick:() => { S.selFusion = f.key; go('fusions'); }}, '⚗ ' + f.name), ' ', h('span', {class:'pill'}, f.kind)),
-          h('div', {class:'row', style:{marginTop:'3px', fontSize:'11px'}}, typeBadge(f.type), f.type2 ? typeBadge(f.type2) : '', clsBadge(f.cls), h('span', {class:'dim'}, `from ${ma?.name} (Lv ${x.a.level}) + ${mb?.name} (Lv ${x.b.level}) — keeps both moves' upgrades`)),
-          low.length ? h('div', {class:'warn'}, 'Both ingredients must be Lv 8 before fusing.') : ''),
+        h('div', null, h('div', null, h('span', {class:'linkish', style:{fontWeight:700}, onclick:() => { S.selFusion = f.key; go('fusions'); }}, '⚗ ' + f.name), ' ', h('span', {class:'pill'}, f.kind), ' ', typeBadge(f.type), f.type2 ? [' ', typeBadge(f.type2)] : ''),
+          [x.a, x.b].map((y, j) => { const m = moveByKey.get(y.key), src = poolOf.get(b.partner).get(y.key);
+            return h('div', {class:'ing'}, h('span', {class:'br'}, j ? '└' : '├'),
+              h('span', null, h('span', {class:'linkish', onclick:() => openMove(y.key)}, m?.name || y.key), ' ', typeBadge(m?.type), ' ', clsBadge(m?.cls), h('span', {class:'dim'}, ` ${D.archetypes[m?.arch]?.label || ''} · ${src ? 'offered from Lv ' + src.level : 'not in pool'}`)),
+              h('span', {class:y.level >= 8 ? 'dim' : 'warn'}, `Lv ${y.level}/8`)); }),
+          low.length ? h('div', {class:'warn'}, 'Both ingredients must be Lv 8 before fusing.') : h('div', {class:'note', style:{marginTop:'3px'}}, "Level both to 8, then fuse at Bill's Machine. Their upgrades carry into the fusion.")),
         h('span', null, h('span', {class:'dim', style:{fontSize:'11px'}}, '★ '), h('input', {type:'number', min:1, max:fusionCap, value:x.stars || 1, title:`Fusion stars (max ${fusionCap})`, onchange:e => { x.stars = Math.max(1, Math.min(fusionCap, +e.target.value || 1)); render(); }})),
         h('span', null, h('button', {class:'btn ghost sm', title:'Split back into the two moves', onclick:() => unfuse(i)}, 'Unfuse'), h('button', {class:'x', title:'Remove', onclick:() => { b.moves.splice(i, 1); render(); }}, '×')));
     }
@@ -675,17 +692,38 @@ function viewBuild() {
   const st = C.st;
   const statRows = [['maxHp','Max HP',0],['regen','Regen /s',2],['armor','Armor',1],['shieldMax','Shield',0],['evasion','Evasion','%'],['moveSpeed','Move speed',2],['damage','Damage ×',2],['physical','Physical ×',2],['special','Special ×',2],['attackSpeed','Attack speed ×',2],['critChance','Crit chance','%'],['critDamage','Crit damage ×',2],['projectiles','Projectiles',1],['area','Area ×',2],['duration','Duration ×',2],['statusChance','Status chance ×',2],['lifesteal','Lifesteal','%'],['luck','Luck',0],['xpGain','XP ×',2],['pickupRange','Pickup range',1]];
   const base = baseRunStats(C.sp, 0);
-  const col3 = h('div', {class:'panel pad col3'},
+  const plan = runPlan(b);
+  const col3 = h('div', {class:'col3'}, h('div', {class:'panel pad'},
+    h('div', {class:'between'}, h('h3', {style:{margin:0}}, 'Run plan'), h('span', {class:'note'}, 'what to look for during a run')),
+    plan.length ? h('ol', {class:'plan', style:{marginTop:'8px'}}, plan) : h('div', {class:'muted'}, 'Add moves, vitamins and items to see your plan.')),
+    h('div', {class:'panel pad', style:{marginTop:'14px'}},
     h('h3', null, 'Estimated damage'),
     h('div', {class:'between'}, h('span', {class:'muted'}, 'Total move DPS (single target, neutral type)'), h('span', {class:'big'}, fmt(C.totalDps, 1))),
-    h('table', {class:'mini', style:{marginTop:'6px'}}, h('thead', null, h('tr', null, ['Move', 'Lv', 'Hit', '×', 'CD', 'Crit', 'DPS'].map((t, i) => h('th', {class:i ? 'num' : ''}, t)))), h('tbody', null, C.moveRows.map(r => h('tr', {onclick:() => r.fusion ? (S.selFusion = r.m.key, go('fusions')) : openMove(r.m.key)}, h('td', null, r.fusion ? '⚗ ' : '', r.m.name), h('td', {class:'num'}, r.lvl), h('td', {class:'num'}, fmt(r.hit, 1)), h('td', {class:'num'}, fmt(r.count, 1)), h('td', {class:'num'}, fmt(r.cd, 2)), h('td', {class:'num'}, pct(Math.min(1, r.crit))), h('td', {class:'num'}, h('b', null, fmt(r.dps, 1))))))),
+    h('table', {class:'mini', style:{marginTop:'6px'}}, h('thead', null, h('tr', null, ['Move', 'Lv', 'Hit', '×', 'CD', 'Crit', 'DPS'].map((t, i) => h('th', {class:i ? 'num' : ''}, t)))), h('tbody', null, C.moveRows.map(r => h('tr', {onclick:() => r.fusion ? (S.selFusion = r.m.key, go('fusions')) : openMove(r.m.key)}, h('td', null, r.fusion ? '⚗ ' : '', r.m.name, r.fusion ? h('div', {class:'dim', style:{fontSize:'11px'}}, `${moveByKey.get(r.x.a.key)?.name} + ${moveByKey.get(r.x.b.key)?.name}`) : ''), h('td', {class:'num'}, r.lvl), h('td', {class:'num'}, fmt(r.hit, 1)), h('td', {class:'num'}, fmt(r.count, 1)), h('td', {class:'num'}, fmt(r.cd, 2)), h('td', {class:'num'}, pct(Math.min(1, r.crit))), h('td', {class:'num'}, h('b', null, fmt(r.dps, 1))))))),
     C.moveRows.some(r => r.fusion) ? h('div', {class:'note'}, 'Fusion rows: the game combines both ingredients\' upgrades into the fusion, then adds star upgrades. "×" is the fusion\'s hits per cast.') : '',
     h('div', {class:'note', style:{marginTop:'4px'}}, 'Expected-value estimate: level bonuses, average upgrade rolls at the assumed rarity, STAB, type items, crit. Ignores enemy type, weather, status bonuses and conditional effects.'),
     h('h3', null, 'Stats'),
     h('div', {class:'statgrid'}, statRows.map(([k, l, d]) => { const v = st[k], bv = base[k], up = v > (bv ?? 0) + 1e-9; return h('div', null, h('span', {class:'muted'}, l), h('span', {class:up ? 'up' : ''}, d === '%' ? pct(v, 1) : fmt(v, d))); })),
     Object.keys(st.typeBoost).length ? h('div', {class:'note', style:{marginTop:'6px'}}, 'Type boosts: ', Object.entries(st.typeBoost).map(([t, v]) => h('span', {class:'tag'}, `${typeName(t)} ×${fmt(v, 2)}`))) : '',
-    h('div', {class:'note', style:{marginTop:'6px'}}, 'Green = raised by your build. Stacking follows the game: flat bonuses first, % bonuses within vitamins / items / passive add up, then the groups multiply.'));
+    h('div', {class:'note', style:{marginTop:'6px'}}, 'Green = raised by your build. Stacking follows the game: flat bonuses first, % bonuses within vitamins / items / passive add up, then the groups multiply.')));
   return h('div', {class:'builder'}, col1, col2, col3);
+}
+function runPlan(b) {
+  const pool = poolOf.get(b.partner), out = [];
+  const src = k => { const x = pool.get(k); return x ? `${SRC_LABEL[x.src].toLowerCase()} · offered from Lv ${x.level}` : 'not in this partner\'s pool'; };
+  const mv = k => moveByKey.get(k)?.name || k;
+  const steps = [];
+  for (const x of b.moves) {
+    if (isFusion(x)) {
+      const f = fusionByKey.get(x.fusion), lv = Math.min(pool.get(x.a.key)?.level ?? 99, pool.get(x.b.key)?.level ?? 99);
+      steps.push({lv, li:h('li', {class:'fz'}, h('b', null, '⚗ ' + (f?.name || x.fusion)), ` ★${x.stars || 1}`, h('span', {class:'sub'}, `Take ${mv(x.a.key)} (${src(x.a.key)}) and ${mv(x.b.key)} (${src(x.b.key)}). Level both to 8, then fuse at Bill's Machine${(x.stars || 1) > 1 ? `, then upgrade to ★${x.stars}` : ''}.`))});
+    } else steps.push({lv:pool.get(x.key)?.level ?? 99, li:h('li', null, h('b', null, mv(x.key)), ` → Lv ${x.level}`, h('span', {class:'sub'}, src(x.key)))});
+  }
+  steps.sort((a, c) => a.lv - c.lv).forEach(s => out.push(s.li));
+  if (b.vitamins.length) out.push(h('li', null, h('b', null, 'Vitamins'), h('span', {class:'sub'}, b.vitamins.map(v => `${vitByKey.get(v.key)?.name} → Lv ${v.level}`).join(' · '))));
+  const items = Object.entries(b.items).filter(([, n]) => n);
+  if (items.length) out.push(h('li', null, h('b', null, 'Items'), h('span', {class:'sub'}, items.sort((x, y) => (itemByKey.get(y[0])?.rarity ?? 0) - (itemByKey.get(x[0])?.rarity ?? 0)).map(([k, n]) => `${itemByKey.get(k)?.name}${n > 1 ? ' ×' + n : ''}`).join(' · '))));
+  return out;
 }
 function moveSelect(pool, cur, onPick) {
   const groups = ['kit','line','shared','any'];
@@ -697,7 +735,7 @@ function itemPicker(b) {
 }
 function savedList(saved) {
   saved = (Array.isArray(saved) ? saved : []).filter(s => s && partnerById.has(+s.partner) && Array.isArray(s.moves));
-  return h('div', {class:'savedlist'}, saved.map(s => h('div', {class:'box between', onclick:() => { try { S.build = sanitizeBuild(s); render(); } catch (e) { toast(e.message); } }}, h('span', null, h('b', null, s.name), h('span', {class:'dim'}, ` · ${partnerById.get(s.partner)?.name} · ${s.moves.map(m => m && m.fusion ? '⚗ ' + (fusionByKey.get(m.fusion)?.name || '?') : moveByKey.get(m && m.key)?.name || '?').join(', ')}`)), h('button', {class:'x', title:'Delete', onclick:e => { e.stopPropagation(); store.set('pokebonk.builds', store.get('pokebonk.builds', []).filter(x => x.id !== s.id)); render(); }}, '×'))));
+  return h('div', {class:'savedlist'}, saved.map(s => h('div', {class:'box between', onclick:() => { try { S.build = sanitizeBuild(s); render(); } catch (e) { toast(e.message); } }}, h('span', null, h('b', null, s.name), h('span', {class:'dim'}, ` · ${partnerById.get(s.partner)?.name} · ${s.moves.map(m => m && m.fusion ? '⚗ ' + (fusionByKey.get(m.fusion)?.name || '?') + ` (${moveByKey.get(m.a?.key)?.name || '?'} + ${moveByKey.get(m.b?.key)?.name || '?'})` : moveByKey.get(m && m.key)?.name || '?').join(', ')}`)), h('button', {class:'x', title:'Delete', onclick:e => { e.stopPropagation(); store.set('pokebonk.builds', store.get('pokebonk.builds', []).filter(x => x.id !== s.id)); render(); }}, '×'))));
 }
 function buildExport(b) { return {format:'pokebonk-build', version:1, game:D.meta.version, ...JSON.parse(JSON.stringify(b)), partner_name:partnerById.get(b.partner)?.name}; }
 function exportBuild(b) {
