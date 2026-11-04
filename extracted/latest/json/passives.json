@@ -105,7 +105,7 @@
    }
   ],
   "tick": {
-   "$fn": "(e,t)=>{e.time%3<1&&ex(e,t,5.5,16747066,t=>e.combat.$1h08gpo(t,`charm`,1))}"
+   "$fn": "(e,t)=>{e.time%3<1&&ex(e,t,5.5,16747066,t=>e.combat.$1vsklcx(t,`charm`,1))}"
   }
  },
  "beacon": {
@@ -266,7 +266,7 @@
    }
   ],
   "tick": {
-   "$fn": "(e,t)=>{if(e.time%4>=1)return;let n=t.facing.x,r=t.facing.y,i=t.pos.x,a=t.pos.z;e.vfx.add.spawn({x:i+n*1.2,y:t.pos.y+1.4,z:a+r*1.2,life:.4,size:.6,endSize:1.8,color:16765498,shape:I.Eye,glow:.3});for(let t of e.enemies.within(i+n*3.5,a+r*3.5,4.5)){let o=e.enemies.x[t]-i,s=e.enemies.z[t]-a,c=Math.hypot(o,s)||1;(o*n+s*r)/c>.45&&c<7&&e.combat.$1h08gpo(t,`paralysis`,1)}}"
+   "$fn": "(e,t)=>{if(e.time%4>=1)return;let n=t.facing.x,r=t.facing.y,i=t.pos.x,a=t.pos.z;e.vfx.add.spawn({x:i+n*1.2,y:t.pos.y+1.4,z:a+r*1.2,life:.4,size:.6,endSize:1.8,color:16765498,shape:I.Eye,glow:.3});for(let t of e.enemies.within(i+n*3.5,a+r*3.5,4.5)){let o=e.enemies.x[t]-i,s=e.enemies.z[t]-a,c=Math.hypot(o,s)||1;(o*n+s*r)/c>.45&&c<7&&e.combat.$1vsklcx(t,`paralysis`,1)}}"
   }
  },
  "sand-rush": {
@@ -375,7 +375,7 @@
    }
   ],
   "tick": {
-   "$fn": "(e,t)=>t.$tgz37a(1/14)"
+   "$fn": "(e,t)=>t.$u89oc(1/14)"
   }
  },
  "anger-point": {
@@ -422,7 +422,7 @@
    }
   ],
   "tick": {
-   "$fn": "(e,t)=>{if(e.time%2>=1)return;let n=e.enemies,r=t.pos.x,i=t.pos.y+.8,a=t.pos.z,o=t.speciesId===73?4:2,s=n.within(r,a,7).filter(e=>n.$r5kivt(e)).sort((e,t)=>Math.hypot(n.x[e]-r,n.z[e]-a)-Math.hypot(n.x[t]-r,n.z[t]-a)).slice(0,o);s.forEach((o,s)=>e.later(s*.06,()=>{if(!n.$r5kivt(o))return;let c=n.x[o],l=n.y[o]+n.hgt[o]*.5,u=n.z[o],d=c-r,f=u-a,p=Math.hypot(d,f)||1,m=-f/p,h=d/p,g=(s%2?1:-1)*1.2,_=r,v=i,y=a;for(let t=1;t<=7;t++){let n=t/7,o=Math.sin(n*Math.PI)*g,s=r+d*n+m*o,c=i+(l-i)*n+Math.sin(n*Math.PI)*.8,u=a+f*n+h*o;e.vfx.beams.spawn(_,v,y,s,c,u,.22*(1-n*.5),t%2?8046824:10148080,.16),_=s,v=c,y=u}e.vfx.norm.spawn({x:c,y:l,z:u,life:.18,size:.5,endSize:1.1,color:16777215,shape:I.PixToxic}),e.combat.hit(o,wy(`tentacles`,e,t.level),{type:`poison`,cls:`physical`,status:`poison`,statusChance:.8,knock:.6,silent:!0})})),s.length&&e.audio.move(`wrap`,`cast`,{v:.5})}"
+   "$fn": "(e,t)=>{if(e.time%2>=1)return;let n=e.enemies,r=t.pos.x,i=t.pos.y+.8,a=t.pos.z,o=t.speciesId===73?4:2,s=n.within(r,a,7).filter(e=>n.$1x8g28m(e)).sort((e,t)=>Math.hypot(n.x[e]-r,n.z[e]-a)-Math.hypot(n.x[t]-r,n.z[t]-a)).slice(0,o);s.forEach((o,s)=>e.later(s*.06,()=>{if(!n.$1x8g28m(o))return;let c=n.x[o],l=n.y[o]+n.hgt[o]*.5,u=n.z[o],d=c-r,f=u-a,p=Math.hypot(d,f)||1,m=-f/p,h=d/p,g=(s%2?1:-1)*1.2,_=r,v=i,y=a;for(let t=1;t<=7;t++){let n=t/7,o=Math.sin(n*Math.PI)*g,s=r+d*n+m*o,c=i+(l-i)*n+Math.sin(n*Math.PI)*.8,u=a+f*n+h*o;e.vfx.beams.spawn(_,v,y,s,c,u,.22*(1-n*.5),t%2?8046824:10148080,.16),_=s,v=c,y=u}e.vfx.norm.spawn({x:c,y:l,z:u,life:.18,size:.5,endSize:1.1,color:16777215,shape:I.PixToxic}),e.combat.hit(o,wy(`tentacles`,e,t.level),{type:`poison`,cls:`physical`,status:`poison`,statusChance:.8,knock:.6,silent:!0})})),s.length&&e.audio.move(`wrap`,`cast`,{v:.5})}"
   }
  },
  "overgrow": {
@@ -486,7 +486,7 @@
   "name": "Intimidate",
   "desc": "Every 3 s, nearby enemies are charmed (they deal -40% damage).",
   "tick": {
-   "$fn": "(e,t)=>{e.time%3<1&&ex(e,t,5,16747098,t=>e.combat.$1h08gpo(t,`charm`,1))}"
+   "$fn": "(e,t)=>{e.time%3<1&&ex(e,t,5,16747098,t=>e.combat.$1vsklcx(t,`charm`,1))}"
   }
  },
  "pressure": {
@@ -668,7 +668,7 @@
    }
   ],
   "tick": {
-   "$fn": "(e,t)=>{if(e.time%6>=1)return;let n=t.pos.x,r=t.pos.y,i=t.pos.z;e.vfx.norm.spawn({x:n,y:r+2.2,z:i,vy:1.2,life:1,size:.5,endSize:1.1,color:10148095,shape:I.PixSleepZ});for(let t=0;t<10;t++){let a=t/10*zv;e.vfx.norm.spawn({x:n,y:r+1.2,z:i,vx:Math.cos(a)*6,vy:.4,vz:Math.sin(a)*6,drag:2,life:.8,size:.3,endSize:.6,color:16777215,shape:I.PixBubble})}e.vfx.ring(n,r,i,6,16759e3,.4,.3,L.Ripple);for(let t of e.enemies.within(n,i,6))F.chance(.5)&&e.combat.$1h08gpo(t,`sleep`,1);e.audio.kt(300,.5,{v:.04,to:.7,vib:[4,.05],a:.1})}"
+   "$fn": "(e,t)=>{if(e.time%6>=1)return;let n=t.pos.x,r=t.pos.y,i=t.pos.z;e.vfx.norm.spawn({x:n,y:r+2.2,z:i,vy:1.2,life:1,size:.5,endSize:1.1,color:10148095,shape:I.PixSleepZ});for(let t=0;t<10;t++){let a=t/10*zv;e.vfx.norm.spawn({x:n,y:r+1.2,z:i,vx:Math.cos(a)*6,vy:.4,vz:Math.sin(a)*6,drag:2,life:.8,size:.3,endSize:.6,color:16777215,shape:I.PixBubble})}e.vfx.ring(n,r,i,6,16759e3,.4,.3,L.Ripple);for(let t of e.enemies.within(n,i,6))F.chance(.5)&&e.combat.$1vsklcx(t,`sleep`,1);e.audio.kt(300,.5,{v:.04,to:.7,vib:[4,.05],a:.1})}"
   }
  },
  "natural-cure": {
@@ -719,7 +719,7 @@
    }
   ],
   "tick": {
-   "$fn": "(e,t)=>{if(!(e.time%6>=1))for(let n of Yv(e,11,3)){let r=e.enemies,i=r.x[n],a=r.z[n],o=e.terrain.height(i,a),s=.35;e.vfx.norm.spawn({x:i+1.5,y:o+9,z:a-1,vx:-1.5/s,vy:-9/s,vz:1/s,life:s,size:1.3,endSize:1.4,color:16777215,shape:I.PixRock,spin:6}),e.later(s,()=>{if(r.$r5kivt(n)){for(let t=0;t<5;t++){let t=F.range(0,Math.PI*2);e.vfx.norm.spawn({x:i,y:o+.4,z:a,vx:Math.cos(t)*3,vy:F.range(3,6),vz:Math.sin(t)*3,gravity:22,life:.5,size:.4,endSize:.25,color:16777215,shape:I.PixRock,spin:6})}e.vfx.dust(i,o,a,13154456,5,2.5),e.combat.hit(n,wy(`rock-head`,e,t.level),{type:`rock`,cls:`physical`,status:`stun`,statusChance:.5,knock:1,silent:!0})}})}}"
+   "$fn": "(e,t)=>{if(!(e.time%6>=1))for(let n of Yv(e,11,3)){let r=e.enemies,i=r.x[n],a=r.z[n],o=e.terrain.height(i,a),s=.35;e.vfx.norm.spawn({x:i+1.5,y:o+9,z:a-1,vx:-1.5/s,vy:-9/s,vz:1/s,life:s,size:1.3,endSize:1.4,color:16777215,shape:I.PixRock,spin:6}),e.later(s,()=>{if(r.$1x8g28m(n)){for(let t=0;t<5;t++){let t=F.range(0,Math.PI*2);e.vfx.norm.spawn({x:i,y:o+.4,z:a,vx:Math.cos(t)*3,vy:F.range(3,6),vz:Math.sin(t)*3,gravity:22,life:.5,size:.4,endSize:.25,color:16777215,shape:I.PixRock,spin:6})}e.vfx.dust(i,o,a,13154456,5,2.5),e.combat.hit(n,wy(`rock-head`,e,t.level),{type:`rock`,cls:`physical`,status:`stun`,statusChance:.5,knock:1,silent:!0})}})}}"
   }
  },
  "insomnia": {
@@ -1065,7 +1065,7 @@
    }
   ],
   "tick": {
-   "$fn": "(e,t)=>{if(e.time%4>=1)return;let n=e.enemies,r=t.pos.x,i=t.pos.y,a=t.pos.z,o=t.speciesId===82;e.vfx.ring(r,i,a,9,12110048,.45,.4,L.Dashed);for(let t=0;t<6;t++){let n=t/6*zv;e.vfx.norm.spawn({x:r+Math.cos(n)*8,y:i+1,z:a+Math.sin(n)*8,vx:-Math.cos(n)*14,vz:-Math.sin(n)*14,life:.5,size:.7,endSize:.5,color:16777215,shape:jd.PixMagnet,rot:n})}for(let i of n.within(r,a,9)){let s=r-n.x[i],c=a-n.z[i],l=Math.hypot(s,c)||1,u=n.flags[i]&R.Boss?.1:1;l>1.5&&(n.kx[i]+=s/l*10*u,n.kz[i]+=c/l*10*u),F.chance(.4)&&e.combat.$1h08gpo(i,`paralysis`,1),o&&e.combat.hit(i,4+t.level,{type:`electric`,cls:`special`,knock:0,silent:!0})}e.audio.kt(110,.3,{w:`sawtooth`,lp:900,v:.05,vib:[30,.2],a:.02})}"
+   "$fn": "(e,t)=>{if(e.time%4>=1)return;let n=e.enemies,r=t.pos.x,i=t.pos.y,a=t.pos.z,o=t.speciesId===82;e.vfx.ring(r,i,a,9,12110048,.45,.4,L.Dashed);for(let t=0;t<6;t++){let n=t/6*zv;e.vfx.norm.spawn({x:r+Math.cos(n)*8,y:i+1,z:a+Math.sin(n)*8,vx:-Math.cos(n)*14,vz:-Math.sin(n)*14,life:.5,size:.7,endSize:.5,color:16777215,shape:jd.PixMagnet,rot:n})}for(let i of n.within(r,a,9)){let s=r-n.x[i],c=a-n.z[i],l=Math.hypot(s,c)||1,u=n.flags[i]&R.Boss?.1:1;l>1.5&&(n.kx[i]+=s/l*10*u,n.kz[i]+=c/l*10*u),F.chance(.4)&&e.combat.$1vsklcx(i,`paralysis`,1),o&&e.combat.hit(i,4+t.level,{type:`electric`,cls:`special`,knock:0,silent:!0})}e.audio.kt(110,.3,{w:`sawtooth`,lp:900,v:.05,vib:[30,.2],a:.02})}"
   }
  },
  "serene-grace": {
@@ -1482,7 +1482,7 @@
    }
   ],
   "tick": {
-   "$fn": "(e,t)=>{let n=e.enemies,r=t.pos,i=0;for(let t of n.within(r.x,r.z,6))n.$r5kivt(t)&&n.sleep[t]>0&&(i++,i<=5&&Math.random()<.5&&e.vfx.beams.spawn(n.x[t],n.y[t]+1,n.z[t],r.x,r.y+1.2,r.z,.05,14199039,.25,.5));if(i&&t.heal(t.maxHp*.005*Math.min(5,i)),!(e.time%7>=1)){e.vfx.norm.spawn({x:r.x,y:r.y+2.8,z:r.z,life:.6,size:.7,endSize:.9,color:16777215,shape:I.PixCoin,spin:3}),e.vfx.ring(r.x,r.y,r.z,4,12099839,.4,.3,L.Runes);for(let r of Yv(e,10,t.speciesId===97?5:3))e.combat.$1h08gpo(r,`sleep`,1),e.vfx.norm.spawn({x:n.x[r],y:n.y[r]+n.hgt[r]+.4,z:n.z[r],vy:1,life:.9,size:.4,endSize:.7,color:10148095,shape:I.PixSleepZ})}}"
+   "$fn": "(e,t)=>{let n=e.enemies,r=t.pos,i=0;for(let t of n.within(r.x,r.z,6))n.$1x8g28m(t)&&n.sleep[t]>0&&(i++,i<=5&&Math.random()<.5&&e.vfx.beams.spawn(n.x[t],n.y[t]+1,n.z[t],r.x,r.y+1.2,r.z,.05,14199039,.25,.5));if(i&&t.heal(t.maxHp*.005*Math.min(5,i)),!(e.time%7>=1)){e.vfx.norm.spawn({x:r.x,y:r.y+2.8,z:r.z,life:.6,size:.7,endSize:.9,color:16777215,shape:I.PixCoin,spin:3}),e.vfx.ring(r.x,r.y,r.z,4,12099839,.4,.3,L.Runes);for(let r of Yv(e,10,t.speciesId===97?5:3))e.combat.$1vsklcx(r,`sleep`,1),e.vfx.norm.spawn({x:n.x[r],y:n.y[r]+n.hgt[r]+.4,z:n.z[r],vy:1,life:.9,size:.4,endSize:.7,color:10148095,shape:I.PixSleepZ})}}"
   }
  },
  "aftermath": {
@@ -1566,7 +1566,7 @@
    }
   ],
   "tick": {
-   "$fn": "(e,t)=>{if(e.time%5>=1)return;let n=e.enemies,r=t.pos.x,i=t.pos.y+.8,a=t.pos.z;ry(e,7,4).forEach((o,s)=>e.later(s*.06,()=>{if(!n.$r5kivt(o))return;let c=n.x[o],l=n.y[o]+.5,u=n.z[o],d=c-r,f=u-a,p=Math.hypot(d,f)||1,m=-f/p,h=d/p,g=(s%2?1:-1)*1.4,_=r,v=i,y=a;for(let t=1;t<=7;t++){let n=t/7,o=Math.sin(n*Math.PI)*g,s=r+d*n+m*o,c=i+(l-i)*n+Math.sin(n*Math.PI)*.6,u=a+f*n+h*o;e.vfx.beams.spawn(_,v,y,s,c,u,.2*(1-n*.4),t%2?2783850:4892810,.25),_=s,v=c,y=u}e.vfx.norm.spawn({x:c,y:l,z:u,vy:1,life:.4,size:.5,endSize:.3,color:16777215,shape:I.PixLeaf,spin:4}),e.combat.hit(o,wy(`regenerator`,e,t.level),{type:`grass`,cls:`physical`,status:`root`,statusChance:1,knock:0,silent:!0})}))}"
+   "$fn": "(e,t)=>{if(e.time%5>=1)return;let n=e.enemies,r=t.pos.x,i=t.pos.y+.8,a=t.pos.z;ry(e,7,4).forEach((o,s)=>e.later(s*.06,()=>{if(!n.$1x8g28m(o))return;let c=n.x[o],l=n.y[o]+.5,u=n.z[o],d=c-r,f=u-a,p=Math.hypot(d,f)||1,m=-f/p,h=d/p,g=(s%2?1:-1)*1.4,_=r,v=i,y=a;for(let t=1;t<=7;t++){let n=t/7,o=Math.sin(n*Math.PI)*g,s=r+d*n+m*o,c=i+(l-i)*n+Math.sin(n*Math.PI)*.6,u=a+f*n+h*o;e.vfx.beams.spawn(_,v,y,s,c,u,.2*(1-n*.4),t%2?2783850:4892810,.25),_=s,v=c,y=u}e.vfx.norm.spawn({x:c,y:l,z:u,vy:1,life:.4,size:.5,endSize:.3,color:16777215,shape:I.PixLeaf,spin:4}),e.combat.hit(o,wy(`regenerator`,e,t.level),{type:`grass`,cls:`physical`,status:`root`,statusChance:1,knock:0,silent:!0})}))}"
   }
  },
  "parental-bond": {
@@ -1645,7 +1645,7 @@
    }
   ],
   "tick": {
-   "$fn": "(e,t)=>{if(e.time%30>=1)return;let n=e.enemies.nearest(t.pos.x,t.pos.z,25);if(n<0)return;let r=[...e.enemies.$7rzau5(n)];if(!r.length)return;t.types=r;let i=t.pos.x,a=t.pos.y,o=t.pos.z,s=Ua[r[0]];for(let t=0;t<14;t++){let t=F.range(0,cy),n=F.range(2,5);e.vfx.norm.spawn({x:i,y:a+1,z:o,vx:Math.cos(t)*n,vy:F.range(1,3),vz:Math.sin(t)*n,drag:2,life:.6,size:1,endSize:1.8,color:14201072,shape:I.PixPuff})}e.vfx.ring(i,a,o,3,s,.4,.2,L.Petals),e.ui.popup(i,a+2.8,o,c(`¡Transformación! {types}`,{types:r.map(e=>ne[e]).join(` / `)}),`#`+s.toString(16).padStart(6,`0`),.9),e.audio.move(`transform`,`cast`)}"
+   "$fn": "(e,t)=>{if(e.time%30>=1)return;let n=e.enemies.nearest(t.pos.x,t.pos.z,25);if(n<0)return;let r=[...e.enemies.$161ahut(n)];if(!r.length)return;t.types=r;let i=t.pos.x,a=t.pos.y,o=t.pos.z,s=Ua[r[0]];for(let t=0;t<14;t++){let t=F.range(0,cy),n=F.range(2,5);e.vfx.norm.spawn({x:i,y:a+1,z:o,vx:Math.cos(t)*n,vy:F.range(1,3),vz:Math.sin(t)*n,drag:2,life:.6,size:1,endSize:1.8,color:14201072,shape:I.PixPuff})}e.vfx.ring(i,a,o,3,s,.4,.2,L.Petals),e.ui.popup(i,a+2.8,o,c(`¡Transformación! {types}`,{types:r.map(e=>ne[e]).join(` / `)}),`#`+s.toString(16).padStart(6,`0`),.9),e.audio.move(`transform`,`cast`)}"
   }
  },
  "download": {
@@ -1710,7 +1710,7 @@
    }
   ],
   "tick": {
-   "$fn": "(e,t)=>{let n=t.pos.x,r=t.pos.z;for(let i=0;i<6;i++){let i=F.range(0,hy),a=F.range(1,6);e.vfx.norm.spawn({x:n+Math.cos(i)*a,y:t.pos.y+F.range(.3,2),z:r+Math.sin(i)*a,vx:F.range(-.5,.5),vy:-.6,vz:F.range(-.5,.5),life:.9,size:.3,endSize:.2,color:16777215,shape:I.PixSnow,spin:2})}for(let t of e.enemies.within(n,r,6))Math.random()<.35&&e.combat.$1h08gpo(t,`freeze`,1)}"
+   "$fn": "(e,t)=>{let n=t.pos.x,r=t.pos.z;for(let i=0;i<6;i++){let i=F.range(0,hy),a=F.range(1,6);e.vfx.norm.spawn({x:n+Math.cos(i)*a,y:t.pos.y+F.range(.3,2),z:r+Math.sin(i)*a,vx:F.range(-.5,.5),vy:-.6,vz:F.range(-.5,.5),life:.9,size:.3,endSize:.2,color:16777215,shape:I.PixSnow,spin:2})}for(let t of e.enemies.within(n,r,6))Math.random()<.35&&e.combat.$1vsklcx(t,`freeze`,1)}"
   }
  },
  "volt-pressure": {
@@ -1722,7 +1722,7 @@
    "[circular]"
   ],
   "tick": {
-   "$fn": "(e,t)=>{if(e.time%5>=1)return;let n=e.enemies,r=n.within(t.pos.x,t.pos.z,13).filter(e=>n.$r5kivt(e));for(let i=0;i<3&&r.length;i++){let a=r.splice(Math.floor(Math.random()*r.length),1)[0],o=n.x[a],s=n.z[a],c=e.terrain.height(o,s);e.later(i*.12,()=>{e.vfx.lightning(o+F.range(-1,1),c+24,s,o,c,s,16769594,.45,8,.22),e.vfx.norm.spawn({x:o,y:c+1.2,z:s,life:.18,size:1.6,endSize:1.2,color:16777215,shape:I.PixBolt});for(let r of n.within(o,s,2.2))e.combat.hit(r,wy(`volt-pressure`,e,t.level),{type:`electric`,cls:`special`,status:`paralysis`,statusChance:.8,knock:1,silent:!0})})}}"
+   "$fn": "(e,t)=>{if(e.time%5>=1)return;let n=e.enemies,r=n.within(t.pos.x,t.pos.z,13).filter(e=>n.$1x8g28m(e));for(let i=0;i<3&&r.length;i++){let a=r.splice(Math.floor(Math.random()*r.length),1)[0],o=n.x[a],s=n.z[a],c=e.terrain.height(o,s);e.later(i*.12,()=>{e.vfx.lightning(o+F.range(-1,1),c+24,s,o,c,s,16769594,.45,8,.22),e.vfx.norm.spawn({x:o,y:c+1.2,z:s,life:.18,size:1.6,endSize:1.2,color:16777215,shape:I.PixBolt});for(let r of n.within(o,s,2.2))e.combat.hit(r,wy(`volt-pressure`,e,t.level),{type:`electric`,cls:`special`,status:`paralysis`,statusChance:.8,knock:1,silent:!0})})}}"
   }
  },
  "flame-pressure": {

@@ -1,0 +1,18 @@
+# Game client files: keep local only (the game's own code; not ours to redistribute)
+raw/
+
+# Local working files
+_to_delete/
+update.log
+extracted/.tmp/
+tools/config.json
+site-repo/
+
+# Older extracted versions stay local; the repo carries only the current data
+extracted/*/
+!extracted/latest/
+
+# OS / editor noise
+Thumbs.db
+desktop.ini
+.DS_Store

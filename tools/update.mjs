@@ -27,6 +27,14 @@ const BASE = opt('--base', 'https://pokebonk.com/').replace(/\/?$/, '/');
 const ROOT = path.resolve(opt('--root', path.join(here, '..')));
 const RAW = path.join(ROOT, 'raw'), OUT = path.join(ROOT, 'extracted');
 const QUIET = flag('--quiet');
+const SAFE_NAME = /^[0-9A-Za-z][0-9A-Za-z._-]{0,40}$/;
+const checkVersion = (v) => {
+  if (!v || !SAFE_NAME.test(String(v.version)) || String(v.version).includes('..') || !SAFE_NAME.test(String(v.build)))
+    throw Error('unexpected version.json from the site: ' + JSON.stringify(v).slice(0, 120));
+  return { version: String(v.version), build: String(v.build) };
+};
+const ORIGIN = new URL(BASE).origin;
+const sameSite = (u) => { try { return new URL(u).origin === ORIGIN; } catch { return false; } };
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36';
 const SKIP_JS = /^(three|modulepreload-polyfill)[-.]|^(es|pt|fr|ja|zh|zht|ko|ru)-/; // not needed for extraction
 const SKIP_DATA = /^i18n\/(?!en\.json)|^sprites\.json$/;               // other languages, sprite atlas map
@@ -70,8 +78,10 @@ async function download(remote) {
   // 2. crawl JS chunks via "./name.js" references
   const seen = new Set(), js = [];
   while (queue.length) {
-    const url = queue.shift(); const name = path.basename(new URL(url).pathname);
-    if (seen.has(name)) continue; seen.add(name);
+    const url = queue.shift();
+    if (!sameSite(url)) { log(`skipped script from another site: ${url}`); continue; }
+    const name = path.basename(new URL(url).pathname);
+    if (!/^[\w.-]+\.js$/.test(name) || seen.has(name)) continue; seen.add(name);
     if (SKIP_JS.test(name)) continue;
     const src = await get(url); fs.writeFileSync(path.join(tmp, name), src); js.push(name);
     for (const m of src.matchAll(/["'`](\.{1,2}\/[\w./-]+?\.js)["'`]/g)) queue.push(new URL(m[1], url).href);
@@ -82,6 +92,7 @@ async function download(remote) {
   const dataFiles = new Set();
   for (const f of js) for (const m of fs.readFileSync(path.join(tmp, f), 'utf8').matchAll(/data\/([\w/-]+\.json)/g)) if (!SKIP_DATA.test(m[1])) dataFiles.add(m[1]);
   for (const need of ['pokemon.json', 'moves.json', 'learnsets.json', 'abilities.json', 'types.json', 'items.json', 'i18n/en.json']) dataFiles.add(need);
+  for (const d of dataFiles) if (!/^[\w-]+(\/[\w-]+)*\.json$/.test(d) || d.includes('..')) dataFiles.delete(d);
   for (const d of dataFiles) fs.writeFileSync(path.join(tmp, path.basename(d)), await get(`${BASE}data/${d}?v=${remote.build}`, 'buf'));
   log(`downloaded ${dataFiles.size} data files`);
   fs.writeFileSync(path.join(tmp, 'version.json'), JSON.stringify(remote));
@@ -91,10 +102,24 @@ async function download(remote) {
   return dirName;
 }
 
+// The extractor evaluates the game's own code, so it runs with Node's permission model:
+// it may only read tools/ and the raw folder, only write the temp output folder, and can't
+// start other programs. Needs Node 20+ (22+ recommended).
+function sandboxFlags(rawDir, outDir) {
+  if (flag('--unsafe-extract')) { log('WARNING: extracting without the sandbox (--unsafe-extract)'); return []; }
+  const allow = [`--allow-fs-read=${here}`, `--allow-fs-read=${rawDir}`, `--allow-fs-read=${outDir}`, `--allow-fs-write=${outDir}`];
+  for (const f of ['--permission', '--experimental-permission']) {
+    const t = spawnSync(process.execPath, [f, `--allow-fs-read=${here}`, '-e', '0'], { encoding: 'utf8' });
+    if (t.status === 0) return [f, ...allow];
+  }
+  throw Error(`Node ${process.version} has no permission sandbox; update Node (winget upgrade OpenJS.NodeJS.LTS) or run with --unsafe-extract`);
+}
+
 function extract(dirName, version) {
   const outName = dirName; // extracted/<dirName>
   const tmpOut = path.join(OUT, '.tmp'); fs.rmSync(tmpOut, { recursive: true, force: true });
-  const r = spawnSync(process.execPath, [path.join(here, 'extract.mjs'), path.join(RAW, dirName), tmpOut], { encoding: 'utf8' });
+  fs.mkdirSync(tmpOut, { recursive: true });
+  const r = spawnSync(process.execPath, [...sandboxFlags(path.join(RAW, dirName), tmpOut), path.join(here, 'extract.mjs'), path.join(RAW, dirName), tmpOut], { encoding: 'utf8', timeout: 300000 });
   if (r.status !== 0) throw Error('extractor failed:\n' + (r.stderr || r.stdout).slice(-2000));
   const produced = path.join(tmpOut, version);
   const meta = JSON.parse(fs.readFileSync(path.join(produced, 'meta.json'), 'utf8'));
@@ -131,9 +156,10 @@ async function main() {
   const re = opt('--reextract');
   let dirName, remote;
   if (re) {
-    dirName = re; remote = JSON.parse(fs.readFileSync(path.join(RAW, re, 'version.json'), 'utf8'));
+    if (!SAFE_NAME.test(re) || re.includes('..')) throw Error('bad folder name: ' + re);
+    dirName = re; remote = checkVersion(JSON.parse(fs.readFileSync(path.join(RAW, re, 'version.json'), 'utf8')));
   } else {
-    remote = JSON.parse(await get(`${BASE}version.json?t=${Date.now()}`));
+    remote = checkVersion(JSON.parse(await get(`${BASE}version.json?t=${Date.now()}`)));
     const have = local().find((l) => l.build === remote.build);
     if (have && !flag('--force')) {
       if (fs.existsSync(path.join(OUT, 'latest', 'meta.json'))) { ensureUi(); log(`up to date: ${remote.version} (${remote.build})`); return 0; }

@@ -1,5 +1,17 @@
 [
  {
+  "version": "0.8.92",
+  "build": "mw17215b",
+  "date": "2026-11-03",
+  "title": "Change your password even if you don't remember the current one.",
+  "notes": [
+   {
+    "kind": "new",
+    "text": "Forgot your password but still signed in? You can now **change it without entering the current one** in Settings → Account. Each account can do this **only once**, and only if it has never changed its password before."
+   }
+  ]
+ },
+ {
   "version": "0.8.91",
   "build": "mw0z8yt0",
   "date": "2026-11-03",

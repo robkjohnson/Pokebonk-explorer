@@ -20,6 +20,8 @@ const dpF = mainImports.filter((f) => !/^(i18n|three)[-.]/.test(f) && files.incl
 const enF = pick(/^en-.*\.js$/);
 const J = (n) => JSON.parse(fs.readFileSync(path.join(rawDir, n), 'utf8'));
 const version = J('version.json');
+const SAFE = /^[0-9A-Za-z][0-9A-Za-z._-]{0,40}$/;
+if (!SAFE.test(String(version.version)) || String(version.version).includes('..') || !SAFE.test(String(version.build))) throw Error('unexpected version.json: ' + JSON.stringify(version).slice(0, 100));
 const outDir = path.join(outRoot, version.version);
 fs.mkdirSync(outDir, { recursive: true });
 
@@ -62,9 +64,11 @@ for (const t of Object.keys(types.names)) if (en.types[t]) types.names[t] = en.t
 const storeName = [...M.decls].find(([k, d]) => /^new class\{constructor\(\)\{A\(this,`pokemon`/.test(d.src))?.[0];
 if (!storeName) throw Error('data store not found');
 const store = M.get(storeName);
-store.all = pokemon; store.learnsets = learnsets; store.abilities = abilities; store.types = types; store.items = itemsJ;
-for (const m of moves) { store.moves.set(m.id, m); store.movesByKey.set(m.key, m); }
-for (const p of pokemon) store.byId.set(p.id, p);
+// game code only ever sees copies made inside its own context
+const pokemonC = M.fromJSON(pokemon), movesC = M.fromJSON(moves);
+store.all = pokemonC; store.learnsets = M.fromJSON(learnsets); store.abilities = M.fromJSON(abilities); store.types = M.fromJSON(types); store.items = M.fromJSON(itemsJ);
+for (const m of movesC) { store.moves.set(m.id, m); store.movesByKey.set(m.key, m); }
+for (const p of pokemonC) store.byId.set(p.id, p);
 types.types.forEach((t, i) => store.typeIndex.set(t, i));
 // type-name map used inside item descriptions (an object keyed by type with string values, referenced by localize())
 const localizeSrc = M.decls.get(storeName).src;
@@ -77,7 +81,7 @@ for (const k of all(D, { src: (s) => s.startsWith('{normal:') && s.length < 600,
 // species filter (which of the 1025 are in-game) — function referenced in store.load as this.all.filter(e=>XX(e.id))
 const vnName = /this\.pokemon=this\.all\.filter\(e=>(\w+)\(e\.id\)\)/.exec(localizeSrc)?.[1];
 const inGame = M.get(vnName);
-store.pokemon = pokemon.filter((p) => inGame(p.id));
+store.pokemon = pokemonC.filter((p) => inGame(p.id));
 for (const e of store.pokemon) if (e.evoFrom != null && inGame(e.evoFrom)) { let t = store.evolutions.get(e.evoFrom); t || store.evolutions.set(e.evoFrom, t = []); t.push(e); }
 
 // ---------- 2. run the top-level statements that mutate data tables ----------
@@ -97,8 +101,9 @@ runStatements(M, (s) => /^\w+\[\d+\]=\{names:/.test(s) || /OVERRIDES\)/.test(s) 
 const VFX = new Set(['cast', 'sfx', 'preload', 'tint', 'look', 'trail', 'hit', 'strike', 'sky', 'fog', 'fogNear', 'fogFar', 'light', 'sun', 'ground', 'cloud', 'clouds', 'water', 'hemi', 'amb']);
 function clean(v, keepFn = true, depth = 0, seen = new WeakSet()) {
   if (typeof v === 'function') return keepFn ? { $fn: v.toString() } : undefined;
-  if (v instanceof Map) return clean(Object.fromEntries(v), keepFn, depth, seen);
-  if (v instanceof Set) return [...v];
+  const tag = Object.prototype.toString.call(v);
+  if (tag === '[object Map]') return clean(Object.fromEntries(v), keepFn, depth, seen);
+  if (tag === '[object Set]') return [...v];
   if (v && typeof v === 'object') {
     if (seen.has(v)) return '[circular]'; seen.add(v);
     if (depth > 12) return '[deep]';
@@ -147,12 +152,13 @@ if (swName) {
   const keyOf = (id) => store.moves.get(id)?.key;
   const lineOf = (id) => { const out = [id]; for (let i = 0; i < out.length; i++) for (const e of store.evolutionsOf(out[i])) out.push(e.id); return out; };
   const rosterLive = D.get(rosterN);
+  const alwaysOpen = M.fn('() => true');
   for (const r of roster) {
     const live = rosterLive.find((x) => x.id === r.id);
     r.pools = {};
     for (const sid of lineOf(r.id)) {
       try {
-        const sp = store.byId.get(sid); const p = sw(sid, live, sp.types, () => true);
+        const sp = store.byId.get(sid); const p = sw(sid, live, sp.types, alwaysOpen);
         r.pools[sid] = { species: sp.name, types: sp.types,
           kit: p.kit.map((m) => ({ move: keyOf(m.id), level: m.level })),
           line: p.line.map((m) => ({ move: keyOf(m.id), level: m.level })),
@@ -246,7 +252,7 @@ const species = store.pokemon.map((p) => ({
   evoFrom: p.evoFrom, evoLevel: p.evoLevel, evoStage: p.evoStage, family: p.family, captureRate: p.captureRate,
   abilities: p.abilities.map((a) => abilities[a]?.key ?? a), hidden: abilities[p.hidden]?.key ?? p.hidden,
   run_evolutions: store.evolutionsOf(p.id).map((t) => { const r = store.runEvolution(p.id, t); return { to: t.id, name: t.name, level: r.level }; }),
-  run_stats_lv1: (() => { try { return statFn(p, 0, {}); } catch { return null; } })(),
+  run_stats_lv1: (() => { try { return JSON.parse(JSON.stringify(statFn(p, 0, M.fromJSON({})))); } catch { return null; } })(),
   learnset: (learnsets[p.id] ?? []).map(([mid, lv]) => ({ move: store.moves.get(mid)?.key, level: lv })),
 }));
 put('species', species);

@@ -1,12 +1,12 @@
 {
   "game": "PokeBonk (pokebonk.com, by Charcher)",
-  "version": "0.8.91",
-  "build": "mw0z8yt0",
-  "extracted_at": "2026-11-03T21:47:00.210Z",
+  "version": "0.8.92",
+  "build": "mw17215b",
+  "extracted_at": "2026-11-04T00:45:57.371Z",
   "source_files": [
-    "main-eMhOb52l-mw0z8yt0.js",
-    "defineProperty-B12t6lOU-mw0z8yt0.js",
-    "en-CvcjTSg0-mw0z8yt0.js",
+    "main-DE_Gq1n2-mw17215b.js",
+    "defineProperty-BP9IYqs1-mw17215b.js",
+    "en-y18RNGF3-mw17215b.js",
     "pokemon.json",
     "moves.json",
     "learnsets.json",
@@ -51,7 +51,7 @@
     "species": 151,
     "formulas_source": 12,
     "partner_kit_unlock_levels": 4,
-    "changelog": 117
+    "changelog": 118
   },
   "warnings": []
 }

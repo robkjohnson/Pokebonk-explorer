@@ -132,7 +132,7 @@
   "$fn": "(e,t)=>[c(`Magikarp de {dmg} de daño base cada 9 s`,{dmg:Math.round(9*t*(1+e.player.level*.08))}),c(`{pct}% de que pique un Gyarados`,{pct:2+t})]"
  },
  "bicycle": {
-  "$fn": "(e,t)=>[c(`Ahora: +{pct}% de daño por tu velocidad`,{pct:Math.round(e.player.$3u7q4r()*t*100)})]"
+  "$fn": "(e,t)=>[c(`Ahora: +{pct}% de daño por tu velocidad`,{pct:Math.round(e.player.$1alxv8o()*t*100)})]"
  },
  "iron-ball": {
   "$fn": "(e,t)=>[c(`Onda sísmica de {dmg} de daño base al aterrizar`,{dmg:Math.round((10+.5*Math.max(0,e.player.stats.armor))*t*(1+e.player.level*.08))})]"
@@ -147,13 +147,13 @@
   "$fn": "(e,t)=>[e.player.guardT>0?c(`Recargando: {s} s`,{s:Math.ceil(e.player.guardT)}):c(`Lista: bloquea el siguiente golpe`),c(`Recarga de {s} s`,{s:14-3*(t-1)})]"
  },
  "coin-case": {
-  "$fn": "e=>[c(`Ahora: +{pct}% de daño ({spent} ₽ gastados)`,{pct:Math.round(e.player.$85r4f2()*100),spent:Math.round(e.goldSpent)})]"
+  "$fn": "e=>[c(`Ahora: +{pct}% de daño ({spent} ₽ gastados)`,{pct:Math.round(e.player.$1gur0hw()*100),spent:Math.round(e.goldSpent)})]"
  },
  "thick-club": {
   "$fn": "(e,t)=>[c(`Ahora: +{pct}% de daño físico por tu armadura`,{pct:Math.round(Math.min(.5,Math.max(0,e.player.stats.armor)/200)*t*100)})]"
  },
  "rage-candy-bar": {
-  "$fn": "e=>[c(`Ahora: +{pct}% de daño por tus PS`,{pct:Math.round(e.player.$3pptgv()*100)})]"
+  "$fn": "e=>[c(`Ahora: +{pct}% de daño por tus PS`,{pct:Math.round(e.player.$1uv2xq9()*100)})]"
  },
  "silph-scope": {
   "$fn": "(e,t)=>[c(`El enemigo marcado recibe +{pct}% de daño`,{pct:40*t}),e.player.scopeIdx>=0?c(`Marcado: {s} s`,{s:Math.max(0,Math.ceil(e.player.scopeT))}):c(`Buscando objetivo`)]"

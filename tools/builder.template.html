@@ -696,7 +696,8 @@ function itemPicker(b) {
   return h('select', {onchange:e => { if (e.target.value) { addItem(e.target.value); render(); } }}, h('option', {value:''}, '+ Add item'), RARITY.map((r, i) => h('optgroup', {label:r}, D.items.filter(it => it.rarity === i).sort((a, c) => a.name.localeCompare(c.name)).map(it => h('option', {value:it.key}, it.name)))));
 }
 function savedList(saved) {
-  return h('div', {class:'savedlist'}, saved.map(s => h('div', {class:'box between', onclick:() => { S.build = migrateBuild(JSON.parse(JSON.stringify(s))); render(); }}, h('span', null, h('b', null, s.name), h('span', {class:'dim'}, ` · ${partnerById.get(s.partner)?.name} · ${s.moves.map(m => m.fusion ? '⚗ ' + fusionByKey.get(m.fusion)?.name : moveByKey.get(m.key)?.name).join(', ')}`)), h('button', {class:'x', title:'Delete', onclick:e => { e.stopPropagation(); store.set('pokebonk.builds', store.get('pokebonk.builds', []).filter(x => x.id !== s.id)); render(); }}, '×'))));
+  saved = (Array.isArray(saved) ? saved : []).filter(s => s && partnerById.has(+s.partner) && Array.isArray(s.moves));
+  return h('div', {class:'savedlist'}, saved.map(s => h('div', {class:'box between', onclick:() => { try { S.build = sanitizeBuild(s); render(); } catch (e) { toast(e.message); } }}, h('span', null, h('b', null, s.name), h('span', {class:'dim'}, ` · ${partnerById.get(s.partner)?.name} · ${s.moves.map(m => m && m.fusion ? '⚗ ' + (fusionByKey.get(m.fusion)?.name || '?') : moveByKey.get(m && m.key)?.name || '?').join(', ')}`)), h('button', {class:'x', title:'Delete', onclick:e => { e.stopPropagation(); store.set('pokebonk.builds', store.get('pokebonk.builds', []).filter(x => x.id !== s.id)); render(); }}, '×'))));
 }
 function buildExport(b) { return {format:'pokebonk-build', version:1, game:D.meta.version, ...JSON.parse(JSON.stringify(b)), partner_name:partnerById.get(b.partner)?.name}; }
 function exportBuild(b) {
@@ -712,10 +713,32 @@ function copyLink(b) {
   const code = btoa(unescape(encodeURIComponent(JSON.stringify(buildExport(b)))));
   copyText(location.href.split('#')[0] + '#build=' + code, 'Link copied');
 }
-function loadBuildObject(o) {
-  if (!o || !partnerById.has(o.partner)) throw Error('Not a PokéBonk build');
-  S.build = migrateBuild({v:2, id:o.id || Date.now().toString(36), name:o.name || 'Imported build', partner:o.partner, stage:o.stage || o.partner, growth:o.growth || 0, moves:o.moves || [], fusions:o.fusions || [], vitamins:o.vitamins || [], items:o.items || {}, lab:o.lab || {}, rarity:o.rarity || 0, notes:o.notes || ''});
+// Builds come from links, files and browser storage: keep only things that exist in the data
+// and clamp every number, so a bad or hand-edited build can't break the page.
+const clampInt = (v, lo, hi, d) => { const n = Math.round(+v); return Number.isFinite(n) ? Math.max(lo, Math.min(hi, n)) : d; };
+const str = (v, max, d = '') => typeof v === 'string' ? v.slice(0, max) : d;
+function sanitizeBuild(o) {
+  if (!o || typeof o !== 'object') throw Error('Not a PokéBonk build');
+  const partner = +o.partner;
+  if (!partnerById.has(partner)) throw Error('Not a PokéBonk build (unknown partner)');
+  const line = lineOf(partner);
+  const mv = (x) => x && typeof x === 'object' && moveByKey.has(x.key) ? {key:x.key, level:clampInt(x.level, 1, 10, 8)} : null;
+  const moves = [];
+  for (const x of Array.isArray(o.moves) ? o.moves.slice(0, 8) : []) {
+    if (x && x.fusion) { const a = mv(x.a), b = mv(x.b); if (fusionByKey.has(x.fusion) && a && b) moves.push({fusion:x.fusion, a, b, stars:clampInt(x.stars, 1, 6, 1)}); }
+    else { const m = mv(x); if (m) moves.push(m); }
+  }
+  const fusions = (Array.isArray(o.fusions) ? o.fusions.slice(0, 4) : []).filter(f => f && fusionByKey.has(f.fusion) && moveByKey.has(f.a) && moveByKey.has(f.b)).map(f => ({a:f.a, b:f.b, fusion:f.fusion}));
+  const seenV = new Set();
+  const vitamins = (Array.isArray(o.vitamins) ? o.vitamins.slice(0, 8) : []).filter(v => v && vitByKey.has(v.key) && !seenV.has(v.key) && seenV.add(v.key)).map(v => ({key:v.key, level:clampInt(v.level, 1, 12, 10)}));
+  const items = {};
+  if (o.items && typeof o.items === 'object') for (const [k, n] of Object.entries(o.items).slice(0, 150)) { const it = itemByKey.get(k); if (it) { const c = clampInt(n, 0, it.max ?? 10, 0); if (c) items[k] = c; } }
+  const lab = {};
+  if (o.lab && typeof o.lab === 'object') for (const [k, n] of Object.entries(o.lab)) { const u = labById.get(k); if (u) { const c = clampInt(n, 0, u.max, 0); if (c) lab[k] = c; } }
+  return migrateBuild({v:2, id:str(o.id, 40).replace(/[^\w-]/g, '') || Date.now().toString(36), name:str(o.name, 80, 'Imported build') || 'Imported build', partner,
+    stage:line.includes(+o.stage) ? +o.stage : line.at(-1), growth:clampInt(o.growth, 0, 20, 0), moves, fusions, vitamins, items, lab, rarity:clampInt(o.rarity, 0, 4, 0), notes:str(o.notes, 2000)});
 }
+function loadBuildObject(o) { S.build = sanitizeBuild(o); }
 function importControls() {
   const tryLoad = t => { try { loadBuildObject(JSON.parse(t)); render(); toast('Build imported'); } catch (err) { toast(err.message || 'Could not read that build'); } };
   const ta = h('textarea', {rows:3, placeholder:'…or paste build JSON here', style:{width:'100%', marginTop:'8px', background:'var(--panel2)', border:'1px solid var(--line)', borderRadius:'8px', color:'inherit', padding:'8px'}});
