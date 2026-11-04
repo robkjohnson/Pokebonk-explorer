@@ -209,6 +209,33 @@ function moveDps(m, S, opts = {}) {
   const cd = (m.cd || 1) * lv.cdMul / (S.attackSpeed || 1);
   return {hit, crit, count, cd, area:(m.area || 0) * lv.areaMul * (S.area || 1), dps: hit * critMul * count / cd};
 }
+// Fused move (game: mods = ingredient mods combined; hit = 17·power·1.3·mods.dmg·(1+0.04·(stars−1)); cd ≥ 0.6)
+function fusionDps(e, S, opts = {}) {
+  const f = fusionByKey.get(e.fusion), ma = moveByKey.get(e.a.key), mb = moveByKey.get(e.b.key);
+  if (!f || !ma || !mb) return {hit:0, crit:0, count:0, cd:1, dps:0};
+  const r = opts.rarity ?? 0, la = moveAt(ma, e.a.level, r), lb = moveAt(mb, e.b.level, r);
+  const stars = e.stars || 1, ls = moveAt({arch:'fusion'}, stars, r);
+  const dmgMod = la.dmgMul + lb.dmgMul - 1 + (ls.dmgMul - 1);
+  const cdMod = la.cdMul * lb.cdMul * ls.cdMul;
+  const stab = (opts.types || []).includes(f.type) ? (opts.adaptability ? 1.5625 : 1.25) : 1;
+  const cls = f.cls === 'physical' ? S.physical : S.special;
+  const base = (D.archetypes.fusion?.dmg ?? 17) * f.power;
+  const hit = base * 1.3 * dmgMod * (1 + (stars - 1) * .04) * S.damage * cls * stab * (S.typeBoost?.[f.type] ?? 1);
+  const crit = Math.min(1, S.critChance + la.critAdd + lb.critAdd + ls.critAdd);
+  const cd = Math.max(.6, f.cd * cdMod / (S.attackSpeed || 1));
+  const count = f.hits || 1;
+  return {hit, crit, count, cd, dps: hit * (1 + crit * (S.critDamage - 1)) * count / cd};
+}
+const isFusion = x => !!x?.fusion;
+function migrateBuild(b) { // older saves kept fusions in a separate list
+  if (Array.isArray(b.fusions) && b.fusions.length) for (const f of b.fusions) {
+    const ia = b.moves.findIndex(x => x.key === f.a), ib = b.moves.findIndex(x => x.key === f.b);
+    if (ia < 0 || ib < 0) continue;
+    const entry = {fusion:f.fusion, a:b.moves[ia], b:b.moves[ib], stars:1};
+    b.moves[Math.min(ia, ib)] = entry; b.moves.splice(Math.max(ia, ib), 1);
+  }
+  delete b.fusions; return b;
+}
 const plainDps = m => moveDps(m, {damage:1, physical:1, special:1, critChance:.05, critDamage:1.75, attackSpeed:1, area:1, projectiles:0, typeBoost:{}}).dps;
 // Bill's Machine: which fusion two moves make (signature → reaction → same type → glitch)
 function fusionFor(a, b) {
@@ -532,13 +559,14 @@ function viewFusions() {
 // ---------- Build ----------
 function newBuild(pid) {
   return {v:1, id:Date.now().toString(36), name:`${partnerById.get(pid).name} build`, partner:pid, stage:lineOf(pid).at(-1), growth:0,
-    moves:[], fusions:[], vitamins:[], items:{}, lab:{}, rarity:0, notes:''};
+    moves:[], vitamins:[], items:{}, lab:{}, rarity:0, notes:''};
 }
 function startBuild(pid, moves = []) {
   const b = newBuild(pid);
   const p = partnerById.get(pid);
   b.moves = [{key:p.kit[0], level:8}];
   for (const k of moves) if (!b.moves.some(x => x.key === k)) b.moves.push({key:k, level:8});
+  b.v = 2;
   S.build = b; go('build');
 }
 function slots(b) { return {moves:3 + (b.lab['slot-move'] || 0), vits:3 + (b.lab['slot-vit'] || 0)}; }
@@ -561,9 +589,11 @@ function computeBuild(b) {
   if (pas?.typeBoost) for (const [t, v] of Object.entries(pas.typeBoost)) st.typeBoost[t] = (st.typeBoost[t] ?? 1) + v;
   applyGroups(st, [gVit, gItem, [], gPas]);
   const opts = {types:sp.types, adaptability:p.passive === 'adaptability', rarity:b.rarity};
-  const fusedKeys = new Set(b.fusions.flatMap(f => [f.a, f.b]));
-  const moveRows = b.moves.map(x => { const m = moveByKey.get(x.key); return m ? {x, m, fused:fusedKeys.has(x.key), ...moveDps(m, st, {...opts, level:x.level})} : null; }).filter(Boolean);
-  return {st, sp, moveRows, totalDps:moveRows.filter(r => !r.fused).reduce((a, r) => a + r.dps, 0), pas};
+  const moveRows = b.moves.map(x => {
+    if (isFusion(x)) { const f = fusionByKey.get(x.fusion); return f ? {x, m:f, fusion:true, lvl:'★' + (x.stars || 1), ...fusionDps(x, st, opts)} : null; }
+    const m = moveByKey.get(x.key); return m ? {x, m, lvl:x.level, ...moveDps(m, st, {...opts, level:x.level})} : null;
+  }).filter(Boolean);
+  return {st, sp, moveRows, totalDps:moveRows.reduce((a, r) => a + r.dps, 0), pas};
 }
 function viewBuild() {
   const b = S.build;
@@ -595,29 +625,45 @@ function viewBuild() {
     h('div', {class:'row', style:{marginTop:'12px'}}, h('button', {class:'btn', onclick:save}, 'Save'), h('button', {class:'btn ghost', onclick:() => exportBuild(b)}, 'Download'), h('button', {class:'btn ghost', onclick:() => copyText(JSON.stringify(buildExport(b), null, 2), 'Build JSON copied')}, 'Copy JSON'), IN_FRAME ? '' : h('button', {class:'btn ghost', onclick:() => copyLink(b)}, 'Copy link')));
 
   // column 2: moves, fusions, vitamins, items
-  const usedSlots = b.moves.length - b.fusions.length; // each fusion turns 2 moves into 1 slot
+  const usedSlots = b.moves.length; // a fusion is one entry: it replaced its two ingredients
+  const fusionCap = b.items['tm-case'] ? 6 : 5;
+  const inBuild = k => b.moves.some(x => x.key === k || (isFusion(x) && (x.a.key === k || x.b.key === k)));
+  const unfuse = (i) => { const x = b.moves[i]; b.moves.splice(i, 1, x.a, x.b); render(); };
   const moveSlots = b.moves.map((x, i) => {
+    if (isFusion(x)) {
+      const f = fusionByKey.get(x.fusion), ma = moveByKey.get(x.a.key), mb = moveByKey.get(x.b.key);
+      const low = [x.a, x.b].filter(y => y.level < 8);
+      return h('div', {class:'slot', style:{borderColor:'#6b5a2a', background:'#2a2433'}}, h('span', {class:'n'}, i + 1),
+        h('div', null, h('div', null, h('span', {class:'linkish', style:{fontWeight:700}, onclick:() => { S.selFusion = f.key; go('fusions'); }}, '⚗ ' + f.name), ' ', h('span', {class:'pill'}, f.kind)),
+          h('div', {class:'row', style:{marginTop:'3px', fontSize:'11px'}}, typeBadge(f.type), f.type2 ? typeBadge(f.type2) : '', clsBadge(f.cls), h('span', {class:'dim'}, `from ${ma?.name} (Lv ${x.a.level}) + ${mb?.name} (Lv ${x.b.level}) — keeps both moves' upgrades`)),
+          low.length ? h('div', {class:'warn'}, 'Both ingredients must be Lv 8 before fusing.') : ''),
+        h('span', null, h('span', {class:'dim', style:{fontSize:'11px'}}, '★ '), h('input', {type:'number', min:1, max:fusionCap, value:x.stars || 1, title:`Fusion stars (max ${fusionCap})`, onchange:e => { x.stars = Math.max(1, Math.min(fusionCap, +e.target.value || 1)); render(); }})),
+        h('span', null, h('button', {class:'btn ghost sm', title:'Split back into the two moves', onclick:() => unfuse(i)}, 'Unfuse'), h('button', {class:'x', title:'Remove', onclick:() => { b.moves.splice(i, 1); render(); }}, '×')));
+    }
     const m = moveByKey.get(x.key), src = poolOf.get(b.partner).get(x.key);
-    const fused = b.fusions.find(f => f.a === x.key || f.b === x.key);
     return h('div', {class:'slot'}, h('span', {class:'n'}, i + 1),
-      h('div', null, moveSelect(pool, x.key, k => { x.key = k; b.fusions = b.fusions.filter(f => f.a !== k && f.b !== k && moveByKey.has(f.a)); render(); }),
-        h('div', {class:'row', style:{marginTop:'3px', fontSize:'11px'}}, typeBadge(m?.type), clsBadge(m?.cls), h('span', {class:'dim'}, `${D.archetypes[m?.arch]?.label || ''} · ${src ? SRC_LABEL[src.src] + ' · offered from Lv ' + src.level : 'not in pool'}`), fused ? h('span', {class:'pill'}, '→ ' + fusionByKey.get(fused.fusion)?.name) : '')),
+      h('div', null, moveSelect(pool, x.key, k => { x.key = k; render(); }),
+        h('div', {class:'row', style:{marginTop:'3px', fontSize:'11px'}}, typeBadge(m?.type), clsBadge(m?.cls), h('span', {class:'dim'}, `${D.archetypes[m?.arch]?.label || ''} · ${src ? SRC_LABEL[src.src] + ' · offered from Lv ' + src.level : 'not in pool'}`))),
       h('span', null, h('span', {class:'dim', style:{fontSize:'11px'}}, 'Lv '), h('input', {type:'number', min:1, max:moveCap(b), value:x.level, onchange:e => { x.level = Math.max(1, Math.min(moveCap(b), +e.target.value || 1)); render(); }})),
-      h('button', {class:'x', title:'Remove', onclick:() => { b.moves.splice(i, 1); b.fusions = b.fusions.filter(f => f.a !== x.key && f.b !== x.key); render(); }}, '×'));
+      h('button', {class:'x', title:'Remove', onclick:() => { b.moves.splice(i, 1); render(); }}, '×'));
   });
-  // fusion options among chosen moves
+  // fusion options among the plain (not yet fused) moves
   const fusOpts = [];
-  const ms = b.moves.map(x => moveByKey.get(x.key)).filter(fusable);
-  for (let i = 0; i < ms.length; i++) for (let j = i + 1; j < ms.length; j++) { const f = fusionFor(ms[i], ms[j]); if (f) fusOpts.push({a:ms[i], b:ms[j], f}); }
-  const inFusion = k => b.fusions.some(f => f.a === k || f.b === k);
+  const plain = b.moves.map((x, i) => ({x, i, m:isFusion(x) ? null : moveByKey.get(x.key)})).filter(o => fusable(o.m));
+  for (let i = 0; i < plain.length; i++) for (let j = i + 1; j < plain.length; j++) { const f = fusionFor(plain[i].m, plain[j].m); if (f) fusOpts.push({A:plain[i], B:plain[j], f}); }
+  const doFuse = (o) => {
+    const entry = {fusion:o.f.key, a:{key:o.A.x.key, level:Math.max(8, o.A.x.level)}, b:{key:o.B.x.key, level:Math.max(8, o.B.x.level)}, stars:1};
+    const lo = Math.min(o.A.i, o.B.i), hi = Math.max(o.A.i, o.B.i);
+    b.moves.splice(hi, 1); b.moves[lo] = entry; render(); toast(`Fused into ${o.f.name} — a slot is free`);
+  };
   const col2 = h('div', null,
-    h('div', {class:'panel pad'}, h('div', {class:'between'}, h('h3', {style:{margin:0}}, `Moves (${usedSlots}/${sl.moves} slots)`), h('button', {class:'btn ghost sm', disabled:usedSlots >= sl.moves, onclick:() => { const next = pool.find(x => x.src !== 'any' && !b.moves.some(y => y.key === x.move)); if (next) { b.moves.push({key:next.move, level:8}); render(); } }}, '+ Add move')),
+    h('div', {class:'panel pad'}, h('div', {class:'between'}, h('h3', {style:{margin:0}}, `Moves (${usedSlots}/${sl.moves} slots)`), h('button', {class:'btn ghost sm', disabled:usedSlots >= sl.moves, onclick:() => { const next = pool.find(x => x.src !== 'any' && !inBuild(x.move)); if (next) { b.moves.push({key:next.move, level:8}); render(); } }}, '+ Add move')),
       usedSlots > sl.moves ? h('div', {class:'warn'}, `Over the slot limit — buy the 4th move slot in the Lab, or fuse two moves.`) : '',
       moveSlots, h('div', {class:'note'}, `Max level ${moveCap(b)}${b.items['tm-case'] ? ' (TM Case)' : ' (10 with TM Case)'}.`),
-      fusOpts.length ? [h('h3', null, "Bill's Machine options"), fusOpts.map(o => { const on = b.fusions.find(f => (f.a === o.a.key && f.b === o.b.key) || (f.a === o.b.key && f.b === o.a.key)); const blocked = !on && (inFusion(o.a.key) || inFusion(o.b.key));
-        return h('div', {class:'box', style:{opacity:blocked ? .5 : 1}}, h('div', {class:'between'}, h('span', null, h('b', null, o.a.name), ' + ', h('b', null, o.b.name), ' → ', h('span', {class:'linkish', onclick:() => { S.selFusion = o.f.key; go('fusions'); }}, '⚗ ' + o.f.name), ' ', h('span', {class:'pill'}, o.f.kind)),
-          h('button', {class:'btn sm ' + (on ? '' : 'ghost'), disabled:blocked, onclick:() => { if (on) b.fusions = b.fusions.filter(f => f !== on); else b.fusions.push({a:o.a.key, b:o.b.key, fusion:o.f.key}); render(); }}, on ? 'Planned ✓' : 'Plan fusion')),
-          h('div', {class:'note'}, `CD ${fmt(o.f.cd, 2)} s · power ${fmt(o.f.power, 2)} · ${fmt(o.f.hits, 1)} hits. Needs both at Lv 8.`)); })] : ''),
+      b.moves.some(isFusion) ? h('div', {class:'note'}, `Fusion stars max ${fusionCap}${b.items['tm-case'] ? ' (TM Case)' : ' (6 with TM Case)'}. Each fusion uses one slot, so its two ingredients free a slot.`) : '',
+      fusOpts.length ? [h('h3', null, "Bill's Machine options"), fusOpts.map(o => h('div', {class:'box'}, h('div', {class:'between'}, h('span', null, h('b', null, o.A.m.name), ' + ', h('b', null, o.B.m.name), ' → ', h('span', {class:'linkish', onclick:() => { S.selFusion = o.f.key; go('fusions'); }}, '⚗ ' + o.f.name), ' ', h('span', {class:'pill'}, o.f.kind)),
+          h('button', {class:'btn sm ghost', onclick:() => doFuse(o)}, 'Fuse')),
+          h('div', {class:'note'}, `CD ${fmt(o.f.cd, 2)} s · power ${fmt(o.f.power, 2)} · ${fmt(o.f.hits, 1)} hits. Takes 1 slot instead of 2; ingredients go to Lv 8.`)))] : ''),
     h('div', {class:'panel pad', style:{marginTop:'14px'}}, h('div', {class:'between'}, h('h3', {style:{margin:0}}, `Vitamins (${b.vitamins.length}/${sl.vits})`), h('select', {onchange:e => { if (e.target.value) { addVitamin(e.target.value); render(); } }}, h('option', {value:''}, '+ Add vitamin'), D.vitamins.filter(v => !b.vitamins.some(x => x.key === v.key)).map(v => h('option', {value:v.key}, `${v.name} — ${statLabel(v.stat)}`)))),
       b.vitamins.length > sl.vits ? h('div', {class:'warn'}, 'More vitamins than slots — add Lab vitamin slots.') : '',
       b.vitamins.map((x, i) => { const v = vitByKey.get(x.key); const amt = v.per * x.level * (D.rarity[b.rarity] ?? 1); return h('div', {class:'slot'}, h('span', {class:'n'}, i + 1), h('div', null, h('b', null, v.name), h('div', {class:'dim', style:{fontSize:'11px'}}, `${statLabel(v.stat)} ${v.kind === 'mul' ? '+' + pct(amt) : '+' + fmt(amt, 2)}`)), h('span', null, h('span', {class:'dim', style:{fontSize:'11px'}}, 'Lv '), h('input', {type:'number', min:1, max:vitCap(b), value:x.level, onchange:e => { x.level = Math.max(1, Math.min(vitCap(b), +e.target.value || 1)); render(); }})), h('button', {class:'x', onclick:() => { b.vitamins.splice(i, 1); render(); }}, '×')); })),
@@ -632,8 +678,8 @@ function viewBuild() {
   const col3 = h('div', {class:'panel pad col3'},
     h('h3', null, 'Estimated damage'),
     h('div', {class:'between'}, h('span', {class:'muted'}, 'Total move DPS (single target, neutral type)'), h('span', {class:'big'}, fmt(C.totalDps, 1))),
-    h('table', {class:'mini', style:{marginTop:'6px'}}, h('thead', null, h('tr', null, ['Move', 'Lv', 'Hit', '×', 'CD', 'Crit', 'DPS'].map((t, i) => h('th', {class:i ? 'num' : ''}, t)))), h('tbody', null, C.moveRows.map(r => h('tr', {style:{opacity:r.fused ? .5 : 1}, onclick:() => openMove(r.m.key)}, h('td', null, r.m.name, r.fused ? h('span', {class:'dim'}, ' (fused)') : ''), h('td', {class:'num'}, r.x.level), h('td', {class:'num'}, fmt(r.hit, 1)), h('td', {class:'num'}, fmt(r.count, 1)), h('td', {class:'num'}, fmt(r.cd, 2)), h('td', {class:'num'}, pct(Math.min(1, r.crit))), h('td', {class:'num'}, h('b', null, fmt(r.dps, 1))))))),
-    b.fusions.length ? h('div', {class:'note'}, `Planned fusions: ${b.fusions.map(f => fusionByKey.get(f.fusion)?.name).join(', ')} (fusion damage not modelled yet).`) : '',
+    h('table', {class:'mini', style:{marginTop:'6px'}}, h('thead', null, h('tr', null, ['Move', 'Lv', 'Hit', '×', 'CD', 'Crit', 'DPS'].map((t, i) => h('th', {class:i ? 'num' : ''}, t)))), h('tbody', null, C.moveRows.map(r => h('tr', {onclick:() => r.fusion ? (S.selFusion = r.m.key, go('fusions')) : openMove(r.m.key)}, h('td', null, r.fusion ? '⚗ ' : '', r.m.name), h('td', {class:'num'}, r.lvl), h('td', {class:'num'}, fmt(r.hit, 1)), h('td', {class:'num'}, fmt(r.count, 1)), h('td', {class:'num'}, fmt(r.cd, 2)), h('td', {class:'num'}, pct(Math.min(1, r.crit))), h('td', {class:'num'}, h('b', null, fmt(r.dps, 1))))))),
+    C.moveRows.some(r => r.fusion) ? h('div', {class:'note'}, 'Fusion rows: the game combines both ingredients\' upgrades into the fusion, then adds star upgrades. "×" is the fusion\'s hits per cast.') : '',
     h('div', {class:'note', style:{marginTop:'4px'}}, 'Expected-value estimate: level bonuses, average upgrade rolls at the assumed rarity, STAB, type items, crit. Ignores enemy type, weather, status bonuses and conditional effects.'),
     h('h3', null, 'Stats'),
     h('div', {class:'statgrid'}, statRows.map(([k, l, d]) => { const v = st[k], bv = base[k], up = v > (bv ?? 0) + 1e-9; return h('div', null, h('span', {class:'muted'}, l), h('span', {class:up ? 'up' : ''}, d === '%' ? pct(v, 1) : fmt(v, d))); })),
@@ -650,7 +696,7 @@ function itemPicker(b) {
   return h('select', {onchange:e => { if (e.target.value) { addItem(e.target.value); render(); } }}, h('option', {value:''}, '+ Add item'), RARITY.map((r, i) => h('optgroup', {label:r}, D.items.filter(it => it.rarity === i).sort((a, c) => a.name.localeCompare(c.name)).map(it => h('option', {value:it.key}, it.name)))));
 }
 function savedList(saved) {
-  return h('div', {class:'savedlist'}, saved.map(s => h('div', {class:'box between', onclick:() => { S.build = JSON.parse(JSON.stringify(s)); render(); }}, h('span', null, h('b', null, s.name), h('span', {class:'dim'}, ` · ${partnerById.get(s.partner)?.name} · ${s.moves.map(m => moveByKey.get(m.key)?.name).join(', ')}`)), h('button', {class:'x', title:'Delete', onclick:e => { e.stopPropagation(); store.set('pokebonk.builds', store.get('pokebonk.builds', []).filter(x => x.id !== s.id)); render(); }}, '×'))));
+  return h('div', {class:'savedlist'}, saved.map(s => h('div', {class:'box between', onclick:() => { S.build = migrateBuild(JSON.parse(JSON.stringify(s))); render(); }}, h('span', null, h('b', null, s.name), h('span', {class:'dim'}, ` · ${partnerById.get(s.partner)?.name} · ${s.moves.map(m => m.fusion ? '⚗ ' + fusionByKey.get(m.fusion)?.name : moveByKey.get(m.key)?.name).join(', ')}`)), h('button', {class:'x', title:'Delete', onclick:e => { e.stopPropagation(); store.set('pokebonk.builds', store.get('pokebonk.builds', []).filter(x => x.id !== s.id)); render(); }}, '×'))));
 }
 function buildExport(b) { return {format:'pokebonk-build', version:1, game:D.meta.version, ...JSON.parse(JSON.stringify(b)), partner_name:partnerById.get(b.partner)?.name}; }
 function exportBuild(b) {
@@ -668,7 +714,7 @@ function copyLink(b) {
 }
 function loadBuildObject(o) {
   if (!o || !partnerById.has(o.partner)) throw Error('Not a PokéBonk build');
-  S.build = {v:1, id:o.id || Date.now().toString(36), name:o.name || 'Imported build', partner:o.partner, stage:o.stage || o.partner, growth:o.growth || 0, moves:o.moves || [], fusions:o.fusions || [], vitamins:o.vitamins || [], items:o.items || {}, lab:o.lab || {}, rarity:o.rarity || 0, notes:o.notes || ''};
+  S.build = migrateBuild({v:2, id:o.id || Date.now().toString(36), name:o.name || 'Imported build', partner:o.partner, stage:o.stage || o.partner, growth:o.growth || 0, moves:o.moves || [], fusions:o.fusions || [], vitamins:o.vitamins || [], items:o.items || {}, lab:o.lab || {}, rarity:o.rarity || 0, notes:o.notes || ''});
 }
 function importControls() {
   const tryLoad = t => { try { loadBuildObject(JSON.parse(t)); render(); toast('Build imported'); } catch (err) { toast(err.message || 'Could not read that build'); } };
