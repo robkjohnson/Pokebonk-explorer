@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PokéBonk Builder</title>
+<meta name="description" content="Unofficial build planner for PokéBonk: every League partner, move, passive, item, vitamin and fusion, with a build calculator.">
+<style>
+:root{
+  --bg:#14121c; --panel:#1d1a28; --panel2:#262236; --line:#35304a; --text:#ece9f5; --muted:#9a94b3; --dim:#6e6888;
+  --accent:#e94756; --accent2:#ffb23f; --good:#5ad87a; --bad:#ff6b6b; --link:#8fb8ff;
+  --r:10px; --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--text);font:14px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+button,input,select{font:inherit;color:inherit}
+a{color:var(--link)}
+header{position:sticky;top:0;z-index:20;background:linear-gradient(#1b1826,#17141f);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:18px;padding:10px 18px;flex-wrap:wrap}
+.brand{font-weight:800;font-size:18px;letter-spacing:.2px;display:flex;align-items:center;gap:8px}
+.brand .ball{width:18px;height:18px;border-radius:50%;background:linear-gradient(var(--accent) 0 46%,#111 46% 54%,#f4f4f4 54%);box-shadow:inset 0 0 0 2px #111}
+.ver{color:var(--dim);font-size:12px}
+nav{display:flex;gap:4px;flex-wrap:wrap}
+nav button{background:none;border:0;padding:7px 12px;border-radius:8px;color:var(--muted);cursor:pointer;font-weight:600}
+nav button:hover{background:var(--panel2);color:var(--text)}
+nav button.on{background:var(--accent);color:#fff}
+nav .count{font-size:11px;opacity:.7;margin-left:4px}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 460px;gap:16px;padding:16px 18px;align-items:start}
+.layout.wide{grid-template-columns:minmax(0,1fr)}
+@media (max-width:1050px){.layout{grid-template-columns:1fr}.detail{position:static!important;max-height:none!important}}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--r)}
+.pad{padding:14px}
+.detail{position:sticky;top:70px;max-height:calc(100vh - 86px);overflow:auto}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+input[type=search],input[type=text],select,input[type=number]{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:7px 10px;outline:none}
+input[type=number]{width:62px;padding:5px 6px}
+input:focus,select:focus{border-color:var(--accent)}
+input[type=search]{min-width:220px}
+.chip{display:inline-flex;align-items:center;gap:5px;padding:4px 9px;border-radius:999px;border:1px solid var(--line);background:var(--panel2);cursor:pointer;font-size:12px;color:var(--muted);user-select:none}
+.chip.on{border-color:var(--accent);color:var(--text);background:#3a1f2a}
+.chips{display:flex;gap:5px;flex-wrap:wrap}
+.type{display:inline-block;padding:1px 8px;border-radius:5px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:#fff;text-shadow:0 1px 1px #0006;white-space:nowrap}
+.cls{font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:5px;padding:0 6px;white-space:nowrap}
+.rank{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.rank.common{color:#b9b4cc}.rank.uncommon{color:#5ad87a}.rank.rare{color:#5aa8ff}.rank.epic{color:#c070ff}.rank.legendary{color:#ffb23f}.rank.mythical{color:#ff77c8}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:10px 12px;cursor:pointer;transition:border-color .12s,transform .12s;position:relative;overflow:hidden}
+.card:hover{border-color:#5a5378;transform:translateY(-1px)}
+.card.sel{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.card .dex{color:var(--dim);font-size:11px;font-family:var(--mono)}
+.card .nm{font-weight:700;font-size:15px;margin:1px 0 5px}
+.card .role{color:var(--muted);font-size:12px;margin-top:5px}
+.card .stripe{position:absolute;left:0;top:0;bottom:0;width:4px}
+.card .star{position:absolute;right:9px;top:8px;font-size:11px;color:var(--accent2)}
+table{border-collapse:collapse;width:100%}
+th,td{padding:6px 8px;text-align:left;border-bottom:1px solid var(--line);vertical-align:middle}
+th{position:sticky;top:0;background:var(--panel);color:var(--muted);font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;user-select:none;z-index:1}
+th.num,td.num{text-align:right;font-variant-numeric:tabular-nums}
+th .arr{color:var(--accent)}
+tbody tr{cursor:pointer}
+tbody tr:hover{background:var(--panel2)}
+tbody tr.sel{background:#3a1f2a}
+.tablewrap{overflow:auto;max-height:calc(100vh - 150px);border-radius:var(--r);border:1px solid var(--line);background:var(--panel)}
+h2{margin:0 0 4px;font-size:22px}
+h3{margin:18px 0 8px;font-size:13px;text-transform:uppercase;letter-spacing:.8px;color:var(--muted)}
+h3:first-child{margin-top:0}
+.sub{color:var(--muted)}
+.muted{color:var(--muted)}.dim{color:var(--dim)}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.between{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.btn{background:var(--accent);border:0;color:#fff;padding:8px 14px;border-radius:8px;font-weight:700;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:var(--panel2);color:var(--text);border:1px solid var(--line);font-weight:600}
+.btn.sm{padding:4px 9px;font-size:12px}
+.x{background:none;border:0;color:var(--dim);cursor:pointer;font-size:16px;line-height:1;padding:2px 6px}
+.x:hover{color:var(--bad)}
+.statbar{display:grid;grid-template-columns:56px 38px 1fr;gap:8px;align-items:center;font-size:12px;margin:3px 0}
+.statbar .bar{height:8px;background:var(--panel2);border-radius:4px;overflow:hidden}
+.statbar .bar i{display:block;height:100%;border-radius:4px}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:3px 14px;font-size:13px}
+.kv b{font-weight:600;color:var(--muted)}
+.box{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin:6px 0}
+.box .t{font-weight:700}
+.tag{font-size:11px;color:var(--muted);background:#2d2940;border-radius:4px;padding:1px 6px;margin-right:4px;white-space:nowrap}
+.linkish{color:var(--link);cursor:pointer}
+.linkish:hover{text-decoration:underline}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg button{background:var(--panel2);border:0;padding:5px 11px;cursor:pointer;color:var(--muted);font-size:12px;font-weight:600}
+.seg button.on{background:var(--accent);color:#fff}
+.mono{font-family:var(--mono)}
+.mini th,.mini td{padding:4px 6px;font-size:12px}
+.empty{color:var(--dim);padding:30px;text-align:center}
+.builder{display:grid;grid-template-columns:330px minmax(0,1fr) 400px;gap:14px;padding:16px 18px;align-items:start}
+@media (max-width:1300px){.builder{grid-template-columns:1fr 1fr}.builder .col3{grid-column:1/-1}}
+@media (max-width:800px){.builder{grid-template-columns:1fr}}
+.slot{display:grid;grid-template-columns:22px minmax(0,1fr) auto auto;gap:8px;align-items:center;background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:7px 9px;margin:6px 0}
+.slot .n{color:var(--dim);font-family:var(--mono);font-size:12px}
+.slot select{width:100%}
+.slot.locked{opacity:.45}
+.warn{color:var(--accent2);font-size:12px}
+.note{font-size:12px;color:var(--dim)}
+.pill{display:inline-block;background:#2d2940;border-radius:999px;padding:1px 8px;font-size:11px;color:var(--muted)}
+.big{font-size:20px;font-weight:800;font-variant-numeric:tabular-nums}
+.statgrid{display:grid;grid-template-columns:1fr 1fr;gap:4px 16px;font-size:13px}
+.statgrid div{display:flex;justify-content:space-between;border-bottom:1px dashed #2f2a42;padding:2px 0}
+.statgrid span:last-child{font-variant-numeric:tabular-nums;font-weight:600}
+.up{color:var(--good)}
+.savedlist .box{cursor:pointer}
+.savedlist .box:hover{border-color:#5a5378}
+.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;padding:9px 16px;border-radius:8px;font-weight:600;z-index:99;box-shadow:0 6px 20px #0008}
+.help{cursor:help;border-bottom:1px dotted var(--dim)}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand"><span class="ball"></span>PokéBonk Builder</div>
+  <nav id="tabs"></nav>
+  <div class="ver" id="ver"></div>
+</header>
+<div id="app"></div>
+<footer style="padding:18px;color:var(--dim);font-size:12px;text-align:center">Unofficial fan tool for <a href="https://pokebonk.com/">PokéBonk</a> by Charcher. Data extracted from the game client <span id="fver"></span>. Pokémon is © Nintendo / Game Freak / The Pokémon Company; this site is not affiliated with them.</footer>
+<script>
+const DATA = /*__POKEBONK_DATA__*/null;
+(() => {
+'use strict';
+if (!DATA) { document.getElementById('app').innerHTML = '<div class="empty">No data embedded. Build this page with tools/build-ui.mjs.</div>'; return; }
+
+// ---------- indexes ----------
+const D = DATA;
+const T_COLORS = {normal:'#9a9a78',fire:'#ee8130',water:'#6390f0',electric:'#d9b20e',grass:'#5fae3c',ice:'#5cc0bd',fighting:'#c22e28',poison:'#a33ea1',ground:'#c9a24a',flying:'#8f78e0',psychic:'#f95587',bug:'#94a516',rock:'#b6a136',ghost:'#735797',dragon:'#6f35fc',dark:'#705746',steel:'#8e8ea8',fairy:'#d685ad'};
+const RARITY = ['Common','Uncommon','Rare','Epic','Legendary'];
+const RARITY_CLS = ['common','uncommon','rare','epic','legendary'];
+const speciesById = new Map(D.species.map(s => [s.id, s]));
+const partnerById = new Map(D.partners.map(p => [p.id, p]));
+const moveByKey = new Map(D.moves.map(m => [m.key, m]));
+const itemByKey = new Map(D.items.map(i => [i.key, i]));
+const vitByKey = new Map(D.vitamins.map(v => [v.key, v]));
+const fusionByKey = new Map(D.fusions.map(f => [f.key, f]));
+const labById = new Map(D.lab.map(l => [l.id, l]));
+const typeName = t => (D.types.names && D.types.names[t]) || t;
+const cap = s => s ? s[0].toUpperCase() + s.slice(1) : s;
+const SRC_ORDER = {kit:0, line:1, shared:2, any:3};
+const SRC_LABEL = {kit:'Kit', line:'Evolution line', shared:'League (shared)', any:'Any (Mew)'};
+
+// partner -> merged pool (union over evolution stages, lowest level, best source)
+function mergedPool(p) {
+  const m = new Map();
+  for (const [sid, pl] of Object.entries(p.pools || {})) {
+    for (const g of ['kit','line','shared']) for (const x of pl[g]) {
+      const cur = m.get(x.move);
+      const cand = {move:x.move, src:g, level:x.level, stage:+sid, from:x.from};
+      if (!cur || SRC_ORDER[g] < SRC_ORDER[cur.src] || (g === cur.src && x.level < cur.level)) m.set(x.move, cand);
+    }
+    if (pl.any) for (const k of pl.any) if (!m.has(k)) m.set(k, {move:k, src:'any', level:1, stage:+sid});
+  }
+  return m;
+}
+const poolOf = new Map(D.partners.map(p => [p.id, mergedPool(p)]));
+// species -> partner whose evolution line contains it
+const partnerOfSpecies = new Map();
+for (const p of D.partners) for (const sid of Object.keys(p.pools || {})) if (!partnerOfSpecies.has(+sid)) partnerOfSpecies.set(+sid, p.id);
+// move usage
+const moveUse = new Map(D.moves.map(m => [m.key, {partners:new Map(), learners:[], kitOf:[], fusions:[]}]));
+for (const p of D.partners) for (const [k, x] of poolOf.get(p.id)) { const u = moveUse.get(k); if (u) u.partners.set(p.id, x); }
+for (const p of D.partners) p.kit.forEach(k => moveUse.get(k)?.kitOf.push(p.id));
+for (const s of D.species) { const seen = new Set(); for (const [k, lv] of s.learnset) if (!seen.has(k)) { seen.add(k); moveUse.get(k)?.learners.push([s.id, lv]); } }
+for (const f of D.fusions) (f.moves || []).forEach(k => moveUse.get(k)?.fusions.push(f.key));
+const partnersUsing = k => { const u = moveUse.get(k); return u ? [...u.partners.values()].filter(x => x.src !== 'any').length : 0; };
+// passive owners
+const passiveOwners = new Map();
+for (const p of D.partners) { if (!passiveOwners.has(p.passive)) passiveOwners.set(p.passive, []); passiveOwners.get(p.passive).push(p.id); }
+
+// ---------- formulas (mirrors the game's code; see formulas_source.json) ----------
+const STAT_DEFAULTS = {attackSpeed:1,projectiles:0,area:1,duration:1,projSpeed:1,critChance:.05,critDamage:1.75,lifesteal:0,thorns:0,knockback:1,pickupRange:6,xpGain:1,gold:1,luck:0,luckMult:1,difficulty:1,eliteDamage:1,extraJumps:0,jumpHeight:1,statusChance:1,statusDamage:1,healing:1,superEffective:1,flinch:0,bounces:0,enemyAmount:1,megaCrit:0,overheal:0,powerup:1,eliteSpawn:1,slam:1};
+function baseRunStats(sp, growth, meta = {}) {
+  const r = sp.stats, tot = r.hp + r.atk + r.def + r.spa + r.spd + r.spe, a = x => x / tot * 6, g = 1 + growth * .12;
+  const s = {maxHp:Math.round((70 + 45 * a(r.hp)) * g), regen:.25 + .25 * a(r.hp), armor:6 * a(r.def) + 3 * a(r.spd), evasion:.02 + .02 * a(r.spe), shieldMax:0, moveSpeed:.92 + .12 * a(r.spe), damage:g, physical:.82 + .2 * a(r.atk), special:.82 + .2 * a(r.spa), ...STAT_DEFAULTS, typeBoost:{}};
+  for (const [k, v] of Object.entries(meta)) s[k] = (s[k] ?? 0) + v;
+  return s;
+}
+function applyGroups(s, groups) { // adds first; inside each group bonuses >1 are summed, penalties multiply; groups multiply
+  for (const g of groups) for (const m of g) if (m.add) s[m.stat] = (s[m.stat] ?? 0) + m.add;
+  for (const g of groups) { const sum = {}; for (const m of g) if (m.mul) { if (m.mul < 1) s[m.stat] *= m.mul; else sum[m.stat] = (sum[m.stat] ?? 0) + m.mul - 1; } for (const [k, v] of Object.entries(sum)) s[k] *= 1 + v; }
+  return s;
+}
+// expected value of a move at a level, given the upgrade-card rarity you assume
+function moveAt(m, level, rarityIdx = 0) {
+  const arch = D.archetypes[m.arch] || {stats:[]}, st = arch.stats || [], r = D.rarity[rarityIdx] ?? 1;
+  const ups = Math.max(0, level - 1), k = r >= 1.6 ? 3 : 2, p = st.length ? Math.min(1, k / st.length) : 0;
+  const has = x => st.includes(x);
+  return {
+    dmgMul: 1 + .08 * ups + (has('dmg') ? ups * p * .22 * r : 0),
+    cdMul: has('cd') ? Math.pow(1 - p * Math.min(.25, .08 * r), ups) : 1,
+    countAdd: has('count') ? ups * p * (r >= 1.6 ? 2 : 1) : 0,
+    areaMul: 1 + (has('area') ? ups * p * .15 * r : 0),
+    critAdd: has('crit') ? ups * p * .05 * r : 0,
+    statusAdd: has('status') ? ups * p * .25 * r : 0,
+    pierceAdd: (has('pierce') ? ups * p * Math.max(1, Math.round(r)) : 0),
+  };
+}
+function moveDps(m, S, opts = {}) {
+  const lv = moveAt(m, opts.level ?? 1, opts.rarity ?? 0);
+  const stab = (opts.types || []).includes(m.type) ? (opts.adaptability ? 1.5625 : 1.25) : 1;
+  const cls = m.cls === 'physical' ? S.physical : S.special;
+  const hit = (m.dmg || 0) * lv.dmgMul * S.damage * cls * stab * (S.typeBoost?.[m.type] ?? 1);
+  const crit = Math.min(1, S.critChance + (m.critBonus || 0) + lv.critAdd);
+  const critMul = 1 + crit * (S.critDamage - 1);
+  const archSt = (D.archetypes[m.arch]?.stats) || [];
+  const count = (m.count || 1) + lv.countAdd + (archSt.includes('count') ? (S.projectiles || 0) : 0);
+  const cd = (m.cd || 1) * lv.cdMul / (S.attackSpeed || 1);
+  return {hit, crit, count, cd, area:(m.area || 0) * lv.areaMul * (S.area || 1), dps: hit * critMul * count / cd};
+}
+const plainDps = m => moveDps(m, {damage:1, physical:1, special:1, critChance:.05, critDamage:1.75, attackSpeed:1, area:1, projectiles:0, typeBoost:{}}).dps;
+// Bill's Machine: which fusion two moves make (signature → reaction → same type → glitch)
+function fusionFor(a, b) {
+  const sig = D.fusions.find(f => f.kind === 'signature' && f.moves && ((f.moves[0] === a.key && f.moves[1] === b.key) || (f.moves[0] === b.key && f.moves[1] === a.key)));
+  if (sig) return sig;
+  const pr = (f, x, y) => f.pair[0].includes(x) && f.pair[1].includes(y);
+  const re = D.fusions.find(f => f.kind === 'reaction' && (pr(f, a.type, b.type) || pr(f, b.type, a.type)));
+  if (re) return re;
+  if (a.type === b.type) { const t = D.fusions.find(f => f.kind === 'type' && f.type === a.type); if (t) return t; }
+  return D.fusions.find(f => f.kind === 'glitch');
+}
+const fusable = m => m && m.arch !== 'weather' && m.arch !== 'buff' && m.arch !== 'fusion';
+
+// ---------- tiny DOM helper ----------
+function h(tag, attrs, ...kids) {
+  const e = document.createElement(tag);
+  if (attrs) for (const [k, v] of Object.entries(attrs)) {
+    if (v == null || v === false) continue;
+    if (k.startsWith('on')) e.addEventListener(k.slice(2), v);
+    else if (k === 'class') e.className = v;
+    else if (k === 'style' && typeof v === 'object') Object.assign(e.style, v);
+    else if (k === 'html') e.innerHTML = v;
+    else e.setAttribute(k, v === true ? '' : v);
+  }
+  for (const k of kids.flat(Infinity)) if (k != null && k !== false) e.append(k.nodeType ? k : document.createTextNode(String(k)));
+  return e;
+}
+const typeBadge = t => t ? h('span', {class:'type', style:{background:T_COLORS[t] || '#666'}}, typeName(t)) : '';
+const clsBadge = c => c ? h('span', {class:'cls'}, c === 'physical' ? 'Phys' : c === 'special' ? 'Spec' : cap(c)) : '';
+const fmt = (n, d = 1) => n == null || isNaN(n) ? '–' : (Math.abs(n) >= 100 ? Math.round(n).toLocaleString() : (+n).toFixed(d).replace(/\.0+$/, '').replace(/(\.\d*?)0+$/, '$1'));
+const pct = (n, d = 0) => n == null ? '–' : (n * 100).toFixed(d) + '%';
+const statLabel = k => (D.statLabels[k]?.[0]) || k;
+function modText(m) {
+  const kind = D.statLabels[m.stat]?.[1];
+  if (m.add != null) return `${statLabel(m.stat)} ${m.add >= 0 ? '+' : ''}${kind === 'pctpts' ? pct(m.add, 1) : fmt(m.add, 2)}`;
+  if (m.mul != null) return `${statLabel(m.stat)} ×${fmt(m.mul, 3)}`;
+  return statLabel(m.stat);
+}
+function toast(msg) { const t = h('div', {class:'toast'}, msg); document.body.append(t); setTimeout(() => t.remove(), 1800); }
+const store = { get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch { return d; } }, set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} } };
+
+// sortable table
+function table(rows, cols, opts) {
+  const st = opts.state;
+  const col = cols.find(c => c.key === st.sort) || cols[0];
+  const sorted = rows.slice().sort((a, b) => { const x = col.val(a), y = col.val(b); const r = typeof x === 'number' || typeof y === 'number' ? (x ?? -1e9) - (y ?? -1e9) : String(x ?? '').localeCompare(String(y ?? '')); return st.desc ? -r : r; });
+  const thead = h('tr', null, cols.map(c => h('th', {class:c.num ? 'num' : '', title:c.title || null, onclick:() => { if (st.sort === c.key) st.desc = !st.desc; else { st.sort = c.key; st.desc = !!c.num; } render(); }}, c.label, st.sort === c.key ? h('span', {class:'arr'}, st.desc ? ' ▼' : ' ▲') : '')));
+  const body = sorted.map(r => h('tr', {class:opts.isSel?.(r) ? 'sel' : '', onclick:() => opts.onPick(r)}, cols.map(c => h('td', {class:c.num ? 'num' : ''}, c.cell ? c.cell(r) : (c.num ? fmt(c.val(r), c.dp ?? 1) : c.val(r))))));
+  return h('div', {class:'tablewrap'}, h('table', null, h('thead', null, thead), h('tbody', null, body)));
+}
+
+// ---------- state ----------
+const S = {
+  tab: 'pokemon', selPoke: null, selMove: null, selPassive: null, selItem: null, selFusion: null,
+  poke: {q:'', league:true, types:new Set(), sort:'dex'},
+  moves: {q:'', types:new Set(), cls:'', arch:'', only:'partner', t:{sort:'partners', desc:true}},
+  passives: {q:'', owned:true, t:{sort:'owners', desc:true}},
+  items: {q:'', rarity:'', t:{sort:'rarity', desc:false}},
+  vits: {t:{sort:'name', desc:false}},
+  fusions: {q:'', kind:'', t:{sort:'kind', desc:false}},
+  pokePool: 'all',
+  build: null,
+  pickPartnerFor: null,
+};
+
+// ---------- tabs ----------
+const TABS = [['pokemon','Pokémon', D.partners.length], ['moves','Moves', D.moves.length], ['passives','Passives', D.partners.length], ['items','Items', D.items.length], ['vitamins','Vitamins', D.vitamins.length], ['fusions','Fusions', D.fusions.length], ['build','Build', null]];
+function renderTabs() {
+  const nav = document.getElementById('tabs'); nav.replaceChildren(...TABS.map(([id, label, n]) => h('button', {class:S.tab === id ? 'on' : '', onclick:() => go(id)}, label, n ? h('span', {class:'count'}, n) : '')));
+  document.getElementById('ver').textContent = `game data v${D.meta.version} · build ${D.meta.build}`;
+  const fv = document.getElementById('fver'); if (fv) fv.textContent = `v${D.meta.version} (${(D.meta.extracted_at || '').slice(0, 10)})`;
+}
+function go(tab, patch) { S.tab = tab; if (patch) Object.assign(S, patch); render(); window.scrollTo({top:0}); }
+function render() {
+  renderTabs();
+  const app = document.getElementById('app');
+  const view = {pokemon:viewPokemon, moves:viewMoves, passives:viewPassives, items:viewItems, vitamins:viewVitamins, fusions:viewFusions, build:viewBuild}[S.tab];
+  app.replaceChildren(view());
+}
+
+// ---------- Pokémon ----------
+function viewPokemon() {
+  const f = S.poke;
+  let list = f.league ? D.partners.map(p => speciesById.get(p.id)).filter(Boolean) : D.species.slice();
+  if (f.q) { const q = f.q.toLowerCase(); list = list.filter(s => s.name.toLowerCase().includes(q) || (partnerById.get(s.id)?.role || '').toLowerCase().includes(q) || (D.passives[partnerById.get(s.id)?.passive]?.name || '').toLowerCase().includes(q)); }
+  if (f.types.size) list = list.filter(s => s.types.some(t => f.types.has(t)));
+  const sorters = {dex:s => s.id, name:s => s.name, bst:s => -s.bst, hp:s => -s.stats.hp, atk:s => -s.stats.atk, spa:s => -s.stats.spa, spe:s => -s.stats.spe, pool:s => -(poolOf.get(s.id)?.size || 0)};
+  list.sort((a, b) => { const x = sorters[f.sort](a), y = sorters[f.sort](b); return typeof x === 'string' ? x.localeCompare(y) : x - y; });
+  const tb = h('div', {class:'toolbar'},
+    h('input', {type:'search', placeholder:'Search name, role, passive…', value:f.q, oninput:e => { f.q = e.target.value; rerenderKeepFocus(e); }}),
+    h('div', {class:'seg'}, h('button', {class:f.league ? 'on' : '', onclick:() => { f.league = true; render(); }}, `League partners (${D.partners.length})`), h('button', {class:!f.league ? 'on' : '', onclick:() => { f.league = false; render(); }}, `All ${D.species.length}`)),
+    h('select', {onchange:e => { f.sort = e.target.value; render(); }}, [['dex','Sort: Dex #'],['name','Name'],['bst','Base stat total'],['hp','HP'],['atk','Attack'],['spa','Sp. Atk'],['spe','Speed'],['pool','Move pool size']].map(([v, l]) => h('option', {value:v, selected:f.sort === v}, l))),
+  );
+  const chips = h('div', {class:'chips', style:{marginBottom:'12px'}}, D.types.list.map(t => h('span', {class:'chip' + (f.types.has(t) ? ' on' : ''), onclick:() => { f.types.has(t) ? f.types.delete(t) : f.types.add(t); render(); }}, h('span', {style:{width:'8px', height:'8px', borderRadius:'50%', background:T_COLORS[t], display:'inline-block'}}), typeName(t))));
+  const grid = h('div', {class:'grid'}, list.map(s => {
+    const p = partnerById.get(s.id);
+    return h('div', {class:'card' + (S.selPoke === s.id ? ' sel' : ''), onclick:() => { S.selPoke = s.id; render(); }},
+      h('div', {class:'stripe', style:{background:`linear-gradient(${T_COLORS[s.types[0]]},${T_COLORS[s.types[1] || s.types[0]]})`}}),
+      p?.start ? h('span', {class:'star', title:'Starter'}, '★') : '',
+      h('div', {class:'dex'}, '#' + String(s.id).padStart(3, '0'), p ? h('span', {class:'rank ' + p.rank, style:{marginLeft:'8px'}}, p.rank) : ''),
+      h('div', {class:'nm'}, s.name), h('div', {class:'row'}, s.types.map(typeBadge)),
+      h('div', {class:'role'}, p ? `${p.role} · ${D.passives[p.passive]?.name || p.passive}` : (partnerOfSpecies.has(s.id) ? `Evolves from ${speciesById.get(partnerOfSpecies.get(s.id)).name} (partner line)` : 'Wild / ally only')));
+  }));
+  return h('div', {class:'layout'}, h('div', null, tb, chips, list.length ? grid : h('div', {class:'empty'}, 'No Pokémon match.')), h('div', {class:'detail panel pad'}, pokeDetail(S.selPoke)));
+}
+function statBars(st) {
+  const L = [['hp','HP'],['atk','Atk'],['def','Def'],['spa','SpA'],['spd','SpD'],['spe','Spe']];
+  return h('div', null, L.map(([k, l]) => { const v = st[k]; const c = v >= 110 ? '#5ad87a' : v >= 80 ? '#c8d84a' : v >= 55 ? '#ffb23f' : '#ff6b6b'; return h('div', {class:'statbar'}, h('span', {class:'muted'}, l), h('b', {class:'mono'}, v), h('div', {class:'bar'}, h('i', {style:{width:Math.min(100, v / 150 * 100) + '%', background:c}}))); }));
+}
+function lineOf(rootId) { const out = [rootId]; for (let i = 0; i < out.length; i++) for (const e of speciesById.get(out[i])?.evos || []) if (!out.includes(e.to)) out.push(e.to); return out; }
+function pokeDetail(id) {
+  if (id == null) return h('div', {class:'empty'}, 'Click a Pokémon to see its passive, stats, moves and fusions.');
+  const s = speciesById.get(id), p = partnerById.get(id), pas = p && D.passives[p.passive];
+  const rootPartner = p ? p : partnerById.get(partnerOfSpecies.get(id));
+  const head = h('div', null,
+    h('div', {class:'between'}, h('div', null, h('div', {class:'dim mono'}, '#' + String(s.id).padStart(3, '0')), h('h2', null, s.name)), p ? h('button', {class:'btn', onclick:() => startBuild(p.id)}, 'Start build →') : rootPartner ? h('button', {class:'btn ghost', onclick:() => { S.selPoke = rootPartner.id; render(); }}, `Open ${rootPartner.name}`) : ''),
+    h('div', {class:'row', style:{marginTop:'4px'}}, s.types.map(typeBadge), p ? h('span', {class:'rank ' + p.rank}, p.rank) : '', p ? h('span', {class:'muted'}, p.role) : '', s.legendary ? h('span', {class:'pill'}, 'Legendary') : '', s.mythical ? h('span', {class:'pill'}, 'Mythical') : ''));
+  const parts = [head];
+  if (!p) parts.push(h('div', {class:'box', style:{marginTop:'12px'}}, rootPartner ? `Not a League partner itself — it's an in-run evolution of ${rootPartner.name}.` : 'Not playable as a League partner (appears as a wild Pokémon / ally).'));
+  if (pas) parts.push(h('h3', null, 'Passive'), h('div', {class:'box'}, h('div', {class:'t'}, pas.name), h('div', null, pas.desc), pas.mods?.length ? h('div', {style:{marginTop:'5px'}}, pas.mods.map(m => h('span', {class:'tag'}, modText(m)))) : '', h('div', {class:'note', style:{marginTop:'4px'}}, `Shared by ${passiveOwners.get(p.passive).length} partner(s)`)));
+  if (p?.challenge?.length) parts.push(h('div', {class:'note'}, 'Unlock: ' + p.challenge.join(' / ')));
+  parts.push(h('h3', null, 'Base stats ', h('span', {class:'dim'}, `BST ${s.bst}`)), statBars(s.stats));
+  // in-run stats per stage
+  const line = p ? lineOf(p.id) : rootPartner ? lineOf(rootPartner.id) : [id];
+  const root = speciesById.get(line[0]);
+  const rows = line.map(sid => { const sp = speciesById.get(sid); const g = (sp.evoStage ?? 0) - (root.evoStage ?? 0); return [sp, baseRunStats(sp, g)]; });
+  const keys = [['maxHp','Max HP',0],['regen','Regen/s',2],['armor','Armor',1],['evasion','Evasion',3],['moveSpeed','Speed ×',2],['physical','Phys ×',2],['special','Spec ×',2],['damage','Damage ×',2]];
+  parts.push(h('h3', null, h('span', {class:'help', title:'Starting in-run stats from the game formula (before vitamins, items, passive). Each evolution adds +12% HP and damage.'}, 'In-run stats by stage')),
+    h('table', {class:'mini'}, h('thead', null, h('tr', null, h('th', null, ''), rows.map(([sp]) => h('th', {class:'num'}, sp.name)))), h('tbody', null, keys.map(([k, l, d]) => h('tr', null, h('td', {class:'muted'}, l), rows.map(([, st]) => h('td', {class:'num'}, k === 'evasion' ? pct(st[k], 1) : fmt(st[k], d))))))));
+  // evolution chain
+  if (line.length > 1) parts.push(h('div', {class:'note', style:{marginTop:'6px'}}, 'Evolves in a run: ', line.map((sid, i) => { const sp = speciesById.get(sid); const from = line.find(x => (speciesById.get(x).evos || []).some(e => e.to === sid)); const lv = from ? speciesById.get(from).evos.find(e => e.to === sid).level : null; return h('span', null, i ? ' → ' : '', h('span', {class:'linkish', onclick:() => { S.selPoke = sid; render(); }}, sp.name), lv ? h('span', {class:'dim'}, ` (Lv ${lv})`) : ''); })));
+  // ultimate
+  const ult = rootPartner && D.ultimates[rootPartner.id];
+  if (ult) parts.push(h('h3', null, 'Ultimate ', typeBadge(ult.type), ' ', clsBadge(ult.cls)), ult.names.map((n, i) => h('div', {class:'box'}, h('div', {class:'between'}, h('span', {class:'t'}, n), h('span', {class:'dim'}, `stage ${i + 1}`)), h('div', {class:'muted'}, ult.descs[i]))));
+  if (rootPartner) {
+    const sig = D.fusions.find(f => f.kind === 'signature' && f.member === rootPartner.id);
+    parts.push(h('h3', null, 'Kit'), h('table', {class:'mini'}, h('tbody', null, rootPartner.kit.map((k, i) => { const m = moveByKey.get(k); return h('tr', {onclick:() => openMove(k)}, h('td', {class:'dim mono'}, `Lv ${Math.max(1, D.kitLevels[i])}`), h('td', null, m?.name || k), h('td', null, typeBadge(m?.type)), h('td', null, clsBadge(m?.cls)), h('td', {class:'muted'}, D.archetypes[m?.arch]?.label || m?.arch)); }))));
+    if (sig) parts.push(h('div', {class:'box'}, h('div', {class:'between'}, h('span', {class:'t'}, '⚗ ' + sig.name), h('span', {class:'pill'}, 'Signature fusion')), h('div', {class:'muted'}, sig.desc), h('div', {class:'note', style:{marginTop:'4px'}}, 'Recipe: ', sig.moves.map(k => moveByKey.get(k)?.name || k).join(' + '), ' (both Lv 8 at Bill\'s Machine)')));
+    // pool
+    const pool = [...poolOf.get(rootPartner.id).values()];
+    const groups = ['kit','line','shared','any'].filter(g => pool.some(x => x.src === g));
+    const cur = groups.includes(S.pokePool) ? S.pokePool : 'all';
+    const shown = pool.filter(x => cur === 'all' ? x.src !== 'any' : x.src === cur).map(x => ({...x, m:moveByKey.get(x.move)})).filter(x => x.m).sort((a, b) => SRC_ORDER[a.src] - SRC_ORDER[b.src] || a.level - b.level || a.m.name.localeCompare(b.m.name));
+    parts.push(h('h3', null, `Move pool (${pool.filter(x => x.src !== 'any').length}${pool.some(x => x.src === 'any') ? ` + ${pool.filter(x => x.src === 'any').length} any` : ''})`),
+      h('div', {class:'seg', style:{marginBottom:'6px'}}, ['all', ...groups].map(g => h('button', {class:cur === g ? 'on' : '', onclick:() => { S.pokePool = g; render(); }}, g === 'all' ? 'All' : SRC_LABEL[g]))),
+      h('div', {class:'note', style:{marginBottom:'4px'}}, '"Lv" = player level when it can first be offered. Shared moves come from other League members of your type (need them unlocked).'),
+      h('table', {class:'mini'}, h('thead', null, h('tr', null, ['Move', '', '', 'Lv', 'Base DPS', 'Source'].map((t, i) => h('th', {class:i >= 3 && i <= 4 ? 'num' : ''}, t)))), h('tbody', null, shown.slice(0, 400).map(x => h('tr', {onclick:() => openMove(x.move)}, h('td', null, x.m.name), h('td', null, typeBadge(x.m.type)), h('td', null, clsBadge(x.m.cls)), h('td', {class:'num'}, x.level), h('td', {class:'num'}, fmt(plainDps(x.m), 1)), h('td', {class:'dim'}, x.src === 'shared' ? 'via ' + (x.from || []).map(i => partnerById.get(i)?.name).join(', ') : SRC_LABEL[x.src]))))));
+  } else {
+    parts.push(h('h3', null, `Learnset (${s.learnset.length})`), h('table', {class:'mini'}, h('tbody', null, s.learnset.map(([k, lv]) => { const m = moveByKey.get(k); return h('tr', {onclick:() => m && openMove(k)}, h('td', {class:'dim mono'}, 'L' + lv), h('td', null, m?.name || k), h('td', null, typeBadge(m?.type))); }))));
+  }
+  return h('div', null, parts);
+}
+
+// ---------- Moves ----------
+function openMove(k) { S.selMove = k; go('moves'); }
+function viewMoves() {
+  const f = S.moves;
+  let list = D.moves.slice();
+  if (f.only === 'partner') list = list.filter(m => partnersUsing(m.key) > 0);
+  if (f.only === 'kit') list = list.filter(m => moveUse.get(m.key).kitOf.length);
+  if (f.q) { const q = f.q.toLowerCase(); list = list.filter(m => m.name.toLowerCase().includes(q) || m.key.includes(q) || (m.status || '').includes(q)); }
+  if (f.types.size) list = list.filter(m => f.types.has(m.type));
+  if (f.cls) list = list.filter(m => m.cls === f.cls);
+  if (f.arch) list = list.filter(m => m.arch === f.arch);
+  const archs = [...new Set(D.moves.map(m => m.arch))].sort();
+  const tb = h('div', {class:'toolbar'},
+    h('input', {type:'search', placeholder:'Search moves or status (burn, sleep…)', value:f.q, oninput:e => { f.q = e.target.value; rerenderKeepFocus(e); }}),
+    h('select', {onchange:e => { f.only = e.target.value; render(); }}, [['partner','Usable by a League partner'],['kit','In a partner kit'],['all','All moves in data']].map(([v, l]) => h('option', {value:v, selected:f.only === v}, l))),
+    h('select', {onchange:e => { f.cls = e.target.value; render(); }}, [['','Any class'],['physical','Physical'],['special','Special']].map(([v, l]) => h('option', {value:v, selected:f.cls === v}, l))),
+    h('select', {onchange:e => { f.arch = e.target.value; render(); }}, [h('option', {value:''}, 'Any shape'), archs.map(a => h('option', {value:a, selected:f.arch === a}, D.archetypes[a]?.label || a))]),
+    h('span', {class:'muted'}, `${list.length} moves`));
+  const chips = h('div', {class:'chips', style:{marginBottom:'12px'}}, D.types.list.map(t => h('span', {class:'chip' + (f.types.has(t) ? ' on' : ''), onclick:() => { f.types.has(t) ? f.types.delete(t) : f.types.add(t); render(); }}, h('span', {style:{width:'8px', height:'8px', borderRadius:'50%', background:T_COLORS[t], display:'inline-block'}}), typeName(t))));
+  const cols = [
+    {key:'name', label:'Move', val:m => m.name},
+    {key:'type', label:'Type', val:m => m.type, cell:m => typeBadge(m.type)},
+    {key:'cls', label:'Class', val:m => m.cls, cell:m => clsBadge(m.cls)},
+    {key:'arch', label:'Shape', val:m => D.archetypes[m.arch]?.label || m.arch},
+    {key:'power', label:'Pow', num:true, val:m => m.power, dp:0},
+    {key:'dmg', label:'Dmg', num:true, val:m => m.dmg},
+    {key:'cd', label:'CD s', num:true, val:m => m.cd, dp:2},
+    {key:'count', label:'×', num:true, val:m => m.count, dp:0, title:'Projectiles / hits per cast'},
+    {key:'dps', label:'Base DPS', num:true, val:m => plainDps(m), title:'Dmg × count ÷ cooldown, Lv 1, no bonuses, incl. 5% crit'},
+    {key:'area', label:'Area', num:true, val:m => m.area},
+    {key:'status', label:'Status', val:m => m.status || '', cell:m => m.status ? h('span', null, cap(m.status), h('span', {class:'dim'}, ' ' + pct(m.statusChance))) : ''},
+    {key:'partners', label:'Partners', num:true, dp:0, val:m => partnersUsing(m.key), title:'League partners that can be offered this move (kit, evolution line or shared)'},
+    {key:'kit', label:'In kit', num:true, dp:0, val:m => moveUse.get(m.key).kitOf.length},
+    {key:'learners', label:'Learners', num:true, dp:0, val:m => moveUse.get(m.key).learners.length, title:'Kanto species whose learnset has it'},
+    {key:'fus', label:'Fusions', num:true, dp:0, val:m => moveUse.get(m.key).fusions.length, title:'Signature fusions that use this exact move'},
+  ];
+  return h('div', {class:'layout'}, h('div', null, tb, chips, table(list, cols, {state:f.t, isSel:m => m.key === S.selMove, onPick:m => { S.selMove = m.key; render(); }})), h('div', {class:'detail panel pad'}, moveDetail(S.selMove)));
+}
+function moveDetail(k) {
+  if (!k) return h('div', {class:'empty'}, 'Click a move to see its numbers, who can use it, and fusions.');
+  const m = moveByKey.get(k), u = moveUse.get(k), arch = D.archetypes[m.arch] || {};
+  const parts = [h('div', {class:'between'}, h('h2', null, m.name), h('button', {class:'btn', onclick:() => { S.pickPartnerFor = k; render(); }}, 'Build with this →')),
+    h('div', {class:'row'}, typeBadge(m.type), clsBadge(m.cls), h('span', {class:'pill'}, arch.label || m.arch), m.weather ? h('span', {class:'pill'}, 'Weather: ' + m.weather) : '', m.buff ? h('span', {class:'pill'}, 'Self-buff') : ''),
+    h('p', {class:'muted'}, m.desc)];
+  if (S.pickPartnerFor === k) {
+    const opts = [...u.partners.entries()].filter(([, x]) => x.src !== 'any').sort((a, b) => SRC_ORDER[a[1].src] - SRC_ORDER[b[1].src] || a[1].level - b[1].level);
+    parts.push(h('div', {class:'box'}, h('div', {class:'t'}, 'Pick a partner for this build'), opts.length ? h('div', {class:'chips', style:{marginTop:'6px'}}, opts.map(([pid, x]) => h('span', {class:'chip', onclick:() => { S.pickPartnerFor = null; startBuild(pid, [k]); }}, partnerById.get(pid).name, h('span', {class:'dim'}, ` ${SRC_LABEL[x.src]} · Lv ${x.level}`)))) : h('div', {class:'muted'}, 'No League partner can be offered this move (only Mew, via "any").'), h('button', {class:'btn ghost sm', style:{marginTop:'8px'}, onclick:() => { S.pickPartnerFor = null; render(); }}, 'Cancel')));
+  }
+  parts.push(h('h3', null, 'Numbers (Lv 1, no bonuses)'), h('div', {class:'kv'},
+    h('b', null, 'Power'), h('span', null, m.power ?? '–'), h('b', null, 'Damage / hit'), h('span', null, fmt(m.dmg, 2)), h('b', null, 'Cooldown'), h('span', null, fmt(m.cd, 2) + ' s'),
+    h('b', null, 'Count'), h('span', null, m.count), h('b', null, 'Area'), h('span', null, fmt(m.area, 2)), h('b', null, 'Speed / duration'), h('span', null, `${fmt(m.speed, 1)} / ${fmt(m.dur, 2)} s`),
+    h('b', null, 'Pierce'), h('span', null, m.pierce >= 99 ? 'all' : m.pierce), h('b', null, 'Status'), h('span', null, m.status ? `${cap(m.status)} ${pct(m.statusChance)}` : '–'),
+    m.drain ? [h('b', null, 'Drain'), h('span', null, pct(m.drain))] : '', m.critBonus ? [h('b', null, 'Crit bonus'), h('span', null, '+' + pct(m.critBonus))] : '', m.flinch ? [h('b', null, 'Flinch'), h('span', null, pct(m.flinch))] : '',
+    h('b', null, 'Base DPS'), h('span', null, fmt(plainDps(m), 2))),
+    h('div', {class:'note', style:{marginTop:'6px'}}, 'Upgrades can roll: ', (arch.stats || []).map(x => h('span', {class:'tag'}, x))),
+    h('table', {class:'mini', style:{marginTop:'8px'}}, h('thead', null, h('tr', null, h('th', null, 'Expected at'), RARITY.map((r, i) => h('th', {class:'num'}, r)))), h('tbody', null,
+      [1, 4, 8, 10].map(lv => h('tr', null, h('td', {class:'muted'}, 'Lv ' + lv), RARITY.map((r, i) => h('td', {class:'num'}, fmt(moveDps(m, {damage:1, physical:1, special:1, critChance:.05, critDamage:1.75, attackSpeed:1, area:1, projectiles:0, typeBoost:{}}, {level:lv, rarity:i}).dps, 1))))))),
+    h('div', {class:'note'}, 'Expected base DPS if every upgrade card were that rarity (random rolls averaged).'));
+  // who can use
+  const byPartner = [...u.partners.entries()].filter(([, x]) => x.src !== 'any');
+  parts.push(h('h3', null, `League partners that can get it (${byPartner.length})`));
+  if (byPartner.length) for (const g of ['kit','line','shared']) { const xs = byPartner.filter(([, x]) => x.src === g).sort((a, b) => a[1].level - b[1].level); if (xs.length) parts.push(h('div', {style:{margin:'4px 0'}}, h('span', {class:'muted'}, SRC_LABEL[g] + ': '), xs.map(([pid, x], i) => h('span', null, i ? ', ' : '', h('span', {class:'linkish', onclick:() => { S.selPoke = pid; go('pokemon'); }}, partnerById.get(pid).name), h('span', {class:'dim'}, ` Lv ${x.level}`))))); }
+  else parts.push(h('div', {class:'muted'}, 'None' + ([...u.partners.values()].some(x => x.src === 'any') ? ' (Mew can still roll it).' : '.')));
+  if (u.learners.length) parts.push(h('h3', null, `Species that learn it (${u.learners.length})`), h('div', null, u.learners.sort((a, b) => a[0] - b[0]).map(([sid, lv], i) => h('span', null, i ? ', ' : '', h('span', {class:'linkish', onclick:() => { S.selPoke = sid; S.poke.league = !!partnerById.get(sid) && S.poke.league; go('pokemon'); }}, speciesById.get(sid).name), h('span', {class:'dim'}, ` L${lv}`)))));
+  // fusions
+  const sig = u.fusions.map(fk => fusionByKey.get(fk));
+  const typeF = D.fusions.find(f => f.kind === 'type' && f.type === m.type);
+  const reacts = D.fusions.filter(f => f.kind === 'reaction' && f.pair.some(side => side.includes(m.type)));
+  parts.push(h('h3', null, 'Fusions'));
+  if (!fusable(m)) parts.push(h('div', {class:'muted'}, 'Weather and buff moves can\'t be fused.'));
+  else {
+    for (const f of sig) parts.push(fusionBox(f, `Signature of ${partnerById.get(f.member)?.name || '#' + f.member} with ${f.moves.filter(x => x !== k).map(x => moveByKey.get(x)?.name || x).join('')}`));
+    if (typeF) parts.push(fusionBox(typeF, `With any other ${typeName(m.type)} move`));
+    for (const f of reacts) { const other = f.pair.find(side => !side.includes(m.type)) || f.pair[1]; parts.push(fusionBox(f, `With a ${other.map(typeName).join('/')} move`)); }
+  }
+  return h('div', null, parts);
+}
+function fusionBox(f, how) { return h('div', {class:'box', style:{cursor:'pointer'}, onclick:() => { S.selFusion = f.key; go('fusions'); }}, h('div', {class:'between'}, h('span', {class:'t'}, '⚗ ' + f.name), h('span', {class:'row'}, typeBadge(f.type), f.type2 ? typeBadge(f.type2) : '', h('span', {class:'pill'}, f.kind))), h('div', {class:'note'}, how), h('div', {class:'muted', style:{fontSize:'12px', marginTop:'3px'}}, f.desc)); }
+
+// ---------- Passives ----------
+function viewPassives() {
+  const f = S.passives;
+  let list = Object.entries(D.passives).map(([key, v]) => ({key, ...v, owners:passiveOwners.get(key) || []}));
+  if (f.owned) list = list.filter(p => p.owners.length);
+  if (f.q) { const q = f.q.toLowerCase(); list = list.filter(p => (p.name + ' ' + p.desc + ' ' + p.owners.map(i => partnerById.get(i).name).join(' ')).toLowerCase().includes(q)); }
+  const tb = h('div', {class:'toolbar'}, h('input', {type:'search', placeholder:'Search passives (e.g. crit, regen, burn)…', value:f.q, oninput:e => { f.q = e.target.value; rerenderKeepFocus(e); }}),
+    h('div', {class:'seg'}, h('button', {class:f.owned ? 'on' : '', onclick:() => { f.owned = true; render(); }}, 'Partner passives'), h('button', {class:!f.owned ? 'on' : '', onclick:() => { f.owned = false; render(); }}, 'All in data')), h('span', {class:'muted'}, `${list.length} passives`));
+  const cols = [
+    {key:'name', label:'Passive', val:p => p.name},
+    {key:'owners', label:'Partners', num:true, dp:0, val:p => p.owners.length},
+    {key:'who', label:'Who', val:p => p.owners.map(i => partnerById.get(i).name).join(', ')},
+    {key:'mods', label:'Stat mods', val:p => (p.mods || []).length, cell:p => h('span', null, (p.mods || []).map(m => h('span', {class:'tag'}, modText(m))))},
+    {key:'desc', label:'Effect', val:p => p.desc, cell:p => h('span', {class:'muted', style:{fontSize:'12px'}}, p.desc)},
+  ];
+  return h('div', {class:'layout wide'}, h('div', null, tb, table(list, cols, {state:f.t, isSel:p => p.key === S.selPassive, onPick:p => { if (p.owners.length) { S.selPoke = p.owners[0]; go('pokemon'); } }})));
+}
+
+// ---------- Items ----------
+function viewItems() {
+  const f = S.items;
+  let list = D.items.slice();
+  if (f.rarity !== '') list = list.filter(i => i.rarity === +f.rarity);
+  if (f.q) { const q = f.q.toLowerCase(); list = list.filter(i => (i.name + ' ' + i.desc + ' ' + (i.tags || []).join(' ')).toLowerCase().includes(q)); }
+  const tb = h('div', {class:'toolbar'}, h('input', {type:'search', placeholder:'Search items (crit, fire, regen…)', value:f.q, oninput:e => { f.q = e.target.value; rerenderKeepFocus(e); }}),
+    h('select', {onchange:e => { f.rarity = e.target.value; render(); }}, h('option', {value:''}, 'Any rarity'), RARITY.map((r, i) => h('option', {value:i, selected:f.rarity === String(i)}, r))), h('span', {class:'muted'}, `${list.length} items`));
+  const cols = [
+    {key:'name', label:'Item', val:i => i.name},
+    {key:'rarity', label:'Rarity', val:i => i.rarity, cell:i => h('span', {class:'rank ' + RARITY_CLS[i.rarity]}, RARITY[i.rarity])},
+    {key:'max', label:'Max', num:true, dp:0, val:i => i.max},
+    {key:'mods', label:'Static mods (per copy)', val:i => (i.mods || []).length, cell:i => h('span', null, (i.mods || []).map(m => h('span', {class:'tag'}, modText(m))), D.typeItems[i.key] ? h('span', {class:'tag'}, `+30% ${typeName(D.typeItems[i.key])} moves`) : '')},
+    {key:'desc', label:'Effect', val:i => i.desc, cell:i => h('span', {class:'muted', style:{fontSize:'12px'}}, i.desc)},
+  ];
+  return h('div', {class:'layout wide'}, h('div', null, tb, table(list, cols, {state:f.t, onPick:i => { if (S.build) { addItem(i.key); go('build'); toast(`${i.name} added to build`); } }}), h('div', {class:'note', style:{marginTop:'8px'}}, S.build ? 'Click an item to add it to your current build.' : 'Start a build to add items by clicking them.')));
+}
+
+// ---------- Vitamins ----------
+function viewVitamins() {
+  const cols = [
+    {key:'name', label:'Vitamin', val:v => v.name},
+    {key:'stat', label:'Stat', val:v => statLabel(v.stat)},
+    {key:'per', label:'Per level', num:true, val:v => v.per, cell:v => v.kind === 'mul' ? '+' + pct(v.per, 1) : (D.statLabels[v.stat]?.[1] === 'pctpts' ? '+' + pct(v.per, 1) : '+' + fmt(v.per, 3))},
+    {key:'max10', label:'At Lv 10 (Common)', num:true, val:v => v.per * 10, cell:v => v.kind === 'mul' ? '+' + pct(v.per * 10) : (D.statLabels[v.stat]?.[1] === 'pctpts' ? '+' + pct(v.per * 10, 1) : '+' + fmt(v.per * 10, 2))},
+    {key:'kind', label:'Stacks as', val:v => v.kind, cell:v => v.kind === 'mul' ? 'multiplier' : 'flat'},
+    {key:'desc', label:'Notes', val:v => v.desc, cell:v => h('span', {class:'muted', style:{fontSize:'12px'}}, v.desc, v.note ? ' — ' + v.note : '')},
+  ];
+  return h('div', {class:'layout wide'}, h('div', null, h('div', {class:'note', style:{marginBottom:'8px'}}, `Each level adds "per level" × the card's rarity multiplier (${D.rarity.join(', ')}). Cap Lv 10, or 12 with Max Ether.`), table(D.vitamins, cols, {state:S.vits.t, onPick:v => { if (S.build) { addVitamin(v.key); go('build'); toast(`${v.name} added to build`); } }})));
+}
+
+// ---------- Fusions ----------
+function canMake(f) {
+  const out = [];
+  for (const p of D.partners) {
+    const pool = [...poolOf.get(p.id).values()].filter(x => x.src !== 'any').map(x => moveByKey.get(x.move)).filter(fusable);
+    let ok = false;
+    if (f.kind === 'signature') ok = f.member === p.id;
+    else if (f.kind === 'type') ok = pool.filter(m => m.type === f.type).length >= 2;
+    else if (f.kind === 'reaction') ok = pool.some(a => f.pair[0].includes(a.type)) && pool.some(b => f.pair[1].includes(b.type));
+    else if (f.kind === 'glitch') ok = new Set(pool.map(m => m.type)).size >= 2;
+    if (ok) out.push(p.id);
+  }
+  return out;
+}
+function viewFusions() {
+  const f = S.fusions;
+  let list = D.fusions.slice();
+  if (f.kind) list = list.filter(x => x.kind === f.kind);
+  if (f.q) { const q = f.q.toLowerCase(); list = list.filter(x => (x.name + ' ' + x.desc + ' ' + (x.moves || []).join(' ') + ' ' + (partnerById.get(x.member)?.name || '')).toLowerCase().includes(q)); }
+  const cols = [
+    {key:'name', label:'Fusion', val:x => x.name},
+    {key:'kind', label:'Kind', val:x => x.kind, cell:x => h('span', {class:'pill'}, x.kind)},
+    {key:'recipe', label:'Recipe', val:x => x.kind === 'signature' ? partnerById.get(x.member)?.name : x.kind, cell:x => x.kind === 'signature' ? h('span', null, h('b', null, partnerById.get(x.member)?.name), ': ', x.moves.map(k => moveByKey.get(k)?.name || k).join(' + ')) : x.kind === 'type' ? `Two ${typeName(x.type)} moves` : x.kind === 'reaction' ? x.pair.map(s => s.map(typeName).join('/')).join(' + ') : 'Any pair with no other match'},
+    {key:'type', label:'Type', val:x => x.type, cell:x => h('span', {class:'row'}, typeBadge(x.type), x.type2 ? typeBadge(x.type2) : '')},
+    {key:'cd', label:'CD s', num:true, dp:2, val:x => x.cd},
+    {key:'power', label:'Power', num:true, dp:2, val:x => x.power},
+    {key:'hits', label:'Hits', num:true, val:x => x.hits},
+    {key:'makers', label:'Partners', num:true, dp:0, val:x => canMake(x).length, title:'League partners whose move pool can make it'},
+  ];
+  const tb = h('div', {class:'toolbar'}, h('input', {type:'search', placeholder:'Search fusions, moves, partners…', value:f.q, oninput:e => { f.q = e.target.value; rerenderKeepFocus(e); }}),
+    h('select', {onchange:e => { f.kind = e.target.value; render(); }}, [['','All kinds'],['signature','Signature'],['type','Same type'],['reaction','Type reaction'],['glitch','Glitch']].map(([v, l]) => h('option', {value:v, selected:f.kind === v}, l))), h('span', {class:'muted'}, `${list.length} fusions`));
+  const sel = S.selFusion && fusionByKey.get(S.selFusion);
+  const det = sel ? h('div', null, h('h2', null, sel.name), h('div', {class:'row'}, typeBadge(sel.type), sel.type2 ? typeBadge(sel.type2) : '', clsBadge(sel.cls), h('span', {class:'pill'}, sel.kind)), h('p', {class:'muted'}, sel.desc),
+    h('div', {class:'kv'}, h('b', null, 'Cooldown'), h('span', null, fmt(sel.cd, 2) + ' s'), h('b', null, 'Power'), h('span', null, fmt(sel.power, 2)), h('b', null, 'Hits'), h('span', null, fmt(sel.hits, 1)), sel.range ? [h('b', null, 'Range'), h('span', null, sel.range)] : '', sel.status ? [h('b', null, 'Status'), h('span', null, cap(sel.status))] : ''),
+    h('div', {class:'note', style:{marginTop:'6px'}}, 'Both ingredient moves must be Lv 8. A fusion takes one slot and frees the other. Max 5 stars (6 with TM Case).'),
+    h('h3', null, 'Who can make it'), h('div', null, canMake(sel).map((pid, i) => h('span', null, i ? ', ' : '', h('span', {class:'linkish', onclick:() => { S.selPoke = pid; go('pokemon'); }}, partnerById.get(pid).name))))) : h('div', {class:'empty'}, 'Click a fusion to see who can make it.');
+  return h('div', {class:'layout'}, h('div', null, tb, table(list, cols, {state:f.t, isSel:x => x.key === S.selFusion, onPick:x => { S.selFusion = x.key; render(); }})), h('div', {class:'detail panel pad'}, det));
+}
+
+// ---------- Build ----------
+function newBuild(pid) {
+  return {v:1, id:Date.now().toString(36), name:`${partnerById.get(pid).name} build`, partner:pid, stage:lineOf(pid).at(-1), growth:0,
+    moves:[], fusions:[], vitamins:[], items:{}, lab:{}, rarity:0, notes:''};
+}
+function startBuild(pid, moves = []) {
+  const b = newBuild(pid);
+  const p = partnerById.get(pid);
+  b.moves = [{key:p.kit[0], level:8}];
+  for (const k of moves) if (!b.moves.some(x => x.key === k)) b.moves.push({key:k, level:8});
+  S.build = b; go('build');
+}
+function slots(b) { return {moves:3 + (b.lab['slot-move'] || 0), vits:3 + (b.lab['slot-vit'] || 0)}; }
+function moveCap(b) { return b.items['tm-case'] ? 10 : 8; }
+function vitCap(b) { return b.items['max-ether'] ? 12 : 10; }
+function addItem(k) { const b = S.build; if (!b) return; const it = itemByKey.get(k); b.items[k] = Math.min(it.max ?? 10, (b.items[k] || 0) + 1); }
+function addVitamin(k) { const b = S.build; if (!b || b.vitamins.some(v => v.key === k)) return; if (b.vitamins.length >= slots(b).vits) { toast('Vitamin slots full'); return; } b.vitamins.push({key:k, level:10}); }
+function computeBuild(b) {
+  const p = partnerById.get(b.partner), line = lineOf(b.partner), sp = speciesById.get(b.stage) || speciesById.get(b.partner), root = speciesById.get(line[0]);
+  const meta = {};
+  for (const [id, lv] of Object.entries(b.lab)) { const u = labById.get(id); if (u?.stat && u.per && lv) meta[u.stat] = (meta[u.stat] || 0) + u.per * lv; }
+  const stage = (sp.evoStage ?? 0) - (root.evoStage ?? 0);
+  const st = baseRunStats(sp, stage + (+b.growth || 0), meta);
+  const r = D.rarity[b.rarity] ?? 1;
+  const gVit = [], gItem = [], gPas = [];
+  for (const v of b.vitamins) { const d = vitByKey.get(v.key); if (!d || !d.per) continue; const amt = d.per * v.level * r; gVit.push(d.kind === 'mul' ? {stat:d.stat, mul:1 + amt} : {stat:d.stat, add:amt}); }
+  for (const [k, n] of Object.entries(b.items)) { const it = itemByKey.get(k); if (!it || !n) continue; for (let i = 0; i < n; i++) gItem.push(...(it.mods || [])); const t = D.typeItems[k]; if (t) st.typeBoost[t] = (st.typeBoost[t] ?? 1) + .3 * n; }
+  const pas = D.passives[p.passive];
+  if (pas?.mods) gPas.push(...pas.mods);
+  if (pas?.typeBoost) for (const [t, v] of Object.entries(pas.typeBoost)) st.typeBoost[t] = (st.typeBoost[t] ?? 1) + v;
+  applyGroups(st, [gVit, gItem, [], gPas]);
+  const opts = {types:sp.types, adaptability:p.passive === 'adaptability', rarity:b.rarity};
+  const fusedKeys = new Set(b.fusions.flatMap(f => [f.a, f.b]));
+  const moveRows = b.moves.map(x => { const m = moveByKey.get(x.key); return m ? {x, m, fused:fusedKeys.has(x.key), ...moveDps(m, st, {...opts, level:x.level})} : null; }).filter(Boolean);
+  return {st, sp, moveRows, totalDps:moveRows.filter(r => !r.fused).reduce((a, r) => a + r.dps, 0), pas};
+}
+function viewBuild() {
+  const b = S.build;
+  const saved = store.get('pokebonk.builds', []);
+  if (!b) {
+    return h('div', {class:'layout wide'}, h('div', {class:'panel pad'},
+      h('h2', null, 'Start a build'), h('p', {class:'muted'}, 'Pick a League partner here, or use "Start build" on a Pokémon / "Build with this" on a move.'),
+      h('div', {class:'chips'}, D.partners.slice().sort((a, b) => a.name.localeCompare(b.name)).map(p => h('span', {class:'chip', onclick:() => startBuild(p.id)}, p.name))),
+      saved.length ? [h('h3', null, 'Saved builds'), savedList(saved)] : '',
+      h('h3', null, 'Import'), importControls()));
+  }
+  const p = partnerById.get(b.partner), C = computeBuild(b), sl = slots(b), line = lineOf(b.partner);
+  const pool = [...poolOf.get(b.partner).values()].map(x => ({...x, m:moveByKey.get(x.move)})).filter(x => x.m);
+  const save = () => { const all = store.get('pokebonk.builds', []).filter(x => x.id !== b.id); all.unshift(JSON.parse(JSON.stringify(b))); store.set('pokebonk.builds', all); toast('Build saved'); render(); };
+  // column 1: partner + setup
+  const col1 = h('div', {class:'panel pad'},
+    h('div', {class:'between'}, h('input', {type:'text', value:b.name, style:{flex:1, fontWeight:'700'}, onchange:e => { b.name = e.target.value; }}), h('button', {class:'x', title:'Close build', onclick:() => { S.build = null; render(); }}, '×')),
+    h('div', {class:'row', style:{marginTop:'10px'}}, h('span', {class:'linkish', style:{fontWeight:700, fontSize:'16px'}, onclick:() => { S.selPoke = p.id; go('pokemon'); }}, p.name), speciesById.get(p.id).types.map(typeBadge), h('span', {class:'rank ' + p.rank}, p.rank)),
+    h('div', {class:'muted'}, p.role),
+    C.pas ? h('div', {class:'box'}, h('div', {class:'t'}, C.pas.name), h('div', {style:{fontSize:'12px'}}, C.pas.desc)) : '',
+    h('h3', null, 'Evolution stage'),
+    h('select', {onchange:e => { b.stage = +e.target.value; render(); }}, line.map(sid => h('option', {value:sid, selected:b.stage === sid}, speciesById.get(sid).name))),
+    h('div', {class:'row', style:{marginTop:'8px'}}, h('span', {class:'help muted', title:'After everything is maxed, extra level-ups "train" your partner: +12% HP and damage each.'}, 'Extra growth'), h('input', {type:'number', min:0, max:20, value:b.growth, onchange:e => { b.growth = Math.max(0, +e.target.value || 0); render(); }})),
+    h('h3', null, h('span', {class:'help', title:'Vitamin values are multiplied by the rarity of the cards you pick. Also used for the expected move upgrade rolls.'}, 'Assumed card rarity')),
+    h('div', {class:'seg'}, RARITY.map((r, i) => h('button', {class:b.rarity === i ? 'on' : '', onclick:() => { b.rarity = i; render(); }}, ['Com','Unc','Rare','Epic','Leg'][i]))),
+    h('h3', null, 'Lab (permanent)'),
+    h('table', {class:'mini'}, h('tbody', null, D.lab.filter(u => u.stat || u.id === 'slot-move' || u.id === 'slot-vit').map(u => h('tr', null, h('td', {title:u.desc}, u.name, h('div', {class:'dim', style:{fontSize:'11px'}}, u.desc)), h('td', {class:'num'}, h('input', {type:'number', min:0, max:u.max, value:b.lab[u.id] || 0, onchange:e => { b.lab[u.id] = Math.max(0, Math.min(u.max, +e.target.value || 0)); render(); }}), h('span', {class:'dim'}, '/' + u.max)))))),
+    h('h3', null, 'Notes'), h('textarea', {rows:3, style:{width:'100%', background:'var(--panel2)', border:'1px solid var(--line)', borderRadius:'8px', color:'inherit', padding:'8px'}, onchange:e => { b.notes = e.target.value; }}, b.notes || ''),
+    h('div', {class:'row', style:{marginTop:'12px'}}, h('button', {class:'btn', onclick:save}, 'Save'), h('button', {class:'btn ghost', onclick:() => exportBuild(b)}, 'Download'), h('button', {class:'btn ghost', onclick:() => copyText(JSON.stringify(buildExport(b), null, 2), 'Build JSON copied')}, 'Copy JSON'), IN_FRAME ? '' : h('button', {class:'btn ghost', onclick:() => copyLink(b)}, 'Copy link')));
+
+  // column 2: moves, fusions, vitamins, items
+  const usedSlots = b.moves.length - b.fusions.length; // each fusion turns 2 moves into 1 slot
+  const moveSlots = b.moves.map((x, i) => {
+    const m = moveByKey.get(x.key), src = poolOf.get(b.partner).get(x.key);
+    const fused = b.fusions.find(f => f.a === x.key || f.b === x.key);
+    return h('div', {class:'slot'}, h('span', {class:'n'}, i + 1),
+      h('div', null, moveSelect(pool, x.key, k => { x.key = k; b.fusions = b.fusions.filter(f => f.a !== k && f.b !== k && moveByKey.has(f.a)); render(); }),
+        h('div', {class:'row', style:{marginTop:'3px', fontSize:'11px'}}, typeBadge(m?.type), clsBadge(m?.cls), h('span', {class:'dim'}, `${D.archetypes[m?.arch]?.label || ''} · ${src ? SRC_LABEL[src.src] + ' · offered from Lv ' + src.level : 'not in pool'}`), fused ? h('span', {class:'pill'}, '→ ' + fusionByKey.get(fused.fusion)?.name) : '')),
+      h('span', null, h('span', {class:'dim', style:{fontSize:'11px'}}, 'Lv '), h('input', {type:'number', min:1, max:moveCap(b), value:x.level, onchange:e => { x.level = Math.max(1, Math.min(moveCap(b), +e.target.value || 1)); render(); }})),
+      h('button', {class:'x', title:'Remove', onclick:() => { b.moves.splice(i, 1); b.fusions = b.fusions.filter(f => f.a !== x.key && f.b !== x.key); render(); }}, '×'));
+  });
+  // fusion options among chosen moves
+  const fusOpts = [];
+  const ms = b.moves.map(x => moveByKey.get(x.key)).filter(fusable);
+  for (let i = 0; i < ms.length; i++) for (let j = i + 1; j < ms.length; j++) { const f = fusionFor(ms[i], ms[j]); if (f) fusOpts.push({a:ms[i], b:ms[j], f}); }
+  const inFusion = k => b.fusions.some(f => f.a === k || f.b === k);
+  const col2 = h('div', null,
+    h('div', {class:'panel pad'}, h('div', {class:'between'}, h('h3', {style:{margin:0}}, `Moves (${usedSlots}/${sl.moves} slots)`), h('button', {class:'btn ghost sm', disabled:usedSlots >= sl.moves, onclick:() => { const next = pool.find(x => x.src !== 'any' && !b.moves.some(y => y.key === x.move)); if (next) { b.moves.push({key:next.move, level:8}); render(); } }}, '+ Add move')),
+      usedSlots > sl.moves ? h('div', {class:'warn'}, `Over the slot limit — buy the 4th move slot in the Lab, or fuse two moves.`) : '',
+      moveSlots, h('div', {class:'note'}, `Max level ${moveCap(b)}${b.items['tm-case'] ? ' (TM Case)' : ' (10 with TM Case)'}.`),
+      fusOpts.length ? [h('h3', null, "Bill's Machine options"), fusOpts.map(o => { const on = b.fusions.find(f => (f.a === o.a.key && f.b === o.b.key) || (f.a === o.b.key && f.b === o.a.key)); const blocked = !on && (inFusion(o.a.key) || inFusion(o.b.key));
+        return h('div', {class:'box', style:{opacity:blocked ? .5 : 1}}, h('div', {class:'between'}, h('span', null, h('b', null, o.a.name), ' + ', h('b', null, o.b.name), ' → ', h('span', {class:'linkish', onclick:() => { S.selFusion = o.f.key; go('fusions'); }}, '⚗ ' + o.f.name), ' ', h('span', {class:'pill'}, o.f.kind)),
+          h('button', {class:'btn sm ' + (on ? '' : 'ghost'), disabled:blocked, onclick:() => { if (on) b.fusions = b.fusions.filter(f => f !== on); else b.fusions.push({a:o.a.key, b:o.b.key, fusion:o.f.key}); render(); }}, on ? 'Planned ✓' : 'Plan fusion')),
+          h('div', {class:'note'}, `CD ${fmt(o.f.cd, 2)} s · power ${fmt(o.f.power, 2)} · ${fmt(o.f.hits, 1)} hits. Needs both at Lv 8.`)); })] : ''),
+    h('div', {class:'panel pad', style:{marginTop:'14px'}}, h('div', {class:'between'}, h('h3', {style:{margin:0}}, `Vitamins (${b.vitamins.length}/${sl.vits})`), h('select', {onchange:e => { if (e.target.value) { addVitamin(e.target.value); render(); } }}, h('option', {value:''}, '+ Add vitamin'), D.vitamins.filter(v => !b.vitamins.some(x => x.key === v.key)).map(v => h('option', {value:v.key}, `${v.name} — ${statLabel(v.stat)}`)))),
+      b.vitamins.length > sl.vits ? h('div', {class:'warn'}, 'More vitamins than slots — add Lab vitamin slots.') : '',
+      b.vitamins.map((x, i) => { const v = vitByKey.get(x.key); const amt = v.per * x.level * (D.rarity[b.rarity] ?? 1); return h('div', {class:'slot'}, h('span', {class:'n'}, i + 1), h('div', null, h('b', null, v.name), h('div', {class:'dim', style:{fontSize:'11px'}}, `${statLabel(v.stat)} ${v.kind === 'mul' ? '+' + pct(amt) : '+' + fmt(amt, 2)}`)), h('span', null, h('span', {class:'dim', style:{fontSize:'11px'}}, 'Lv '), h('input', {type:'number', min:1, max:vitCap(b), value:x.level, onchange:e => { x.level = Math.max(1, Math.min(vitCap(b), +e.target.value || 1)); render(); }})), h('button', {class:'x', onclick:() => { b.vitamins.splice(i, 1); render(); }}, '×')); })),
+    h('div', {class:'panel pad', style:{marginTop:'14px'}}, h('div', {class:'between'}, h('h3', {style:{margin:0}}, `Items (${Object.values(b.items).reduce((a, n) => a + n, 0)})`), itemPicker(b)),
+      Object.entries(b.items).filter(([, n]) => n).map(([k, n]) => { const it = itemByKey.get(k); return h('div', {class:'slot', style:{gridTemplateColumns:'auto minmax(0,1fr) auto auto'}}, h('span', {class:'rank ' + RARITY_CLS[it.rarity], style:{fontSize:'10px'}}, RARITY[it.rarity][0]), h('div', null, h('b', null, it.name), h('div', {class:'dim', style:{fontSize:'11px'}}, it.desc)), h('span', null, '×', h('input', {type:'number', min:0, max:it.max ?? 10, value:n, onchange:e => { b.items[k] = Math.max(0, Math.min(it.max ?? 10, +e.target.value || 0)); if (!b.items[k]) delete b.items[k]; render(); }})), h('button', {class:'x', onclick:() => { delete b.items[k]; render(); }}, '×')); }),
+      h('div', {class:'note'}, 'Only static item bonuses are counted in the numbers; conditional effects are in the description.')));
+
+  // column 3: computed
+  const st = C.st;
+  const statRows = [['maxHp','Max HP',0],['regen','Regen /s',2],['armor','Armor',1],['shieldMax','Shield',0],['evasion','Evasion','%'],['moveSpeed','Move speed',2],['damage','Damage ×',2],['physical','Physical ×',2],['special','Special ×',2],['attackSpeed','Attack speed ×',2],['critChance','Crit chance','%'],['critDamage','Crit damage ×',2],['projectiles','Projectiles',1],['area','Area ×',2],['duration','Duration ×',2],['statusChance','Status chance ×',2],['lifesteal','Lifesteal','%'],['luck','Luck',0],['xpGain','XP ×',2],['pickupRange','Pickup range',1]];
+  const base = baseRunStats(C.sp, 0);
+  const col3 = h('div', {class:'panel pad col3'},
+    h('h3', null, 'Estimated damage'),
+    h('div', {class:'between'}, h('span', {class:'muted'}, 'Total move DPS (single target, neutral type)'), h('span', {class:'big'}, fmt(C.totalDps, 1))),
+    h('table', {class:'mini', style:{marginTop:'6px'}}, h('thead', null, h('tr', null, ['Move', 'Lv', 'Hit', '×', 'CD', 'Crit', 'DPS'].map((t, i) => h('th', {class:i ? 'num' : ''}, t)))), h('tbody', null, C.moveRows.map(r => h('tr', {style:{opacity:r.fused ? .5 : 1}, onclick:() => openMove(r.m.key)}, h('td', null, r.m.name, r.fused ? h('span', {class:'dim'}, ' (fused)') : ''), h('td', {class:'num'}, r.x.level), h('td', {class:'num'}, fmt(r.hit, 1)), h('td', {class:'num'}, fmt(r.count, 1)), h('td', {class:'num'}, fmt(r.cd, 2)), h('td', {class:'num'}, pct(Math.min(1, r.crit))), h('td', {class:'num'}, h('b', null, fmt(r.dps, 1))))))),
+    b.fusions.length ? h('div', {class:'note'}, `Planned fusions: ${b.fusions.map(f => fusionByKey.get(f.fusion)?.name).join(', ')} (fusion damage not modelled yet).`) : '',
+    h('div', {class:'note', style:{marginTop:'4px'}}, 'Expected-value estimate: level bonuses, average upgrade rolls at the assumed rarity, STAB, type items, crit. Ignores enemy type, weather, status bonuses and conditional effects.'),
+    h('h3', null, 'Stats'),
+    h('div', {class:'statgrid'}, statRows.map(([k, l, d]) => { const v = st[k], bv = base[k], up = v > (bv ?? 0) + 1e-9; return h('div', null, h('span', {class:'muted'}, l), h('span', {class:up ? 'up' : ''}, d === '%' ? pct(v, 1) : fmt(v, d))); })),
+    Object.keys(st.typeBoost).length ? h('div', {class:'note', style:{marginTop:'6px'}}, 'Type boosts: ', Object.entries(st.typeBoost).map(([t, v]) => h('span', {class:'tag'}, `${typeName(t)} ×${fmt(v, 2)}`))) : '',
+    h('div', {class:'note', style:{marginTop:'6px'}}, 'Green = raised by your build. Stacking follows the game: flat bonuses first, % bonuses within vitamins / items / passive add up, then the groups multiply.'));
+  return h('div', {class:'builder'}, col1, col2, col3);
+}
+function moveSelect(pool, cur, onPick) {
+  const groups = ['kit','line','shared','any'];
+  return h('select', {onchange:e => onPick(e.target.value)}, groups.map(g => { const xs = pool.filter(x => x.src === g).sort((a, b) => a.level - b.level || a.m.name.localeCompare(b.m.name)); return xs.length ? h('optgroup', {label:SRC_LABEL[g]}, xs.map(x => h('option', {value:x.move, selected:x.move === cur}, `${x.m.name} · ${typeName(x.m.type)} · Lv ${x.level}`))) : ''; }),
+    pool.some(x => x.move === cur) ? '' : h('option', {value:cur, selected:true}, (moveByKey.get(cur)?.name || cur) + ' (not in pool)'));
+}
+function itemPicker(b) {
+  return h('select', {onchange:e => { if (e.target.value) { addItem(e.target.value); render(); } }}, h('option', {value:''}, '+ Add item'), RARITY.map((r, i) => h('optgroup', {label:r}, D.items.filter(it => it.rarity === i).sort((a, c) => a.name.localeCompare(c.name)).map(it => h('option', {value:it.key}, it.name)))));
+}
+function savedList(saved) {
+  return h('div', {class:'savedlist'}, saved.map(s => h('div', {class:'box between', onclick:() => { S.build = JSON.parse(JSON.stringify(s)); render(); }}, h('span', null, h('b', null, s.name), h('span', {class:'dim'}, ` · ${partnerById.get(s.partner)?.name} · ${s.moves.map(m => moveByKey.get(m.key)?.name).join(', ')}`)), h('button', {class:'x', title:'Delete', onclick:e => { e.stopPropagation(); store.set('pokebonk.builds', store.get('pokebonk.builds', []).filter(x => x.id !== s.id)); render(); }}, '×'))));
+}
+function buildExport(b) { return {format:'pokebonk-build', version:1, game:D.meta.version, ...JSON.parse(JSON.stringify(b)), partner_name:partnerById.get(b.partner)?.name}; }
+function exportBuild(b) {
+  const blob = new Blob([JSON.stringify(buildExport(b), null, 2)], {type:'application/json'});
+  const a = h('a', {href:URL.createObjectURL(blob), download:(b.name || 'build').replace(/[^\w -]+/g, '') + '.pokebonk.json'}); document.body.append(a); a.click(); a.remove();
+}
+const IN_FRAME = (() => { try { return window.self !== window.top; } catch { return true; } })();
+function copyText(text, msg) {
+  const fallback = () => { const ta = h('textarea', {style:{position:'fixed', opacity:0}}); ta.value = text; document.body.append(ta); ta.select(); let ok = false; try { ok = document.execCommand('copy'); } catch {} ta.remove(); toast(ok ? msg : 'Copy blocked here — use Download instead'); };
+  try { navigator.clipboard.writeText(text).then(() => toast(msg), fallback); } catch { fallback(); }
+}
+function copyLink(b) {
+  const code = btoa(unescape(encodeURIComponent(JSON.stringify(buildExport(b)))));
+  copyText(location.href.split('#')[0] + '#build=' + code, 'Link copied');
+}
+function loadBuildObject(o) {
+  if (!o || !partnerById.has(o.partner)) throw Error('Not a PokéBonk build');
+  S.build = {v:1, id:o.id || Date.now().toString(36), name:o.name || 'Imported build', partner:o.partner, stage:o.stage || o.partner, growth:o.growth || 0, moves:o.moves || [], fusions:o.fusions || [], vitamins:o.vitamins || [], items:o.items || {}, lab:o.lab || {}, rarity:o.rarity || 0, notes:o.notes || ''};
+}
+function importControls() {
+  const tryLoad = t => { try { loadBuildObject(JSON.parse(t)); render(); toast('Build imported'); } catch (err) { toast(err.message || 'Could not read that build'); } };
+  const ta = h('textarea', {rows:3, placeholder:'…or paste build JSON here', style:{width:'100%', marginTop:'8px', background:'var(--panel2)', border:'1px solid var(--line)', borderRadius:'8px', color:'inherit', padding:'8px'}});
+  return h('div', null, h('input', {type:'file', accept:'.json', onchange:e => { const f = e.target.files[0]; if (f) f.text().then(tryLoad); }}), ta, h('button', {class:'btn ghost sm', style:{marginTop:'6px'}, onclick:() => tryLoad(ta.value)}, 'Load pasted build'));
+}
+
+// keep focus in search boxes while typing
+function rerenderKeepFocus(e) {
+  const ph = e.target.placeholder, pos = e.target.selectionStart;
+  render();
+  const el = [...document.querySelectorAll('input[type=search]')].find(x => x.placeholder === ph);
+  if (el) { el.focus(); try { el.setSelectionRange(pos, pos); } catch {} }
+}
+
+// shared link
+try { const m = /#build=([^&]+)/.exec(location.hash); if (m) { loadBuildObject(JSON.parse(decodeURIComponent(escape(atob(m[1]))))); S.tab = 'build'; } } catch (e) { console.warn('bad build link', e); }
+render();
+})();
+</script>
+</body>
+</html>

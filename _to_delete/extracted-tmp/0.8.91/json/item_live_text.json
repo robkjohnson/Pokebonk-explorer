@@ -1,0 +1,188 @@
+{
+ "black-sludge": {
+  "$fn": "(e,t)=>[c(`Venenos un {pct}% más largos`,{pct:25*t})]"
+ },
+ "shell-bell": {
+  "$fn": "(e,t)=>[c(`Recuperas el {pct}% del daño que infliges`,{pct:jN(.8*t)})]"
+ },
+ "metronome": {
+  "$fn": "(e,t)=>[c(`Ahora: +{pct}% de daño (sin recibir golpes {s} s)`,{pct:Math.round(Math.min(.4,e.player.noHitT*.02)*t*100),s:Math.floor(e.player.noHitT)})]"
+ },
+ "sitrus-berry": {
+  "$fn": "e=>[e.player.sitrusCd>0?c(`Recargando: {s} s`,{s:Math.ceil(e.player.sitrusCd)}):c(`Lista`)]"
+ },
+ "focus-band": {
+  "$fn": "(e,t)=>[c(`{pct}% de aguantar un golpe letal`,{pct:Math.round(100*(1-.85**t))})]"
+ },
+ "focus-sash": {
+  "$fn": "e=>[e.player.sashUsed?c(`Ya usada en esta fase`):c(`Lista`)]"
+ },
+ "smoke-ball": {
+  "$fn": "()=>[c(`25% de invisibilidad 1,5 s al recibir daño`)]"
+ },
+ "eviolite": {
+  "$fn": "e=>[e.nextEvo?c(`Activo: +50% armadura y +25% PS`):c(`Inactivo: ya no puedes evolucionar`)]"
+ },
+ "max-revive": {
+  "$fn": "e=>[c(`Revivir disponible: {n}`,{n:e.player.revives})]"
+ },
+ "master-ball": {
+  "$fn": "()=>[c(`Captura asegurada en los Encuentros Salvajes`)]"
+ },
+ "thunder-stone": {
+  "$fn": "(e,t)=>[c(`Rayo de {n} de daño base en cada crítico`,{n:Math.round((10+e.player.level*.8)*t)})]"
+ },
+ "fire-stone": {
+  "$fn": "(e,t)=>[c(`Explosión de {n} de daño base`,{n:Math.round(20*t*(1+e.player.level*.08))})]"
+ },
+ "big-nugget": {
+  "$fn": "(e,t)=>[c(`Poké Balls un {pct}% más baratas (la siguiente: {cost} ₽)`,{pct:Math.round(Math.min(.4,.08*t)*100),cost:e.interactables.chestCost()})]"
+ },
+ "grip-claw": {
+  "$fn": "(e,t)=>[c(`{pct}% de enraizar en cada golpe`,{pct:jN(4*t)})]"
+ },
+ "berry-juice": {
+  "$fn": "(e,t)=>[c(`{pct}% por baja de curar un 2% de PS`,{pct:Math.round(Math.min(.5,.05*t)*100)})]"
+ },
+ "flame-orb": {
+  "$fn": "(e,t)=>[c(`{pct}% de quemar en cada golpe`,{pct:jN(5*t)})]"
+ },
+ "toxic-orb": {
+  "$fn": "(e,t)=>[c(`{pct}% de envenenar en cada golpe`,{pct:jN(6*t)})]"
+ },
+ "snowball": {
+  "$fn": "(e,t)=>[c(`{pct}% de enfriar en cada golpe`,{pct:jN(6*t)})]"
+ },
+ "binding-band": {
+  "$fn": "(e,t)=>[c(`+{pct}% de daño a enemigos inmovilizados`,{pct:20*t})]"
+ },
+ "adrenaline-orb": {
+  "$fn": "(e,t)=>[c(`Al recibir un golpe: +{spd}% velocidad y +{atk}% vel. de ataque`,{spd:20*t,atk:12*t}),e.player.buffs.has(`adrenaline`)?c(`¡Activa ahora!`):c(`Inactiva`)]"
+ },
+ "stick": {
+  "$fn": "(e,t)=>[c(`{pct}% de golpe ×8`,{pct:3*t})]"
+ },
+ "razor-fang": {
+  "$fn": "(e,t)=>[c(`Remata por debajo del {pct}% de PS`,{pct:4+4*t})]"
+ },
+ "cell-battery": {
+  "$fn": "(e,t)=>[c(`Ahora: +{pct}% vel. de ataque (racha ×{streak})`,{pct:jN(Math.min(.25,Math.floor(e.streak/10)*.015)*t*100),streak:e.streak})]"
+ },
+ "reaper-cloth": {
+  "$fn": "(e,t)=>[c(`Ahora: +{pct}% de daño ({kills} bajas)`,{pct:Math.round(Math.min(.3,Math.floor(e.stats.kills/100)*.01)*t*100),kills:e.stats.kills})]"
+ },
+ "electirizer": {
+  "$fn": "(e,t)=>[c(`{n} rayos de {dmg} de daño base cada 2,5 s`,{n:2+t,dmg:Math.round(16*(1+e.player.level*.07))})]"
+ },
+ "smooth-rock": {
+  "$fn": "(e,t)=>[c(t>1?`+{n} rebotes (solo Proyectil y Ráfaga)`:`+{n} rebote (solo Proyectil y Ráfaga)`,{n:t})]"
+ },
+ "shed-shell": {
+  "$fn": "()=>[c(`Invulnerable 0,35 s al deslizarte · recarga 0,8 s`)]"
+ },
+ "griseous-orb": {
+  "$fn": "(e,t)=>[c(`12% por baja: sombra de {dmg} de daño base que maldice`,{dmg:Math.round(18*t*(1+e.player.level*.08))})]"
+ },
+ "lustrous-orb": {
+  "$fn": "e=>[c(`Grieta cada 8 s: {dmg} de daño base · siguiente en {s} s`,{dmg:Math.round(30*(1+e.player.level*.08)),s:Math.max(0,Math.ceil(e.player.riftT))})]"
+ },
+ "lum-berry": {
+  "$fn": "(e,t)=>[c(`Cura un {pct}% de PS cada 30 s · siguiente en {s} s`,{pct:12+4*(t-1),s:Math.max(0,Math.ceil(e.player.lumT))})]"
+ },
+ "ice-stone": {
+  "$fn": "(e,t)=>[c(`Esquirlas de {dmg} de daño base al morir un enemigo frío`,{dmg:Math.round(14*t*(1+e.player.level*.08))})]"
+ },
+ "leaf-stone": {
+  "$fn": "(e,t)=>[c(`10% por baja: hojas de {dmg} de daño base y +1% de PS`,{dmg:Math.round(12*t*(1+e.player.level*.08))})]"
+ },
+ "revive": {
+  "$fn": "(e,t)=>[c(`Revivir disponible: {n}`,{n:t})]"
+ },
+ "sun-stone": {
+  "$fn": "(e,t)=>[c(`Rayo solar de {dmg} de daño base cada 6 s · siguiente en {s} s`,{dmg:Math.round(60*t*(1+e.player.level*.09)),s:Math.max(0,Math.ceil(e.player.sunT))})]"
+ },
+ "soul-dew": {
+  "$fn": "()=>[c(`Ultimate un 40% más rápida`)]"
+ },
+ "silver-wing": {
+  "$fn": "e=>[c(`Ráfaga de {dmg} de daño base cada 5 s`,{dmg:Math.round(22*(1+e.player.level*.08))})]"
+ },
+ "rainbow-wing": {
+  "$fn": "e=>[e.player.rainbowUsed?c(`Ya usada en esta zona`):c(`Lista para renacer`)]"
+ },
+ "adamant-orb": {
+  "$fn": "e=>[e.player.timeCd>0?c(`Recargando: {s} s`,{s:Math.ceil(e.player.timeCd)}):c(`Lista para detener el tiempo`)]"
+ },
+ "soda-pop": {
+  "$fn": "(e,t)=>[c(`Burbujas de {dmg} de daño base al deslizarte`,{dmg:Math.round(10*t*(1+e.player.level*.08))})]"
+ },
+ "metal-powder": {
+  "$fn": "(e,t)=>[c(`Quieto: +{arm}% armadura y +{atk}% vel. de ataque`,{arm:30*t,atk:8*t}),e.player.buffs.has(`metal`)?c(`¡Activa ahora!`):c(`Inactiva`)]"
+ },
+ "burn-heal": {
+  "$fn": "(e,t)=>[c(`Hasta {n} contagios de quemadura cada 0,5 s`,{n:4+3*t})]"
+ },
+ "ice-heal": {
+  "$fn": "(e,t)=>[c(`+{pct}% al romper el hielo de un congelado`,{pct:Math.round((.6+.3*(t-1))*100)})]"
+ },
+ "awakening": {
+  "$fn": "(e,t)=>[c(`{pct}% de dormir en cada golpe`,{pct:jN(2.5*t)}),c(`{pct}% de que un dormido siga durmiendo al golpearlo`,{pct:Math.round(Math.min(.7,.25+.15*t)*100)})]"
+ },
+ "old-rod": {
+  "$fn": "(e,t)=>[c(`Magikarp de {dmg} de daño base cada 9 s`,{dmg:Math.round(9*t*(1+e.player.level*.08))}),c(`{pct}% de que pique un Gyarados`,{pct:2+t})]"
+ },
+ "bicycle": {
+  "$fn": "(e,t)=>[c(`Ahora: +{pct}% de daño por tu velocidad`,{pct:Math.round(e.player.$3u7q4r()*t*100)})]"
+ },
+ "iron-ball": {
+  "$fn": "(e,t)=>[c(`Onda sísmica de {dmg} de daño base al aterrizar`,{dmg:Math.round((10+.5*Math.max(0,e.player.stats.armor))*t*(1+e.player.level*.08))})]"
+ },
+ "fresh-water": {
+  "$fn": "(e,t)=>[c(`Chorro de {dmg} de daño base (más lo guardado: {stored} PS)`,{dmg:Math.round((6+e.player.level)*t),stored:Math.round(e.player.freshStore)})]"
+ },
+ "full-heal": {
+  "$fn": "(e,t)=>[c(`+{pct}% de daño por cada estado del enemigo (hasta +{max}%)`,{pct:6*t,max:30*t})]"
+ },
+ "guard-spec": {
+  "$fn": "(e,t)=>[e.player.guardT>0?c(`Recargando: {s} s`,{s:Math.ceil(e.player.guardT)}):c(`Lista: bloquea el siguiente golpe`),c(`Recarga de {s} s`,{s:14-3*(t-1)})]"
+ },
+ "coin-case": {
+  "$fn": "e=>[c(`Ahora: +{pct}% de daño ({spent} ₽ gastados)`,{pct:Math.round(e.player.$85r4f2()*100),spent:Math.round(e.goldSpent)})]"
+ },
+ "thick-club": {
+  "$fn": "(e,t)=>[c(`Ahora: +{pct}% de daño físico por tu armadura`,{pct:Math.round(Math.min(.5,Math.max(0,e.player.stats.armor)/200)*t*100)})]"
+ },
+ "rage-candy-bar": {
+  "$fn": "e=>[c(`Ahora: +{pct}% de daño por tus PS`,{pct:Math.round(e.player.$3pptgv()*100)})]"
+ },
+ "silph-scope": {
+  "$fn": "(e,t)=>[c(`El enemigo marcado recibe +{pct}% de daño`,{pct:40*t}),e.player.scopeIdx>=0?c(`Marcado: {s} s`,{s:Math.max(0,Math.ceil(e.player.scopeT))}):c(`Buscando objetivo`)]"
+ },
+ "lemonade": {
+  "$fn": "(e,t)=>[c(`Alfas de apoyo: +{dmg}% de daño y +{spd}% vel. de ataque ({n} contigo)`,{dmg:25*t,spd:15*t,n:e.allies.list.length})]"
+ },
+ "poke-doll": {
+  "$fn": "(e,t)=>[c(`Pasivas de tus Alfas ×{x}`,{x:1+.5*t})]"
+ },
+ "ss-ticket": {
+  "$fn": "e=>[c(`Huecos de Alfas: {n}`,{n:e.allies.cap})]"
+ },
+ "tm-case": {
+  "$fn": "()=>[c(`Movimientos hasta el nivel 10, fusiones hasta ★6`)]"
+ },
+ "max-ether": {
+  "$fn": "()=>[c(`Vitaminas hasta el nivel 12`)]"
+ },
+ "secret-key": {
+  "$fn": "(e,t)=>[c(`Altares un {pct}% más rápidos`,{pct:30*t})]"
+ },
+ "dowsing-machine": {
+  "$fn": "(e,t)=>[c(`Cada zona nueva: +{a} altares y +{b} Poké Balls`,{a:t,b:2*t})]"
+ },
+ "gold-teeth": {
+  "$fn": "(e,t)=>[c(`Meowth y la tragaperras: -{pct}%`,{pct:8*Math.min(3,t)})]"
+ },
+ "poke-flute": {
+  "$fn": "e=>[c(`Ultimate un 25% más rápida`),e.player.buffs.has(`flute`)?c(`¡Activa ahora!`):c(`Al lanzar la Ultimate: movimientos listos y +30% vel. de ataque 6 s`)]"
+ }
+}

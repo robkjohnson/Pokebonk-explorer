@@ -1,0 +1,425 @@
+[
+ {
+  "id": "slot-move",
+  "name": "4th move",
+  "desc": "Unlocks the fourth move slot.",
+  "icon": "tm-case",
+  "max": 1,
+  "cost": {
+   "$fn": "()=>Ze(e)"
+  },
+  "costs": [
+   1275
+  ]
+ },
+ {
+  "id": "slot-vit",
+  "name": "Vitamin slots",
+  "desc": "+1 vitamin slot per level.",
+  "icon": "protein",
+  "max": 2,
+  "cost": {
+   "$fn": "t=>Ze(e[Math.min(t,e.length-1)])"
+  },
+  "costs": [
+   1020,
+   2550
+  ]
+ },
+ {
+  "id": "reroll",
+  "name": "Refresh",
+  "desc": "+1 use of Refresh offers per run.",
+  "icon": "escape-rope",
+  "max": 6,
+  "cost": {
+   "$fn": "n=>Ze(e*t**+n)"
+  },
+  "costs": [
+   100,
+   145,
+   200,
+   280,
+   390,
+   550
+  ]
+ },
+ {
+  "id": "skip",
+  "name": "Skip",
+  "desc": "+1 use of Skip upgrade per run (gives you PokéDollars).",
+  "icon": "x-speed",
+  "max": 6,
+  "cost": {
+   "$fn": "n=>Ze(e*t**+n)"
+  },
+  "costs": [
+   70,
+   95,
+   135,
+   185,
+   260,
+   365
+  ]
+ },
+ {
+  "id": "banish",
+  "name": "Banish",
+  "desc": "+1 use of Banish: removes one option for the rest of the run.",
+  "icon": "cleanse-tag",
+  "max": 6,
+  "cost": {
+   "$fn": "n=>Ze(e*t**+n)"
+  },
+  "costs": [
+   130,
+   180,
+   250,
+   350,
+   490,
+   685
+  ]
+ },
+ {
+  "id": "choice4",
+  "name": "Fourth option",
+  "desc": "Level-ups offer 4 options.",
+  "icon": "lucky-egg",
+  "max": 1,
+  "cost": {
+   "$fn": "()=>Ze(e)"
+  },
+  "costs": [
+   2550
+  ]
+ },
+ {
+  "id": "dmg",
+  "name": "Training",
+  "desc": "+4% damage per level.",
+  "icon": "protein",
+  "max": 8,
+  "cost": {
+   "$fn": "n=>Ze(e*t**+n)"
+  },
+  "stat": "damage",
+  "per": 0.04,
+  "costs": [
+   85,
+   120,
+   165,
+   235,
+   325,
+   455,
+   640,
+   895
+  ]
+ },
+ {
+  "id": "hp",
+  "name": "Stamina",
+  "desc": "+8 max HP per level.",
+  "icon": "hp-up",
+  "max": 8,
+  "cost": {
+   "$fn": "n=>Ze(e*t**+n)"
+  },
+  "stat": "maxHp",
+  "per": 8,
+  "costs": [
+   85,
+   120,
+   165,
+   235,
+   325,
+   455,
+   640,
+   895
+  ]
+ },
+ {
+  "id": "spd",
+  "name": "Agility",
+  "desc": "+2.5% speed per level.",
+  "icon": "carbos",
+  "max": 6,
+  "cost": {
+   "$fn": "n=>Ze(e*t**+n)"
+  },
+  "stat": "moveSpeed",
+  "per": 0.025,
+  "costs": [
+   100,
+   150,
+   215,
+   310,
+   450,
+   655
+  ]
+ },
+ {
+  "id": "xp",
+  "name": "Study",
+  "desc": "+5% experience per level.",
+  "icon": "lucky-egg",
+  "max": 6,
+  "cost": {
+   "$fn": "n=>Ze(e*t**+n)"
+  },
+  "stat": "xpGain",
+  "per": 0.05,
+  "costs": [
+   100,
+   150,
+   215,
+   310,
+   450,
+   655
+  ]
+ },
+ {
+  "id": "gold",
+  "name": "Trading",
+  "desc": "+8% PokéDollars per level.",
+  "icon": "amulet-coin",
+  "max": 6,
+  "cost": {
+   "$fn": "n=>Ze(e*t**+n)"
+  },
+  "stat": "gold",
+  "per": 0.08,
+  "costs": [
+   85,
+   125,
+   180,
+   260,
+   375,
+   545
+  ]
+ },
+ {
+  "id": "luck",
+  "name": "Fortune",
+  "desc": "+5 luck per level.",
+  "icon": "star-piece",
+  "max": 6,
+  "cost": {
+   "$fn": "n=>Ze(e*t**+n)"
+  },
+  "stat": "luck",
+  "per": 5,
+  "costs": [
+   120,
+   175,
+   250,
+   365,
+   525,
+   765
+  ]
+ },
+ {
+  "id": "magnet",
+  "name": "Magnetism",
+  "desc": "+0.6 pickup range per level.",
+  "icon": "magnet",
+  "max": 5,
+  "cost": {
+   "$fn": "n=>Ze(e*t**+n)"
+  },
+  "stat": "pickupRange",
+  "per": 0.6,
+  "costs": [
+   70,
+   100,
+   145,
+   205,
+   300
+  ]
+ },
+ {
+  "id": "regen",
+  "name": "Leftovers",
+  "desc": "+0.2 regen per level.",
+  "icon": "leftovers",
+  "max": 5,
+  "cost": {
+   "$fn": "n=>Ze(e*t**+n)"
+  },
+  "stat": "regen",
+  "per": 0.2,
+  "costs": [
+   100,
+   150,
+   215,
+   310,
+   450
+  ]
+ },
+ {
+  "id": "armor",
+  "name": "Shell",
+  "desc": "+2 armor per level.",
+  "icon": "iron",
+  "max": 6,
+  "cost": {
+   "$fn": "n=>Ze(e*t**+n)"
+  },
+  "stat": "armor",
+  "per": 2,
+  "costs": [
+   100,
+   150,
+   215,
+   310,
+   450,
+   655
+  ]
+ },
+ {
+  "id": "revive",
+  "name": "Revive",
+  "desc": "You start with a Max Revive.",
+  "icon": "max-revive",
+  "max": 1,
+  "cost": {
+   "$fn": "()=>Ze(e)"
+  },
+  "costs": [
+   4250
+  ]
+ },
+ {
+  "id": "research",
+  "name": "Research",
+  "desc": "+25% research progress per level.",
+  "icon": "poke-ball",
+  "max": 4,
+  "cost": {
+   "$fn": "n=>Ze(e*t**+n)"
+  },
+  "costs": [
+   215,
+   340,
+   545,
+   870
+  ]
+ },
+ {
+  "id": "party",
+  "name": "Support team",
+  "desc": "+1 slot for captured Alphas (from 2 to 3).",
+  "icon": "great-ball",
+  "max": 1,
+  "cost": {
+   "$fn": "()=>Ze(e)"
+  },
+  "costs": [
+   2975
+  ]
+ },
+ {
+  "id": "archive",
+  "name": "Archive",
+  "desc": "+5 Archive slots per level. Also, every 2 items you unlock give you 1 more slot. Archived items won't show up in Poké Balls or the shop.",
+  "icon": "everstone",
+  "max": 6,
+  "cost": {
+   "$fn": "t=>Ze(e[Math.min(t,e.length-1)])"
+  },
+  "costs": [
+   510,
+   1020,
+   1700,
+   2550,
+   3400,
+   4675
+  ]
+ },
+ {
+  "id": "crit",
+  "name": "Precision",
+  "desc": "+1% crit chance per level.",
+  "icon": "scope-lens",
+  "max": 5,
+  "cost": {
+   "$fn": "n=>Ze(e*t**+n)"
+  },
+  "stat": "critChance",
+  "per": 0.01,
+  "costs": [
+   170,
+   255,
+   385,
+   575,
+   860
+  ]
+ },
+ {
+  "id": "atkspd",
+  "name": "Swiftness",
+  "desc": "+2% attack speed per level.",
+  "icon": "quick-claw",
+  "max": 5,
+  "cost": {
+   "$fn": "n=>Ze(e*t**+n)"
+  },
+  "stat": "attackSpeed",
+  "per": 0.02,
+  "costs": [
+   185,
+   280,
+   420,
+   630,
+   945
+  ]
+ },
+ {
+  "id": "area",
+  "name": "Expansion",
+  "desc": "+3% area per level.",
+  "icon": "wide-lens",
+  "max": 5,
+  "cost": {
+   "$fn": "n=>Ze(e*t**+n)"
+  },
+  "stat": "area",
+  "per": 0.03,
+  "costs": [
+   170,
+   255,
+   385,
+   575,
+   860
+  ]
+ },
+ {
+  "id": "ult",
+  "name": "Harmony",
+  "desc": "The Ultimate charges 4% faster per level.",
+  "icon": "soul-dew",
+  "max": 5,
+  "cost": {
+   "$fn": "n=>Ze(e*t**+n)"
+  },
+  "costs": [
+   215,
+   320,
+   480,
+   715,
+   1075
+  ]
+ },
+ {
+  "id": "bag",
+  "name": "Big Bag",
+  "desc": "You can take 3 items from the Bag into each run (instead of 2).",
+  "icon": "great-ball",
+  "max": 1,
+  "cost": {
+   "$fn": "()=>Ze(e)"
+  },
+  "costs": [
+   3400
+  ]
+ }
+]

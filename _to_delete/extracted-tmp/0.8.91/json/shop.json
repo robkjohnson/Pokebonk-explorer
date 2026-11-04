@@ -1,0 +1,238 @@
+[
+ {
+  "key": "soda-pop",
+  "price": 150
+ },
+ {
+  "key": "repel",
+  "price": 150
+ },
+ {
+  "key": "white-flute",
+  "price": 150
+ },
+ {
+  "key": "binding-band",
+  "price": 200
+ },
+ {
+  "key": "metronome",
+  "price": 200
+ },
+ {
+  "key": "smooth-rock",
+  "price": 250
+ },
+ {
+  "key": "adrenaline-orb",
+  "price": 250
+ },
+ {
+  "key": "awakening",
+  "price": 250
+ },
+ {
+  "key": "old-rod",
+  "price": 300
+ },
+ {
+  "key": "burn-heal",
+  "price": 300
+ },
+ {
+  "key": "ice-heal",
+  "price": 300
+ },
+ {
+  "key": "metal-powder",
+  "price": 300
+ },
+ {
+  "key": "lemonade",
+  "price": 250
+ },
+ {
+  "key": "secret-key",
+  "price": 300
+ },
+ {
+  "key": "gold-teeth",
+  "price": 300
+ },
+ {
+  "key": "macho-brace",
+  "price": 350
+ },
+ {
+  "key": "focus-band",
+  "price": 350
+ },
+ {
+  "key": "kings-rock",
+  "price": 400
+ },
+ {
+  "key": "eviolite",
+  "price": 400
+ },
+ {
+  "key": "black-sludge",
+  "price": 400
+ },
+ {
+  "key": "lum-berry",
+  "price": 450
+ },
+ {
+  "key": "stick",
+  "price": 500
+ },
+ {
+  "key": "shed-shell",
+  "price": 500
+ },
+ {
+  "key": "razor-fang",
+  "price": 550
+ },
+ {
+  "key": "cell-battery",
+  "price": 600
+ },
+ {
+  "key": "bicycle",
+  "price": 500
+ },
+ {
+  "key": "iron-ball",
+  "price": 500
+ },
+ {
+  "key": "fresh-water",
+  "price": 550
+ },
+ {
+  "key": "full-heal",
+  "price": 550
+ },
+ {
+  "key": "guard-spec",
+  "price": 600
+ },
+ {
+  "key": "coin-case",
+  "price": 600
+ },
+ {
+  "key": "poke-doll",
+  "price": 550
+ },
+ {
+  "key": "dowsing-machine",
+  "price": 600
+ },
+ {
+  "key": "focus-sash",
+  "price": 900
+ },
+ {
+  "key": "comet-shard",
+  "price": 900
+ },
+ {
+  "key": "fire-stone",
+  "price": 1000
+ },
+ {
+  "key": "thunder-stone",
+  "price": 1000
+ },
+ {
+  "key": "ice-stone",
+  "price": 1000
+ },
+ {
+  "key": "leaf-stone",
+  "price": 1000
+ },
+ {
+  "key": "protector",
+  "price": 1100
+ },
+ {
+  "key": "electirizer",
+  "price": 1100
+ },
+ {
+  "key": "revive",
+  "price": 1200
+ },
+ {
+  "key": "griseous-orb",
+  "price": 1200
+ },
+ {
+  "key": "reaper-cloth",
+  "price": 1400
+ },
+ {
+  "key": "thick-club",
+  "price": 1100
+ },
+ {
+  "key": "rage-candy-bar",
+  "price": 1100
+ },
+ {
+  "key": "silph-scope",
+  "price": 1200
+ },
+ {
+  "key": "ss-ticket",
+  "price": 1200
+ },
+ {
+  "key": "max-ether",
+  "price": 1200
+ },
+ {
+  "key": "moon-stone",
+  "price": 2200
+ },
+ {
+  "key": "silver-wing",
+  "price": 2500
+ },
+ {
+  "key": "sun-stone",
+  "price": 2500
+ },
+ {
+  "key": "adamant-orb",
+  "price": 2800
+ },
+ {
+  "key": "lustrous-orb",
+  "price": 2800
+ },
+ {
+  "key": "soul-dew",
+  "price": 3000
+ },
+ {
+  "key": "dawn-stone",
+  "price": 3200
+ },
+ {
+  "key": "rainbow-wing",
+  "price": 3500
+ },
+ {
+  "key": "poke-flute",
+  "price": 3000
+ },
+ {
+  "key": "tm-case",
+  "price": 3200
+ }
+]

@@ -1,0 +1,16 @@
+{
+ "values": [
+  1,
+  1.2,
+  1.45,
+  1.75,
+  2.1
+ ],
+ "names": [
+  "Common",
+  "Uncommon",
+  "Rare",
+  "Epic",
+  "Legendary"
+ ]
+}

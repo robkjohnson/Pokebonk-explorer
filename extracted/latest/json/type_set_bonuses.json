@@ -1,0 +1,164 @@
+{
+ "normal": {
+  "label": "+10% PokéDollars",
+  "mods": [
+   {
+    "stat": "gold",
+    "mul": 1.1
+   }
+  ]
+ },
+ "fire": {
+  "label": "+15% status damage",
+  "mods": [
+   {
+    "stat": "statusDamage",
+    "mul": 1.15
+   }
+  ]
+ },
+ "water": {
+  "label": "+15% healing",
+  "mods": [
+   {
+    "stat": "healing",
+    "mul": 1.15
+   }
+  ]
+ },
+ "grass": {
+  "label": "+0.5 HP/s regen",
+  "mods": [
+   {
+    "stat": "regen",
+    "add": 0.5
+   }
+  ]
+ },
+ "electric": {
+  "label": "+5% atk. speed",
+  "mods": [
+   {
+    "stat": "attackSpeed",
+    "mul": 1.05
+   }
+  ]
+ },
+ "ice": {
+  "label": "+10% duration",
+  "mods": [
+   {
+    "stat": "duration",
+    "mul": 1.1
+   }
+  ]
+ },
+ "fighting": {
+  "label": "+10% damage to elites",
+  "mods": [
+   {
+    "stat": "eliteDamage",
+    "mul": 1.1
+   }
+  ]
+ },
+ "poison": {
+  "label": "+12% status chance",
+  "mods": [
+   {
+    "stat": "statusChance",
+    "mul": 1.12
+   }
+  ]
+ },
+ "ground": {
+  "label": "+4 armor",
+  "mods": [
+   {
+    "stat": "armor",
+    "add": 4
+   }
+  ]
+ },
+ "flying": {
+  "label": "+5% speed",
+  "mods": [
+   {
+    "stat": "moveSpeed",
+    "mul": 1.05
+   }
+  ]
+ },
+ "psychic": {
+  "label": "+8% experience",
+  "mods": [
+   {
+    "stat": "xpGain",
+    "mul": 1.08
+   }
+  ]
+ },
+ "bug": {
+  "label": "+1 pickup range",
+  "mods": [
+   {
+    "stat": "pickupRange",
+    "add": 1
+   }
+  ]
+ },
+ "rock": {
+  "label": "+15 max HP",
+  "mods": [
+   {
+    "stat": "maxHp",
+    "add": 15
+   }
+  ]
+ },
+ "ghost": {
+  "label": "+3% evasion",
+  "mods": [
+   {
+    "stat": "evasion",
+    "add": 0.03
+   }
+  ]
+ },
+ "dragon": {
+  "label": "+5% damage",
+  "mods": [
+   {
+    "stat": "damage",
+    "mul": 1.05
+   }
+  ]
+ },
+ "dark": {
+  "label": "+4% crit chance",
+  "mods": [
+   {
+    "stat": "critChance",
+    "add": 0.04
+   }
+  ]
+ },
+ "steel": {
+  "label": "+8% area",
+  "mods": [
+   {
+    "stat": "area",
+    "mul": 1.08
+   }
+  ]
+ },
+ "fairy": {
+  "label": "+8 luck",
+  "mods": [
+   {
+    "stat": "luck",
+    "add": 8
+   }
+  ]
+ }
+}

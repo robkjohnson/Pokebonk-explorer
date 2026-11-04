@@ -1,0 +1,25 @@
+﻿id,name,desc,max,costs,stat,per
+slot-move,4th move,Unlocks the fourth move slot.,1,1275,,
+slot-vit,Vitamin slots,+1 vitamin slot per level.,2,1020|2550,,
+reroll,Refresh,+1 use of Refresh offers per run.,6,100|145|200|280|390|550,,
+skip,Skip,+1 use of Skip upgrade per run (gives you PokéDollars).,6,70|95|135|185|260|365,,
+banish,Banish,+1 use of Banish: removes one option for the rest of the run.,6,130|180|250|350|490|685,,
+choice4,Fourth option,Level-ups offer 4 options.,1,2550,,
+dmg,Training,+4% damage per level.,8,85|120|165|235|325|455|640|895,damage,0.04
+hp,Stamina,+8 max HP per level.,8,85|120|165|235|325|455|640|895,maxHp,8
+spd,Agility,+2.5% speed per level.,6,100|150|215|310|450|655,moveSpeed,0.025
+xp,Study,+5% experience per level.,6,100|150|215|310|450|655,xpGain,0.05
+gold,Trading,+8% PokéDollars per level.,6,85|125|180|260|375|545,gold,0.08
+luck,Fortune,+5 luck per level.,6,120|175|250|365|525|765,luck,5
+magnet,Magnetism,+0.6 pickup range per level.,5,70|100|145|205|300,pickupRange,0.6
+regen,Leftovers,+0.2 regen per level.,5,100|150|215|310|450,regen,0.2
+armor,Shell,+2 armor per level.,6,100|150|215|310|450|655,armor,2
+revive,Revive,You start with a Max Revive.,1,4250,,
+research,Research,+25% research progress per level.,4,215|340|545|870,,
+party,Support team,+1 slot for captured Alphas (from 2 to 3).,1,2975,,
+archive,Archive,"+5 Archive slots per level. Also, every 2 items you unlock give you 1 more slot. Archived items won't show up in Poké Balls or the shop.",6,510|1020|1700|2550|3400|4675,,
+crit,Precision,+1% crit chance per level.,5,170|255|385|575|860,critChance,0.01
+atkspd,Swiftness,+2% attack speed per level.,5,185|280|420|630|945,attackSpeed,0.02
+area,Expansion,+3% area per level.,5,170|255|385|575|860,area,0.03
+ult,Harmony,The Ultimate charges 4% faster per level.,5,215|320|480|715|1075,,
+bag,Big Bag,You can take 3 items from the Bag into each run (instead of 2).,1,3400,,

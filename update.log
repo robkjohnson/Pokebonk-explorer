@@ -1,0 +1,6 @@
+[2026-11-03T21:29:30.204Z] ERROR: EPERM: operation not permitted, unlink '/sessions/rcw-01tiuy4udtjgywq6avsc9zgj/mnt/pokebonk-data/extracted/0.8.91/README.md'
+[2026-11-03T21:29:34.838Z] ERROR: https://pokebonk.com/version.json?t=1793741370260: fetch failed
+[2026-11-03T21:36:46.443Z] NEW build 0.8.92 (mw17215b) — downloading
+[2026-11-03T21:36:48.376Z] downloaded 5 scripts: main-C_AEO7Iy-mw17215b.js, i18n-Bjw6RPm7-mw17215b.js, main-DE_Gq1n2-mw17215b.js, defineProperty-BP9IYqs1-mw17215b.js, en-y18RNGF3-mw17215b.js
+[2026-11-03T21:36:53.002Z] downloaded 7 data files
+[2026-11-03T21:36:55.394Z] updated: 0.8.92 → extracted/latest (changes vs 0.8.91: no data changes)

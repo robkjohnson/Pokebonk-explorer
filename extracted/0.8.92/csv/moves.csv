@@ -1,0 +1,711 @@
+﻿id,key,name,type,cls,arch,power,dmg,cd,count,area,speed,dur,pierce,status,statusChance,drain,critBonus,flinch,weather,buff,pulses,spread,accuracy,priority,desc
+1,pound,Pound,normal,physical,strike,40,14.855384615384615,0.8075,1,3.3,0,0,99,,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy.
+2,karate-chop,Karate Chop,fighting,physical,strike,50,15.509230769230768,0.817,1,3.3,0,0,99,knock,0.12,0,0.15,0,,,,,100,0,An arcing strike against the closest enemy. Can cause knockback. High crit.
+3,double-slap,Double Slap,normal,physical,barrage,15,4.25,0.9774999999999999,4,0.35,30,0.6,0,,0.12,0,0,0,,,,,85,0,Fires a rapid burst of projectiles.
+4,comet-punch,Comet Punch,normal,physical,barrage,18,3.4000000000000004,0.9774999999999999,5,0.35,30,0.6,0,,0.12,0,0,0,,,,,85,0,Fires a rapid burst of projectiles.
+5,mega-punch,Mega Punch,normal,physical,meteor,80,46.246153846153845,3.68,1,4.2,0,0.7,99,,0.12,0,0,0,,,,,85,0,Summons a devastating meteor after a moment.
+6,pay-day,Pay Day,normal,physical,barrage,40,3.4953846153846153,0.9774999999999999,5,0.35,30,0.6,0,,0.12,0,0,0,,,,,100,0,Fires a rapid burst of projectiles.
+7,fire-punch,Fire Punch,fire,physical,strike,75,17.143846153846155,0.8644999999999999,1,3.3,0,0,99,burn,0.16000000000000003,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause burned.
+8,ice-punch,Ice Punch,ice,physical,strike,75,17.143846153846155,0.8644999999999999,1,3.3,0,0,99,freeze,0.16000000000000003,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause frozen.
+9,thunder-punch,Thunder Punch,electric,physical,strike,75,17.143846153846155,0.8644999999999999,1,3.3,0,0,99,paralysis,0.16000000000000003,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause paralyzed.
+10,scratch,Scratch,normal,physical,strike,40,14.855384615384615,0.8075,1,3.3,0,0,99,,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy.
+11,vice-grip,Vise Grip,normal,physical,strike,55,15.836153846153847,0.8265,1,3.3,0,0,99,root,0.3,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause rooted.
+12,guillotine,Guillotine,normal,physical,meteor,70,57.87,3.6,1,4.2,0,0.7,99,stun,0.6,0,0,0,,,,,30,0,Summons a devastating meteor after a moment. Can cause stunned.
+13,razor-wind,Razor Wind,normal,special,wave,80,15.415384615384616,2.208,1,4,13,1.1,99,,0.12,0,0.15,0,,,,,100,0,A wide wave that sweeps everything in its path. High crit.
+14,swords-dance,Swords Dance,normal,special,buff,70,0,12.6,1,0,0,6,0,,0.8,0,0,0,,swords-dance,,,,0,"Powers you up: +damage, +attack speed and +speed for a few seconds."
+15,cut,Cut,normal,physical,strike,50,15.509230769230768,0.817,1,3.3,0,0,99,,0.12,0,0,0,,,,,95,0,An arcing strike against the closest enemy.
+16,gust,Gust,flying,special,vortex,40,29.71076923076923,3.06,1,5,7,2.2,99,knock,0.12,0,0,0,,,,,100,0,A whirlwind that pulls in enemies and then explodes. Can cause knockback.
+17,wing-attack,Wing Attack,flying,physical,boomerang,60,13.310769230769232,1.496,1,0.8,17,1.3,99,knock,0.12,0,0,0,,,,,100,0,"Throws something that goes out and comes back, piercing enemies. Can cause knockback."
+19,fly,Fly,flying,physical,dash,90,23.455384615384613,2.162,1,1.8,13,0,99,knock,0.12,0,0,0,,,,,95,0,A charge that sweeps through in a straight line. Can cause knockback.
+20,bind,Bind,normal,physical,strike,15,14.45,0.8075,1,3.3,0,0,99,root,0.35,0,0,0,,,,,85,0,An arcing strike against the closest enemy. Can cause rooted.
+21,slam,Slam,normal,physical,strike,80,17.470769230769232,0.874,1,3.3,0,0,99,,0.12,0,0,0,,,,,75,0,An arcing strike against the closest enemy.
+22,vine-whip,Vine Whip,grass,physical,strike,45,15.182307692307692,0.8075,1,3.3,0,0,99,root,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause rooted.
+23,stomp,Stomp,normal,physical,nova,65,21.34,2.314,1,6.5,0,0,99,,0.12,0,0,0.3,,,,,100,0,Releases a wave that hits everything around you.
+24,double-kick,Double Kick,fighting,physical,barrage,30,7.65,0.9774999999999999,2,0.35,30,0.6,0,knock,0.12,0,0,0,,,,,100,0,Fires a rapid burst of projectiles. Can cause knockback.
+25,mega-kick,Mega Kick,normal,physical,dash,120,23.63076923076923,2.3,1,1.8,13,0,99,,0.12,0,0,0,,,,,75,0,A charge that sweeps through in a straight line.
+26,jump-kick,Jump Kick,fighting,physical,dash,100,22.092307692307692,2.2079999999999997,1,1.8,13,0,99,knock,0.12,0,0,0,,,,,95,0,A charge that sweeps through in a straight line. Can cause knockback.
+27,rolling-kick,Rolling Kick,fighting,physical,spin,60,8.556923076923077,0.7040000000000001,1,3.2,0,0,99,stun,0.3,0,0,0.3,,,,,85,0,"You spin, hitting and pushing everyone around you. Can cause stunned."
+29,headbutt,Headbutt,normal,physical,strike,70,16.816923076923075,0.855,1,3.3,0,0,99,,0.12,0,0,0.3,,,,,100,0,An arcing strike against the closest enemy.
+30,horn-attack,Horn Attack,normal,physical,strike,65,16.49,0.8454999999999999,1,3.3,0,0,99,,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy.
+31,fury-attack,Fury Attack,normal,physical,barrage,15,4.25,0.9774999999999999,4,0.35,30,0.6,0,,0.12,0,0,0,,,,,85,0,Fires a rapid burst of projectiles.
+32,horn-drill,Horn Drill,normal,physical,dash,70,24.730769230769226,2.07,1,1.8,13,0,99,,0.12,0,0,0,,,,,30,0,A charge that sweeps through in a straight line.
+33,tackle,Tackle,normal,physical,dash,40,17.476923076923075,1.9549999999999998,1,1.8,13,0,99,,0.12,0,0,0,,,,,100,0,A charge that sweeps through in a straight line.
+34,body-slam,Body Slam,normal,physical,nova,85,23.03230769230769,2.418,1,6.5,0,0,99,paralysis,0.48,0,0,0,,,,,100,0,Releases a wave that hits everything around you. Can cause paralyzed.
+35,wrap,Wrap,normal,physical,spin,15,7.6499999999999995,0.68,1,3.2,0,0,99,root,0.3,0,0,0,,,,,90,0,"You spin, hitting and pushing everyone around you. Can cause rooted."
+36,take-down,Take Down,normal,physical,dash,90,21.32307692307692,2.162,1,1.8,13,0,99,,0.12,0,0,0,,,,,85,0,A charge that sweeps through in a straight line.
+37,thrash,Thrash,normal,physical,spin,120,10.633846153846154,0.8,1,3.2,0,0,99,,0.12,0,0,0,,,,,100,0,"You spin, hitting and pushing everyone around you."
+38,double-edge,Double-Edge,normal,physical,dash,120,23.63076923076923,2.3,1,1.8,13,0,99,,0.12,0,0,0,,,,,100,0,A charge that sweeps through in a straight line.
+40,poison-sting,Poison Sting,poison,physical,bolt,15,11.049999999999999,0.85,1,0.5,24,0.8,0,poison,0.48,0,0,0,,,,,100,0,Fires projectiles at the closest enemy. Can cause poisoned.
+41,twineedle,Twineedle,bug,physical,barrage,25,4.25,0.9774999999999999,4,0.35,30,0.6,0,poison,0.32000000000000006,0,0,0,,,,,100,0,Fires a rapid burst of projectiles. Can cause poisoned.
+42,pin-missile,Pin Missile,bug,physical,barrage,25,4.25,0.9774999999999999,4,0.35,30,0.6,0,poison,0.12,0,0,0,,,,,95,0,Fires a rapid burst of projectiles. Can cause poisoned.
+44,bite,Bite,dark,physical,strike,60,16.163076923076925,0.836,1,3.3,0,0,99,healblock,0.12,0,0,0.3,,,,,100,0,An arcing strike against the closest enemy. Can cause heal block.
+47,sing,Sing,normal,special,nova,70,21.76307692307692,2.3400000000000003,1,6.5,0,0,99,sleep,0.8,0,0,0,,,,,55,0,Releases a wave that hits everything around you. Can cause asleep.
+48,supersonic,Supersonic,normal,special,homing,70,8.903076923076922,1.125,2,0.5,15,1.6,0,confusion,0.4,0,0,0,,,,,55,0,Projectiles that chase their targets. They never miss. Can cause confused.
+49,sonic-boom,Sonic Boom,normal,special,homing,70,8.903076923076922,1.125,2,0.5,15,1.6,0,,0.12,0,0,0,,,,,90,0,Projectiles that chase their targets. They never miss.
+51,acid,Acid,poison,special,cone,40,2.7963076923076926,1.7,1,7,0,1,99,poison,0.12,0,0,0,,,,,100,0,Fires a cone-shaped torrent in front of you. Can cause poisoned.
+52,ember,Ember,fire,special,bolt,40,11.36,0.85,1,0.5,24,0.8,0,burn,0.16000000000000003,0,0,0,,,,,100,0,Fires projectiles at the closest enemy. Can cause burned.
+53,flamethrower,Flamethrower,fire,special,cone,90,3.4116923076923076,1.88,1,7,0,1,99,burn,0.16000000000000003,0,0,0,,,,,100,0,Fires a cone-shaped torrent in front of you. Can cause burned.
+54,mist,Mist,ice,special,aura,70,4.451538461538461,0.405,1,3.6,0,0,99,freeze,0.35,0,0,0,,,,,,0,An aura that continuously damages nearby enemies. Can cause frozen.
+55,water-gun,Water Gun,water,special,bolt,40,11.36,0.85,1,0.5,24,0.8,0,wet,0.12,0,0,0,,,,,100,0,Fires projectiles at the closest enemy. Can cause wet.
+56,hydro-pump,Hydro Pump,water,special,beam,110,8.001538461538463,2.156,1,1.1,18,0.45,99,wet,0.12,0,0,0,,,,,80,0,Fires a continuous beam that pierces everything. Can cause wet.
+57,surf,Surf,water,special,wave,90,15.99230769230769,2.256,1,4,13,1.1,99,wet,0.12,0,0,0,,,,,100,0,A wide wave that sweeps everything in its path. Can cause wet.
+58,ice-beam,Ice Beam,ice,special,beam,90,7.4630769230769225,2.068,1,1.1,18,0.45,99,freeze,0.16000000000000003,0,0,0,,,,,100,0,Fires a continuous beam that pierces everything. Can cause frozen.
+59,blizzard,Blizzard,ice,special,cone,110,3.657846153846154,1.96,1,7,0,1,99,freeze,0.16000000000000003,0,0,0,,,,,70,0,Fires a cone-shaped torrent in front of you. Can cause frozen.
+60,psybeam,Psybeam,psychic,special,beam,65,6.79,1.9580000000000002,1,1.1,18,0.45,99,confusion,0.16000000000000003,0,0,0,,,,,100,0,Fires a continuous beam that pierces everything. Can cause confused.
+61,bubble-beam,Bubble Beam,water,special,barrage,65,4.85,1.0234999999999999,4,0.35,30,0.6,0,wet,0.12,0,0,0,,,,,100,0,Fires a rapid burst of projectiles. Can cause wet.
+62,aurora-beam,Aurora Beam,ice,special,beam,65,6.79,1.9580000000000002,1,1.1,18,0.45,99,freeze,0.25,0,0,0,,,,,100,0,Fires a continuous beam that pierces everything. Can cause frozen.
+63,hyper-beam,Hyper Beam,normal,special,beam,150,9.078461538461537,2.3320000000000003,1,1.1,18,0.45,99,,0.12,0,0,0,,,,,90,0,Fires a continuous beam that pierces everything.
+64,peck,Peck,flying,physical,strike,35,14.528461538461537,0.8075,1,3.3,0,0,99,knock,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause knockback.
+65,drill-peck,Drill Peck,flying,physical,smite,80,24.664615384615384,1.564,2,1.9,0,0,99,knock,0.12,0,0,0,,,,,100,0,Strikes fall from the sky on nearby enemies. Can cause knockback.
+66,submission,Submission,fighting,physical,dash,80,20.553846153846152,2.116,1,1.8,13,0,99,knock,0.12,0,0,0,,,,,80,0,A charge that sweeps through in a straight line. Can cause knockback.
+67,low-kick,Low Kick,fighting,physical,spin,70,8.903076923076922,0.7200000000000001,1,3.2,0,0,99,knock,0.12,0,0,0,,,,,100,0,"You spin, hitting and pushing everyone around you. Can cause knockback."
+68,counter,Counter,fighting,physical,strike,70,16.816923076923075,0.855,1,3.3,0,0,99,knock,0.12,0,0,0,,,,,100,-5,An arcing strike against the closest enemy. Can cause knockback.
+69,seismic-toss,Seismic Toss,fighting,physical,smite,70,23.74153846153846,1.53,2,1.9,0,0,99,stun,0.5,0,0,0,,,,,100,0,Strikes fall from the sky on nearby enemies. Can cause stunned.
+70,strength,Strength,normal,physical,dash,80,20.553846153846152,2.116,1,1.8,13,0,99,,0.12,0,0,0,,,,,100,0,A charge that sweeps through in a straight line.
+71,absorb,Absorb,grass,special,drain,20,8.5,1.105,1,0.5,18,1.1,0,root,0.12,0.15,0,0,,,,,100,0,Projectiles that steal life on impact. Can cause rooted.
+72,mega-drain,Mega Drain,grass,special,drain,40,8.738461538461538,1.105,1,0.5,18,1.1,0,root,0.12,0.15,0,0,,,,,100,0,Projectiles that steal life on impact. Can cause rooted.
+73,leech-seed,Leech Seed,grass,special,drain,70,9.892307692307691,1.1700000000000002,1,0.5,18,1.1,0,root,0.25,0.12,0,0,,,,,90,0,Projectiles that steal life on impact. Can cause rooted.
+74,growth,Growth,normal,special,buff,70,0,12.6,1,0,0,6,0,,0.8,0,0,0,,growth,,,,0,"Powers you up: +damage, +attack speed and +speed for a few seconds."
+75,razor-leaf,Razor Leaf,grass,physical,barrage,55,4.657692307692308,1.0005,4,0.35,30,0.6,0,root,0.12,0,0.15,0,,,,,95,0,Fires a rapid burst of projectiles. Can cause rooted. High crit.
+76,solar-beam,Solar Beam,grass,special,beam,120,8.270769230769229,2.2,1,1.1,18,0.45,99,root,0.12,0,0,0,,,,,100,0,Fires a continuous beam that pierces everything. Can cause rooted.
+77,poison-powder,Poison Powder,poison,special,cone,70,3.1655384615384614,1.8,1,7,0,1,99,poison,0.8,0,0,0,,,,,75,0,Fires a cone-shaped torrent in front of you. Can cause poisoned.
+78,stun-spore,Stun Spore,grass,special,cone,70,3.1655384615384614,1.8,1,7,0,1,99,paralysis,0.35,0,0,0,,,,,75,0,Fires a cone-shaped torrent in front of you. Can cause paralyzed.
+79,sleep-powder,Sleep Powder,grass,special,cone,70,3.1655384615384614,1.8,1,7,0,1,99,sleep,0.8,0,0,0,,,,,75,0,Fires a cone-shaped torrent in front of you. Can cause asleep.
+80,petal-dance,Petal Dance,grass,special,orbit,120,10.633846153846154,5.5,3,3.2,3.2,4,99,root,0.12,0,0,0,,,,,100,0,Items that spin around you hitting enemies. Can cause rooted.
+81,string-shot,String Shot,bug,special,cone,70,3.1655384615384614,1.8,1,7,0,1,99,root,0.35,0,0,0,,,,,95,0,Fires a cone-shaped torrent in front of you. Can cause rooted.
+82,dragon-rage,Dragon Rage,dragon,special,homing,70,8.903076923076922,1.125,2,0.5,15,1.6,0,,0.12,0,0,0,,,,,100,0,Projectiles that chase their targets. They never miss.
+83,fire-spin,Fire Spin,fire,special,vortex,35,29.056923076923074,3.06,1,5,7,2.2,99,root,0.8,0,0,0,,,,,85,0,A whirlwind that pulls in enemies and then explodes. Can cause rooted.
+84,thunder-shock,Thunder Shock,electric,special,bolt,40,11.36,0.85,1,0.5,24,0.8,0,paralysis,0.16000000000000003,0,0,0,,,,,100,0,Fires projectiles at the closest enemy. Can cause paralyzed.
+85,thunderbolt,Thunderbolt,electric,special,chain,90,13.859999999999998,1.3159999999999998,3,8,0,0,0,paralysis,0.16000000000000003,0,0,0,,,,,100,0,Hits an enemy and jumps to other nearby ones. Can cause paralyzed.
+86,thunder-wave,Thunder Wave,electric,special,chain,70,10.288,1.26,3,8,0,0,0,paralysis,0.6,0,0,0,,,,,90,0,Hits an enemy and jumps to other nearby ones. Can cause paralyzed.
+87,thunder,Thunder,electric,special,smite,110,27.433846153846154,1.666,2,1.9,0,0,99,paralysis,0.48,0,0,0,,,,,70,0,Strikes fall from the sky on nearby enemies. Can cause paralyzed.
+88,rock-throw,Rock Throw,rock,physical,lob,50,18.246153846153845,1.634,1,3.2,15,3,0,stun,0.12,0,0,0,,,,,90,0,Lobs a bomb in an arc that explodes in an area. Can cause stunned.
+89,earthquake,Earthquake,ground,physical,nova,100,24.30153846153846,2.496,1,6.5,0,0,99,stun,0.12,0,0,0,,,,,100,0,Releases a wave that hits everything around you. Can cause stunned.
+90,fissure,Fissure,ground,physical,wave,70,19.29,2.16,1,4,13,1.1,99,stun,0.35,0,0,0,,,,,30,0,A wide wave that sweeps everything in its path. Can cause stunned.
+91,dig,Dig,ground,physical,dash,80,20.553846153846152,2.116,1,1.8,13,0,99,stun,0.12,0,0,0,,,,,100,0,A charge that sweeps through in a straight line. Can cause stunned.
+92,toxic,Toxic,poison,special,homing,70,8.903076923076922,1.125,2,0.5,15,1.6,0,poison,0.8,0,0,0,,,,,90,0,Projectiles that chase their targets. They never miss. Can cause poisoned.
+93,confusion,Confusion,psychic,special,bolt,50,11.86,0.86,1,0.5,24,0.8,0,confusion,0.16000000000000003,0,0,0,,,,,100,0,Fires projectiles at the closest enemy. Can cause confused.
+94,psychic,Psychic,psychic,special,nova,90,23.455384615384613,2.444,1,6.5,0,0,99,confusion,0.12,0,0,0,,,,,100,0,Releases a wave that hits everything around you. Can cause confused.
+95,hypnosis,Hypnosis,psychic,special,homing,70,8.903076923076922,1.125,2,0.5,15,1.6,0,sleep,0.45,0,0,0,,,,,60,0,Projectiles that chase their targets. They never miss. Can cause asleep.
+97,agility,Agility,psychic,special,buff,70,0,12.6,1,0,0,6,0,confusion,0.8,0,0,0,,agility,,,,0,"Powers you up: +damage, +attack speed and +speed for a few seconds."
+98,quick-attack,Quick Attack,normal,physical,dash,40,17.476923076923075,1.6617499999999996,1,1.8,13,0,99,,0.12,0,0,0,,,,,100,1,A charge that sweeps through in a straight line.
+99,rage,Rage,normal,physical,spin,20,7.6499999999999995,0.68,1,3.2,0,0,99,,0.12,0,0,0,,,,,100,0,"You spin, hitting and pushing everyone around you."
+101,night-shade,Night Shade,ghost,special,homing,70,8.903076923076922,1.125,2,0.5,15,1.6,0,curse,0.12,0,0,0,,,,,100,0,Projectiles that chase their targets. They never miss. Can cause cursed.
+102,mimic,Mimic,normal,special,random,70,0,4.05,0,1,1,1,0,,0.8,0,0,0,,,,,,0,"Every few seconds it turns into a random attack from the League, with its upgrades."
+109,confuse-ray,Confuse Ray,ghost,special,homing,70,8.903076923076922,1.125,2,0.5,15,1.6,0,confusion,0.45,0,0,0,,,,,100,0,Projectiles that chase their targets. They never miss. Can cause confused.
+112,barrier,Barrier,psychic,special,orbit,70,8.903076923076922,4.95,3,3.2,3.2,4,99,confusion,0.8,0,0,0,,,,,,0,Items that spin around you hitting enemies. Can cause confused.
+113,light-screen,Light Screen,psychic,special,wave,70,14.838461538461537,2.16,1,4,13,1.1,99,knock,1,0,0,0,,,,,,0,A wide wave that sweeps everything in its path. Can cause knockback.
+117,bide,Bide,normal,physical,strike,70,16.816923076923075,0.72675,1,3.3,0,0,99,,0.12,0,0,0,,,,,,1,An arcing strike against the closest enemy.
+118,metronome,Metronome,normal,special,random,70,0,4.05,0,1,1,1,0,,0.8,0,0,0,,,,,,0,"Every few seconds it turns into a random attack from the League, with its upgrades."
+120,self-destruct,Self-Destruct,normal,physical,nova,200,34.32,2.9899999999999998,1,6.5,0,0,99,,0.12,0,0,0,,,,,100,0,Releases a wave that hits everything around you.
+121,egg-bomb,Egg Bomb,normal,physical,lob,100,22.092307692307692,1.8239999999999998,1,3.2,15,3,0,,0.12,0,0,0,,,,,75,0,Lobs a bomb in an arc that explodes in an area.
+122,lick,Lick,ghost,physical,strike,30,14.45,0.8075,1,3.3,0,0,99,paralysis,0.48,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause paralyzed.
+123,smog,Smog,poison,special,cone,30,2.72,1.7,1,7,0,1,99,poison,0.6400000000000001,0,0,0,,,,,70,0,Fires a cone-shaped torrent in front of you. Can cause poisoned.
+124,sludge,Sludge,poison,special,orb,65,14.549999999999999,1.335,1,2.6,17,1.05,0,poison,0.48,0,0,0,,,,,100,0,Throws an orb that explodes on impact. Can cause poisoned.
+125,bone-club,Bone Club,ground,physical,strike,65,16.49,0.8454999999999999,1,3.3,0,0,99,stun,0.12,0,0,0.1,,,,,85,0,An arcing strike against the closest enemy. Can cause stunned.
+126,fire-blast,Fire Blast,fire,special,orb,110,17.146153846153847,1.47,1,2.6,17,1.05,0,burn,0.16000000000000003,0,0,0,,,,,85,0,Throws an orb that explodes on impact. Can cause burned.
+127,waterfall,Waterfall,water,physical,dash,80,20.553846153846152,2.116,1,1.8,13,0,99,wet,0.12,0,0,0.2,,,,,100,0,A charge that sweeps through in a straight line. Can cause wet.
+128,clamp,Clamp,water,physical,strike,35,14.528461538461537,0.8075,1,3.3,0,0,99,root,0.5,0,0,0,,,,,85,0,An arcing strike against the closest enemy. Can cause rooted.
+129,swift,Swift,normal,special,homing,60,8.556923076923077,1.1,2,0.5,15,1.6,0,,0.12,0,0,0,,,,,,0,Projectiles that chase their targets. They never miss.
+130,skull-bash,Skull Bash,normal,physical,strike,130,20.74,0.969,1,3.3,0,0,99,,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy.
+131,spike-cannon,Spike Cannon,normal,physical,barrage,20,3.6125,0.9774999999999999,5,0.35,30,0.6,0,,0.12,0,0,0,,,,,100,0,Fires a rapid burst of projectiles.
+132,constrict,Constrict,normal,physical,spin,10,7.6499999999999995,0.68,1,3.2,0,0,99,root,0.3,0,0,0,,,,,100,0,"You spin, hitting and pushing everyone around you. Can cause rooted."
+136,high-jump-kick,High Jump Kick,fighting,physical,smite,130,39.528000000000006,1.734,1,1.9,0,0,99,knock,0.12,0,0,0,,,,,90,0,Strikes fall from the sky on nearby enemies. Can cause knockback.
+138,dream-eater,Dream Eater,psychic,special,drain,100,13.255384615384616,1.248,1,0.5,18,1.1,0,confusion,0.12,0.15,0,0,,,,,100,0,Projectiles that steal life on impact. Can cause confused.
+139,poison-gas,Poison Gas,poison,special,trail,70,5.935384615384615,0.25200000000000006,1,1.7,0,3,99,poison,0.7,0,0,0,,,,,90,0,You leave a damaging trail as you move. Can cause poisoned.
+140,barrage,Barrage,normal,physical,barrage,15,4.25,0.9774999999999999,4,0.35,30,0.6,0,,0.12,0,0,0,,,,,85,0,Fires a rapid burst of projectiles.
+141,leech-life,Leech Life,bug,physical,drain,80,10.276923076923076,1.1960000000000002,1,0.5,18,1.1,0,poison,0.12,0.15,0,0,,,,,100,0,Projectiles that steal life on impact. Can cause poisoned.
+142,lovely-kiss,Lovely Kiss,normal,special,homing,70,8.903076923076922,1.125,2,0.5,15,1.6,0,sleep,0.5,0,0,0,,,,,75,0,Projectiles that chase their targets. They never miss. Can cause asleep.
+143,sky-attack,Sky Attack,flying,physical,meteor,140,56.63076923076923,4.16,1,4.2,0,0.7,99,knock,0.12,0,0.15,0.3,,,,,90,0,Summons a devastating meteor after a moment. Can cause knockback. High crit.
+144,transform,Transform,normal,special,random,70,0,4.05,0,1,1,1,0,,0.8,0,0,0,,,,,,0,"Every few seconds it turns into a random attack from the League, with its upgrades."
+145,bubble,Bubble,water,special,barrage,40,4.369230769230769,0.9774999999999999,4,0.35,30,0.6,0,wet,0.12,0,0,0,,,,,100,0,Fires a rapid burst of projectiles. Can cause wet.
+146,dizzy-punch,Dizzy Punch,normal,physical,strike,70,16.816923076923075,0.855,1,3.3,0,0,99,confusion,0.32000000000000006,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause confused.
+147,spore,Spore,grass,special,trap,70,27,2.3400000000000003,2,3,0,14,0,sleep,1,0,0,0,,,,,100,0,Lays traps that explode on contact. Can cause asleep.
+149,psywave,Psywave,psychic,special,wave,70,14.838461538461537,2.16,1,4,13,1.1,99,confusion,0.3,0,0,0,,,,,100,0,A wide wave that sweeps everything in its path. Can cause confused.
+152,crabhammer,Crabhammer,water,physical,smite,100,26.510769230769228,1.632,2,1.9,0,0,99,wet,0.12,0,0.15,0,,,,,90,0,Strikes fall from the sky on nearby enemies. Can cause wet. High crit.
+153,explosion,Explosion,normal,physical,meteor,250,76.05,4.6,1,4.2,0,0.7,99,,0.12,0,0,0,,,,,100,0,Summons a devastating meteor after a moment.
+154,fury-swipes,Fury Swipes,normal,physical,barrage,18,4.25,0.9774999999999999,4,0.35,30,0.6,0,,0.12,0,0,0,,,,,80,0,Fires a rapid burst of projectiles.
+155,bonemerang,Bonemerang,ground,physical,boomerang,50,12.772307692307692,1.462,1,0.8,17,1.3,99,stun,0.12,0,0,0,,,,,90,0,"Throws something that goes out and comes back, piercing enemies. Can cause stunned."
+157,rock-slide,Rock Slide,rock,physical,smite,75,24.203076923076924,1.547,2,1.9,0,0,99,stun,0.12,0,0,0.3,,,,,90,0,Strikes fall from the sky on nearby enemies. Can cause stunned.
+158,hyper-fang,Hyper Fang,normal,physical,strike,80,17.470769230769232,0.874,1,3.3,0,0,99,,0.12,0,0,0.1,,,,,90,0,An arcing strike against the closest enemy.
+161,tri-attack,Tri Attack,normal,special,chain,80,13.36,1.288,3,8,0,0,0,,0.12,0,0,0,,,,,100,0,Hits an enemy and jumps to other nearby ones.
+162,super-fang,Super Fang,normal,physical,chain,70,12.86,1.26,3,8,0,0,0,,0.12,0,0,0,,,,,90,0,Hits an enemy and jumps to other nearby ones.
+163,slash,Slash,normal,physical,strike,70,16.816923076923075,0.855,1,3.3,0,0,99,,0.12,0,0.15,0,,,,,100,0,An arcing strike against the closest enemy. High crit.
+165,struggle,Struggle,normal,physical,strike,50,15.509230769230768,0.817,1,3.3,0,0,99,,0.12,0,0,0,,,,,,0,An arcing strike against the closest enemy.
+166,sketch,Sketch,normal,special,random,70,0,4.05,0,1,1,1,0,,0.8,0,0,0,,,,,,0,"Every few seconds it turns into a random attack from the League, with its upgrades."
+167,triple-kick,Triple Kick,fighting,physical,barrage,10,4.25,0.9774999999999999,4,0.35,30,0.6,0,knock,0.12,0,0,0,,,,,90,0,Fires a rapid burst of projectiles. Can cause knockback.
+168,thief,Thief,dark,physical,strike,60,16.163076923076925,0.836,1,3.3,0,0,99,healblock,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause heal block.
+171,nightmare,Nightmare,ghost,special,homing,70,8.903076923076922,1.125,2,0.5,15,1.6,0,curse,0.6,0,0,0,,,,,100,0,Projectiles that chase their targets. They never miss. Can cause cursed.
+172,flame-wheel,Flame Wheel,fire,physical,trail,60,5.704615384615385,0.24640000000000004,1,1.7,0,3,99,burn,0.16000000000000003,0,0,0,,,,,100,0,You leave a damaging trail as you move. Can cause burned.
+173,snore,Snore,normal,special,nova,50,20.07076923076923,2.236,1,6.5,0,0,99,stun,0.3,0,0,0.3,,,,,100,0,Releases a wave that hits everything around you. Can cause stunned.
+175,flail,Flail,normal,physical,strike,70,16.816923076923075,0.855,1,3.3,0,0,99,,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy.
+177,aeroblast,Aeroblast,flying,special,beam,100,7.732307692307692,2.112,1,1.1,18,0.45,99,knock,0.12,0,0.15,0,,,,,95,0,Fires a continuous beam that pierces everything. Can cause knockback. High crit.
+178,cotton-spore,Cotton Spore,grass,special,cone,70,3.1655384615384614,1.8,1,7,0,1,99,root,0.3,0,0,0,,,,,100,0,Fires a cone-shaped torrent in front of you. Can cause rooted.
+179,reversal,Reversal,fighting,physical,nova,70,23.939384615384615,2.3400000000000003,1,6.5,0,0,99,knock,0.12,0,0,0,,,,,100,0,Releases a wave that hits everything around you. Can cause knockback.
+181,powder-snow,Powder Snow,ice,special,cone,40,2.7963076923076926,1.7,1,7,0,1,99,freeze,0.16000000000000003,0,0,0,,,,,100,0,Fires a cone-shaped torrent in front of you. Can cause frozen.
+183,mach-punch,Mach Punch,fighting,physical,barrage,40,4.369230769230769,0.8308749999999998,4,0.35,30,0.6,0,knock,0.12,0,0,0,,,,,100,1,Fires a rapid burst of projectiles. Can cause knockback.
+185,feint-attack,Feint Attack,dark,physical,homing,60,8.556923076923077,1.1,2,0.5,15,1.6,0,healblock,0.12,0,0,0,,,,,,0,Projectiles that chase their targets. They never miss. Can cause heal block.
+186,sweet-kiss,Sweet Kiss,fairy,special,homing,70,8.903076923076922,1.125,2,0.5,15,1.6,0,confusion,0.45,0,0,0,,,,,75,0,Projectiles that chase their targets. They never miss. Can cause confused.
+188,sludge-bomb,Sludge Bomb,poison,special,lob,90,21.32307692307692,1.7859999999999998,1,3.2,15,3,0,poison,0.48,0,0,0,,,,,100,0,Lobs a bomb in an arc that explodes in an area. Can cause poisoned.
+189,mud-slap,Mud-Slap,ground,special,bolt,20,11.049999999999999,0.85,1,0.5,24,0.8,0,stun,0.12,0,0,0,,,,,100,0,Fires projectiles at the closest enemy. Can cause stunned.
+190,octazooka,Octazooka,water,special,orb,65,14.549999999999999,1.335,1,2.6,17,1.05,0,charm,0.3,0,0,0,,,,,85,0,Throws an orb that explodes on impact. Can cause charmed.
+191,spikes,Spikes,ground,special,trap,70,27,2.3400000000000003,2,3,0,14,0,stun,0.8,0,0,0,,,,,,0,Lays traps that explode on contact. Can cause stunned.
+192,zap-cannon,Zap Cannon,electric,special,orb,120,17.72307692307692,1.5,1,2.6,17,1.05,0,paralysis,0.8,0,0,0,,,,,50,0,Throws an orb that explodes on impact. Can cause paralyzed.
+195,perish-song,Perish Song,normal,special,meteor,70,62.32153846153845,3.6,1,4.2,0,0.7,99,curse,1,0,0,0,,,,,,0,Summons a devastating meteor after a moment. Can cause cursed.
+196,icy-wind,Icy Wind,ice,special,cone,55,2.980923076923077,1.74,1,7,0,1,99,freeze,0.4,0,0,0,,,,,95,0,Fires a cone-shaped torrent in front of you. Can cause frozen.
+198,bone-rush,Bone Rush,ground,physical,orbit,25,7.6499999999999995,4.675,2,3.2,3.2,4,99,stun,0.12,0,0,0,,,,,90,0,Items that spin around you hitting enemies. Can cause stunned.
+199,lock-on,Lock-On,normal,special,homing,70,8.903076923076922,1.125,3,0.5,15,1.6,0,curse,0.5,0,0,0,,,,,,0,Projectiles that chase their targets. They never miss. Can cause cursed.
+200,outrage,Outrage,dragon,physical,nova,120,25.99384615384615,2.6,1,6.5,0,0,99,,0.12,0,0,0,,,3,,100,0,Releases 3 shockwaves in a row around you.
+201,sandstorm,Sandstorm,rock,special,weather,70,0,28.8,1,0,0,14,0,stun,0.8,0,0,0,sand,,,,,0,Sandstorm: damages enemies and boosts Rock/Ground.
+202,giga-drain,Giga Drain,grass,special,drain,75,10.084615384615386,1.183,1,0.5,18,1.1,0,root,0.12,0.15,0,0,,,,,100,0,Projectiles that steal life on impact. Can cause rooted.
+205,rollout,Rollout,rock,physical,boomerang,30,11.9,1.4449999999999998,1,0.8,17,1.3,99,stun,0.12,0,0,0,,,,,90,0,"Throws something that goes out and comes back, piercing enemies. Can cause stunned."
+206,false-swipe,False Swipe,normal,physical,boomerang,40,12.233846153846153,1.4449999999999998,2,0.8,17,1.3,99,,0.12,0,0,0,,,,0.4,100,0,"Throws 2 projectiles in a fan that go out and come back, piercing enemies."
+209,spark,Spark,electric,physical,dash,65,19.4,2.0469999999999997,1,1.8,13,0,99,paralysis,0.48,0,0,0,,,,,100,0,A charge that sweeps through in a straight line. Can cause paralyzed.
+210,fury-cutter,Fury Cutter,bug,physical,strike,40,14.855384615384615,0.8075,1,3.3,0,0,99,poison,0.12,0,0,0,,,,,95,0,An arcing strike against the closest enemy. Can cause poisoned.
+211,steel-wing,Steel Wing,steel,physical,boomerang,70,13.849230769230768,1.53,1,0.8,17,1.3,99,knock,0.12,0,0,0,,,,,90,0,"Throws something that goes out and comes back, piercing enemies. Can cause knockback."
+216,return,Return,normal,physical,strike,70,16.816923076923075,0.855,1,3.3,0,0,99,,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy.
+217,present,Present,normal,physical,strike,70,16.816923076923075,0.855,1,3.3,0,0,99,,0.12,0,0,0,,,,,90,0,An arcing strike against the closest enemy.
+218,frustration,Frustration,normal,physical,strike,70,16.816923076923075,0.855,1,3.3,0,0,99,,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy.
+221,sacred-fire,Sacred Fire,fire,physical,meteor,100,49.707692307692305,3.84,1,4.2,0,0.7,99,burn,0.8,0,0,0,,,,,95,0,Summons a devastating meteor after a moment. Can cause burned.
+222,magnitude,Magnitude,ground,physical,nova,70,21.76307692307692,2.3400000000000003,1,6.5,0,0,99,stun,0.12,0,0,0,,,,,100,0,Releases a wave that hits everything around you. Can cause stunned.
+223,dynamic-punch,Dynamic Punch,fighting,physical,nova,100,24.30153846153846,2.496,1,6.5,0,0,99,confusion,0.8,0,0,0,,,,,50,0,Releases a wave that hits everything around you. Can cause confused.
+224,megahorn,Megahorn,bug,physical,dash,120,23.63076923076923,2.3,1,1.8,13,0,99,poison,0.12,0,0,0,,,,,85,0,A charge that sweeps through in a straight line. Can cause poisoned.
+225,dragon-breath,Dragon Breath,dragon,special,cone,60,3.0424615384615388,1.76,1,7,0,1,99,paralysis,0.48,0,0,0,,,,,100,0,Fires a cone-shaped torrent in front of you. Can cause paralyzed.
+228,pursuit,Pursuit,dark,physical,homing,40,7.864615384615385,1.0625,2,0.5,15,1.6,0,healblock,0.12,0,0,0,,,,,100,0,Projectiles that chase their targets. They never miss. Can cause heal block.
+229,rapid-spin,Rapid Spin,normal,physical,spin,50,8.21076923076923,0.6880000000000001,1,3.2,0,0,99,,0.12,0,0,0,,,,,100,0,"You spin, hitting and pushing everyone around you."
+231,iron-tail,Iron Tail,steel,physical,strike,100,18.77846153846154,0.9119999999999999,1,3.3,0,0,99,knock,0.12,0,0,0,,,,,75,0,An arcing strike against the closest enemy. Can cause knockback.
+232,metal-claw,Metal Claw,steel,physical,strike,50,15.509230769230768,0.817,1,3.3,0,0,99,knock,0.12,0,0,0,,,,,95,0,An arcing strike against the closest enemy. Can cause knockback.
+233,vital-throw,Vital Throw,fighting,physical,spin,70,8.903076923076922,0.7200000000000001,1,3.2,0,0,99,knock,1,0,0,0,,,,,,-1,"You spin, hitting and pushing everyone around you. Can cause knockback."
+237,hidden-power,Hidden Power,normal,special,homing,60,8.556923076923077,1.1,2,0.5,15,1.6,0,,0.12,0,0,0,,,,,100,0,Projectiles that chase their targets. They never miss.
+238,cross-chop,Cross Chop,fighting,physical,strike,100,18.77846153846154,0.9119999999999999,1,3.3,0,0,99,knock,0.12,0,0.15,0,,,,,80,0,An arcing strike against the closest enemy. Can cause knockback. High crit.
+239,twister,Twister,dragon,special,vortex,40,29.71076923076923,3.06,1,5,7,2.2,99,,0.12,0,0,0.2,,,,,100,0,A whirlwind that pulls in enemies and then explodes.
+240,rain-dance,Rain Dance,water,special,weather,70,0,28.8,1,0,0,14,0,wet,0.8,0,0,0,rain,,,,,0,"Summons rain: boosts Water and Electric, soaks enemies."
+241,sunny-day,Sunny Day,fire,special,weather,70,0,28.8,1,0,0,14,0,burn,0.8,0,0,0,sun,,,,,0,Summons sun: boosts Fire and Grass.
+242,crunch,Crunch,dark,physical,strike,80,17.470769230769232,0.874,1,3.3,0,0,99,healblock,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause heal block.
+243,mirror-coat,Mirror Coat,psychic,special,homing,70,8.903076923076922,1.125,2,0.5,15,1.6,0,confusion,0.12,0,0,0,,,,,100,-5,Projectiles that chase their targets. They never miss. Can cause confused.
+245,extreme-speed,Extreme Speed,normal,physical,dash,80,20.553846153846152,1.7986,1,1.8,13,0,99,,0.12,0,0,0,,,,,100,2,A charge that sweeps through in a straight line.
+246,ancient-power,Ancient Power,rock,special,orbit,60,8.556923076923077,4.84,2,3.2,3.2,4,99,stun,0.12,0,0,0,,,,,100,0,Items that spin around you hitting enemies. Can cause stunned.
+247,shadow-ball,Shadow Ball,ghost,special,orb,80,15.415384615384616,1.3800000000000001,1,2.6,17,1.05,0,curse,0.12,0,0,0,,,,,100,0,Throws an orb that explodes on impact. Can cause cursed.
+248,future-sight,Future Sight,psychic,special,meteor,120,53.169230769230765,4,1,4.2,0,0.7,99,confusion,0.12,0,0,0,,,,,100,0,Summons a devastating meteor after a moment. Can cause confused.
+249,rock-smash,Rock Smash,fighting,physical,strike,40,14.855384615384615,0.8075,1,3.3,0,0,99,knock,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause knockback.
+250,whirlpool,Whirlpool,water,special,vortex,35,29.056923076923074,3.06,1,5,7,2.2,99,root,0.8,0,0,0,,,,,85,0,A whirlwind that pulls in enemies and then explodes. Can cause rooted.
+251,beat-up,Beat Up,dark,physical,strike,70,16.816923076923075,0.855,1,3.3,0,0,99,healblock,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause heal block.
+252,fake-out,Fake Out,normal,physical,strike,40,14.855384615384615,0.6863749999999998,1,3.3,0,0,99,stun,0.6,0,0,1,,,,,100,3,An arcing strike against the closest enemy. Can cause stunned.
+253,uproar,Uproar,normal,special,nova,90,23.455384615384613,2.444,1,6.5,0,0,99,confusion,0.25,0,0,0,,,2,,100,0,Releases 2 shockwaves in a row around you. Can cause confused.
+255,spit-up,Spit Up,normal,special,homing,70,8.903076923076922,1.125,2,0.5,15,1.6,0,,0.12,0,0,0,,,,,100,0,Projectiles that chase their targets. They never miss.
+257,heat-wave,Heat Wave,fire,special,cone,95,3.4732307692307693,1.9,1,7,0,1,99,burn,0.16000000000000003,0,0,0,,,,,90,0,Fires a cone-shaped torrent in front of you. Can cause burned.
+258,hail,Hail,ice,special,weather,70,0,28.8,1,0,0,14,0,freeze,0.8,0,0,0,hail,,,,,0,Hail: damages and gradually freezes enemies.
+261,will-o-wisp,Will-O-Wisp,fire,special,homing,70,8.903076923076922,1.125,2,0.5,15,1.6,0,burn,0.8,0,0,0,,,,,85,0,Projectiles that chase their targets. They never miss. Can cause burned.
+263,facade,Facade,normal,physical,strike,70,16.816923076923075,0.855,1,3.3,0,0,99,,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy.
+264,focus-punch,Focus Punch,fighting,physical,meteor,150,72.95192307692307,4.24,1,4.2,0,0.7,99,stun,0.7,0,0,0,,,,,100,-3,Summons a devastating meteor after a moment. Can cause stunned.
+265,smelling-salts,Smelling Salts,normal,physical,strike,70,16.816923076923075,0.855,1,3.3,0,0,99,,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy.
+276,superpower,Superpower,fighting,physical,nova,120,25.99384615384615,2.6,1,6.5,0,0,99,stun,0.4,0,0,0,,,,,100,0,Releases a wave that hits everything around you. Can cause stunned.
+279,revenge,Revenge,fighting,physical,strike,60,16.163076923076925,0.836,1,3.3,0,0,99,knock,0.12,0,0,0,,,,,100,-4,An arcing strike against the closest enemy. Can cause knockback.
+280,brick-break,Brick Break,fighting,physical,strike,75,17.143846153846155,0.8644999999999999,1,3.3,0,0,99,knock,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause knockback.
+281,yawn,Yawn,normal,special,homing,70,8.903076923076922,1.125,2,0.5,15,1.6,0,sleep,0.5,0,0,0,,,,,,0,Projectiles that chase their targets. They never miss. Can cause asleep.
+282,knock-off,Knock Off,dark,physical,boomerang,65,13.58,1.513,1,0.8,17,1.3,99,knock,0.5,0,0,0,,,,,100,0,"Throws something that goes out and comes back, piercing enemies. Can cause knockback."
+283,endeavor,Endeavor,normal,physical,strike,70,16.816923076923075,0.855,1,3.3,0,0,99,,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy.
+284,eruption,Eruption,fire,special,meteor,150,64.19769230769231,4.24,1,4.2,0,0.7,99,burn,0.8,0,0,0,,,,,100,0,Summons a devastating meteor after a moment. Can cause burned.
+290,secret-power,Secret Power,normal,physical,strike,70,16.816923076923075,0.855,1,3.3,0,0,99,,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy.
+291,dive,Dive,water,physical,dash,80,20.553846153846152,2.116,1,1.8,13,0,99,wet,0.12,0,0,0,,,,,100,0,A charge that sweeps through in a straight line. Can cause wet.
+292,arm-thrust,Arm Thrust,fighting,physical,barrage,15,4.25,0.9774999999999999,4,0.35,30,0.6,0,knock,0.12,0,0,0,,,,,100,0,Fires a rapid burst of projectiles. Can cause knockback.
+294,tail-glow,Tail Glow,bug,special,buff,70,0,12.6,1,0,0,6,0,poison,0.8,0,0,0,,tail-glow,,,,0,"Powers you up: +damage, +attack speed and +speed for a few seconds."
+295,luster-purge,Luster Purge,psychic,special,orb,95,16.28076923076923,1.4249999999999998,1,2.6,17,1.05,0,confusion,0.12,0,0,0,,,,,100,0,Throws an orb that explodes on impact. Can cause confused.
+296,mist-ball,Mist Ball,psychic,special,orb,95,16.28076923076923,1.4249999999999998,1,2.6,17,1.05,0,confusion,0.12,0,0,0,,,,,100,0,Throws an orb that explodes on impact. Can cause confused.
+297,feather-dance,Feather Dance,flying,special,homing,70,8.903076923076922,1.125,3,0.5,15,1.6,0,charm,0.3,0,0,0,,,,,100,0,Projectiles that chase their targets. They never miss. Can cause charmed.
+299,blaze-kick,Blaze Kick,fire,physical,strike,85,17.797692307692305,0.8835,1,3.3,0,0,99,burn,0.16000000000000003,0,0.15,0,,,,,90,0,An arcing strike against the closest enemy. Can cause burned. High crit.
+301,ice-ball,Ice Ball,ice,physical,boomerang,30,11.9,1.4449999999999998,1,0.8,17,1.3,99,freeze,0.12,0,0,0,,,,,90,0,"Throws something that goes out and comes back, piercing enemies. Can cause frozen."
+302,needle-arm,Needle Arm,grass,physical,strike,60,16.163076923076925,0.836,1,3.3,0,0,99,root,0.12,0,0,0.3,,,,,100,0,An arcing strike against the closest enemy. Can cause rooted.
+304,hyper-voice,Hyper Voice,normal,special,nova,90,23.455384615384613,2.444,1,6.5,0,0,99,,0.12,0,0,0,,,,,100,0,Releases a wave that hits everything around you.
+305,poison-fang,Poison Fang,poison,physical,strike,50,15.509230769230768,0.817,1,3.3,0,0,99,poison,0.8,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause poisoned.
+306,crush-claw,Crush Claw,normal,physical,strike,75,17.143846153846155,0.8644999999999999,1,3.3,0,0,99,,0.12,0,0,0,,,,,95,0,An arcing strike against the closest enemy.
+307,blast-burn,Blast Burn,fire,special,meteor,150,58.36153846153846,4.24,1,4.2,0,0.7,99,burn,0.12,0,0,0,,,,,90,0,Summons a devastating meteor after a moment. Can cause burned.
+308,hydro-cannon,Hydro Cannon,water,special,beam,150,9.078461538461537,2.3320000000000003,1,1.1,18,0.45,99,wet,0.12,0,0,0,,,,,90,0,Fires a continuous beam that pierces everything. Can cause wet.
+309,meteor-mash,Meteor Mash,steel,physical,meteor,90,47.97692307692307,3.76,1,4.2,0,0.7,99,knock,0.12,0,0,0,,,,,90,0,Summons a devastating meteor after a moment. Can cause knockback.
+310,astonish,Astonish,ghost,physical,bolt,30,11.049999999999999,0.85,1,0.5,24,0.8,0,curse,0.12,0,0,0.3,,,,,100,0,Fires projectiles at the closest enemy. Can cause cursed.
+311,weather-ball,Weather Ball,normal,special,orb,50,13.684615384615384,1.29,1,2.6,17,1.05,0,,0.12,0,0,0,,,,,100,0,Throws an orb that explodes on impact.
+314,air-cutter,Air Cutter,flying,special,barrage,60,4.753846153846154,1.012,4,0.35,30,0.6,0,knock,0.12,0,0.15,0,,,,,95,0,Fires a rapid burst of projectiles. Can cause knockback. High crit.
+315,overheat,Overheat,fire,special,meteor,130,54.9,4.08,1,4.2,0,0.7,99,burn,0.6,0,0,0,,,,,90,0,Summons a devastating meteor after a moment. Can cause burned.
+317,rock-tomb,Rock Tomb,rock,physical,smite,60,22.81846153846154,1.496,2,1.9,0,0,99,root,0.4,0,0,0,,,,,95,0,Strikes fall from the sky on nearby enemies. Can cause rooted.
+318,silver-wind,Silver Wind,bug,special,cone,60,3.0424615384615388,1.76,1,7,0,1,99,poison,0.12,0,0,0,,,,,100,0,Fires a cone-shaped torrent in front of you. Can cause poisoned.
+323,water-spout,Water Spout,water,special,nova,150,28.53230769230769,2.7560000000000002,1,6.5,0,0,99,wet,0.6,0,0,0,,,,,100,0,Releases a wave that hits everything around you. Can cause wet.
+324,signal-beam,Signal Beam,bug,special,beam,75,7.059230769230769,2.0020000000000002,1,1.1,18,0.45,99,confusion,0.16000000000000003,0,0,0,,,,,100,0,Fires a continuous beam that pierces everything. Can cause confused.
+325,shadow-punch,Shadow Punch,ghost,physical,homing,60,8.556923076923077,1.1,2,0.5,15,1.6,0,curse,0.12,0,0,0,,,,,,0,Projectiles that chase their targets. They never miss. Can cause cursed.
+326,extrasensory,Extrasensory,psychic,special,homing,80,9.249230769230769,1.1500000000000001,2,0.5,15,1.6,0,confusion,0.12,0,0,0.1,,,,,100,0,Projectiles that chase their targets. They never miss. Can cause confused.
+327,sky-uppercut,Sky Uppercut,fighting,physical,strike,85,17.797692307692305,0.8835,1,3.3,0,0,99,knock,0.12,0,0,0,,,,,90,0,An arcing strike against the closest enemy. Can cause knockback.
+328,sand-tomb,Sand Tomb,ground,physical,vortex,35,29.056923076923074,3.06,1,5,7,2.2,99,root,0.8,0,0,0,,,,,85,0,A whirlwind that pulls in enemies and then explodes. Can cause rooted.
+329,sheer-cold,Sheer Cold,ice,special,nova,70,25.027538461538455,2.3400000000000003,1,6.5,0,0,99,freeze,0.9,0,0,0,,,,,30,0,Releases a wave that hits everything around you. Can cause frozen.
+330,muddy-water,Muddy Water,water,special,wave,90,15.99230769230769,2.256,1,4,13,1.1,99,wet,0.12,0,0,0,,,,,85,0,A wide wave that sweeps everything in its path. Can cause wet.
+331,bullet-seed,Bullet Seed,grass,physical,barrage,25,4.25,0.9774999999999999,4,0.35,30,0.6,0,root,0.12,0,0,0,,,,,100,0,Fires a rapid burst of projectiles. Can cause rooted.
+332,aerial-ace,Aerial Ace,flying,physical,homing,60,8.556923076923077,1.1,2,0.5,15,1.6,0,knock,0.12,0,0,0,,,,,,0,Projectiles that chase their targets. They never miss. Can cause knockback.
+333,icicle-spear,Icicle Spear,ice,physical,barrage,25,3.6125,0.9774999999999999,5,0.35,30,0.6,0,freeze,0.12,0,0,0,,,,,100,0,Fires a rapid burst of projectiles. Can cause frozen.
+337,dragon-claw,Dragon Claw,dragon,physical,strike,80,17.470769230769232,0.874,1,3.3,0,0,99,,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy.
+338,frenzy-plant,Frenzy Plant,grass,special,meteor,150,58.36153846153846,4.24,1,4.2,0,0.7,99,root,0.12,0,0,0,,,,,90,0,Summons a devastating meteor after a moment. Can cause rooted.
+339,bulk-up,Bulk Up,fighting,special,buff,70,0,12.6,1,0,0,6,0,knock,0.8,0,0,0,,bulk-up,,,,0,"Powers you up: +damage, +attack speed and +speed for a few seconds."
+340,bounce,Bounce,flying,physical,smite,85,25.126153846153844,1.581,2,1.9,0,0,99,paralysis,0.48,0,0,0,,,,,85,0,Strikes fall from the sky on nearby enemies. Can cause paralyzed.
+341,mud-shot,Mud Shot,ground,special,bolt,55,12.11,0.87,1,0.5,24,0.8,0,root,0.25,0,0,0,,,,,95,0,Fires projectiles at the closest enemy. Can cause rooted.
+342,poison-tail,Poison Tail,poison,physical,strike,50,15.509230769230768,0.817,1,3.3,0,0,99,poison,0.16000000000000003,0,0.15,0,,,,,100,0,An arcing strike against the closest enemy. Can cause poisoned. High crit.
+343,covet,Covet,normal,physical,strike,60,16.163076923076925,0.836,1,3.3,0,0,99,,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy.
+344,volt-tackle,Volt Tackle,electric,physical,dash,120,23.63076923076923,2.3,1,1.8,13,0,99,paralysis,0.16000000000000003,0,0,0,,,,,100,0,A charge that sweeps through in a straight line. Can cause paralyzed.
+345,magical-leaf,Magical Leaf,grass,special,homing,60,8.556923076923077,1.1,2,0.5,15,1.6,0,root,0.12,0,0,0,,,,,,0,Projectiles that chase their targets. They never miss. Can cause rooted.
+347,calm-mind,Calm Mind,psychic,special,buff,70,0,12.6,1,0,0,6,0,confusion,0.8,0,0,0,,calm-mind,,,,0,"Powers you up: +damage, +attack speed and +speed for a few seconds."
+348,leaf-blade,Leaf Blade,grass,physical,boomerang,90,14.926153846153845,1.5979999999999999,1,0.8,17,1.3,99,root,0.12,0,0.15,0,,,,,100,0,"Throws something that goes out and comes back, piercing enemies. Can cause rooted. High crit."
+349,dragon-dance,Dragon Dance,dragon,special,buff,70,0,12.6,1,0,0,6,0,,0.8,0,0,0,,dragon-dance,,,,0,"Powers you up: +damage, +attack speed and +speed for a few seconds."
+350,rock-blast,Rock Blast,rock,physical,barrage,25,4.25,0.9774999999999999,4,0.35,30,0.6,0,stun,0.12,0,0,0,,,,,90,0,Fires a rapid burst of projectiles. Can cause stunned.
+351,shock-wave,Shock Wave,electric,special,homing,60,8.556923076923077,1.1,2,0.5,15,1.6,0,paralysis,0.12,0,0,0,,,,,,0,Projectiles that chase their targets. They never miss. Can cause paralyzed.
+352,water-pulse,Water Pulse,water,special,orb,60,14.261538461538462,1.32,1,2.6,17,1.05,0,confusion,0.32000000000000006,0,0,0,,,,,100,0,Throws an orb that explodes on impact. Can cause confused.
+353,doom-desire,Doom Desire,steel,special,meteor,140,56.63076923076923,4.16,1,4.2,0,0.7,99,knock,0.12,0,0,0,,,,,100,0,Summons a devastating meteor after a moment. Can cause knockback.
+354,psycho-boost,Psycho Boost,psychic,special,meteor,140,65.12538461538462,4.16,1,4.2,0,0.7,99,confusion,0.12,0,0,0,,,,,90,0,Summons a devastating meteor after a moment. Can cause confused.
+356,gravity,Gravity,psychic,special,vortex,70,33.63384615384615,3.24,1,5,7,2.2,99,stun,0.4,0,0,0,,,,,,0,A whirlwind that pulls in enemies and then explodes. Can cause stunned.
+358,wake-up-slap,Wake-Up Slap,fighting,physical,strike,70,16.816923076923075,0.855,1,3.3,0,0,99,knock,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause knockback.
+359,hammer-arm,Hammer Arm,fighting,physical,nova,100,24.30153846153846,2.496,1,6.5,0,0,99,knock,0.12,0,0,0,,,,,90,0,Releases a wave that hits everything around you. Can cause knockback.
+360,gyro-ball,Gyro Ball,steel,physical,spin,70,10.683692307692306,0.7200000000000001,1,3.2,0,0,99,knock,0.12,0,0,0,,,,,100,0,"You spin, hitting and pushing everyone around you. Can cause knockback."
+362,brine,Brine,water,special,orb,65,14.549999999999999,1.335,1,2.6,17,1.05,0,wet,0.12,0,0,0,,,,,100,0,Throws an orb that explodes on impact. Can cause wet.
+363,natural-gift,Natural Gift,normal,physical,strike,70,16.816923076923075,0.855,1,3.3,0,0,99,,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy.
+364,feint,Feint,normal,physical,strike,30,14.45,0.6863749999999998,1,3.3,0,0,99,,0.12,0,0,0,,,,,100,2,An arcing strike against the closest enemy.
+365,pluck,Pluck,flying,physical,strike,60,16.163076923076925,0.836,1,3.3,0,0,99,knock,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause knockback.
+368,metal-burst,Metal Burst,steel,physical,strike,70,16.816923076923075,0.855,1,3.3,0,0,99,knock,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause knockback.
+369,u-turn,U-turn,bug,physical,boomerang,70,13.849230769230768,1.53,1,0.8,17,1.3,99,poison,0.12,0,0,0,,,,,100,0,"Throws something that goes out and comes back, piercing enemies. Can cause poisoned."
+370,close-combat,Close Combat,fighting,physical,spin,120,10.633846153846154,0.8,1,3.2,0,0,99,knock,0.12,0,0,0,,,,,100,0,"You spin, hitting and pushing everyone around you. Can cause knockback."
+371,payback,Payback,dark,physical,strike,50,15.509230769230768,0.817,1,3.3,0,0,99,healblock,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause heal block.
+372,assurance,Assurance,dark,physical,dash,60,19.015384615384615,2.024,1,1.8,13,0,99,healblock,0.12,0,0,0,,,,,100,0,A charge that sweeps through in a straight line. Can cause heal block.
+374,fling,Fling,dark,physical,strike,70,16.816923076923075,0.855,1,3.3,0,0,99,healblock,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause heal block.
+376,trump-card,Trump Card,normal,special,homing,70,8.903076923076922,1.125,2,0.5,15,1.6,0,,0.12,0,0,0,,,,,,0,Projectiles that chase their targets. They never miss.
+378,wring-out,Wring Out,normal,special,strike,70,16.816923076923075,0.855,1,3.3,0,0,99,paralysis,0.4,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause paralyzed.
+380,gastro-acid,Gastro Acid,poison,special,lob,70,19.784615384615382,1.71,1,3.2,15,3,0,curse,0.8,0,0,0,,,,,100,0,Lobs a bomb in an arc that explodes in an area. Can cause cursed.
+383,copycat,Copycat,normal,special,random,70,0,4.05,0,1,1,1,0,,0.8,0,0,0,,,,,,0,"Every few seconds it turns into a random attack from the League, with its upgrades."
+386,punishment,Punishment,dark,physical,strike,70,16.816923076923075,0.855,1,3.3,0,0,99,healblock,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause heal block.
+387,last-resort,Last Resort,normal,physical,meteor,140,56.63076923076923,4.16,1,4.2,0,0.7,99,,0.12,0,0,0,,,,,100,0,Summons a devastating meteor after a moment.
+389,sucker-punch,Sucker Punch,dark,physical,dash,70,19.784615384615382,1.7594999999999998,1,1.8,13,0,99,healblock,0.12,0,0,0,,,,,100,1,A charge that sweeps through in a straight line. Can cause heal block.
+390,toxic-spikes,Toxic Spikes,poison,special,trap,70,27,2.3400000000000003,2,3,0,14,0,poison,0.8,0,0,0,,,,,,0,Lays traps that explode on contact. Can cause poisoned.
+392,aqua-ring,Aqua Ring,water,special,aura,70,4.451538461538461,0.405,1,3.6,0,0,99,wet,0.8,0,0,0,,,,,,0,An aura that continuously damages nearby enemies. Can cause wet.
+394,flare-blitz,Flare Blitz,fire,physical,dash,120,23.63076923076923,2.3,1,1.8,13,0,99,burn,0.16000000000000003,0,0,0,,,,,100,0,A charge that sweeps through in a straight line. Can cause burned.
+395,force-palm,Force Palm,fighting,physical,strike,60,16.163076923076925,0.836,1,3.3,0,0,99,paralysis,0.48,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause paralyzed.
+396,aura-sphere,Aura Sphere,fighting,special,homing,80,9.249230769230769,1.1500000000000001,2,0.5,15,1.6,0,knock,0.12,0,0,0,,,,,,0,Projectiles that chase their targets. They never miss. Can cause knockback.
+397,rock-polish,Rock Polish,rock,special,buff,70,0,12.6,1,0,0,6,0,stun,0.8,0,0,0,,rock-polish,,,,0,"Powers you up: +damage, +attack speed and +speed for a few seconds."
+398,poison-jab,Poison Jab,poison,physical,strike,80,13.103076923076923,0.874,2,3.3,0,0,99,poison,0.48,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause poisoned.
+399,dark-pulse,Dark Pulse,dark,special,nova,80,22.60923076923077,2.3920000000000003,1,6.5,0,0,99,healblock,0.12,0,0,0.2,,,,,100,0,Releases a wave that hits everything around you. Can cause heal block.
+400,night-slash,Night Slash,dark,physical,strike,70,16.816923076923075,0.855,1,3.3,0,0,99,healblock,0.12,0,0.15,0,,,,,100,0,An arcing strike against the closest enemy. Can cause heal block. High crit.
+401,aqua-tail,Aqua Tail,water,physical,strike,90,18.12461538461538,0.8929999999999999,1,3.3,0,0,99,wet,0.12,0,0,0,,,,,90,0,An arcing strike against the closest enemy. Can cause wet.
+402,seed-bomb,Seed Bomb,grass,physical,lob,80,20.553846153846152,1.748,1,3.2,15,3,0,root,0.12,0,0,0,,,,,100,0,Lobs a bomb in an arc that explodes in an area. Can cause rooted.
+403,air-slash,Air Slash,flying,special,boomerang,75,14.118461538461538,1.547,1,0.8,17,1.3,99,knock,0.12,0,0,0.3,,,,,95,0,"Throws something that goes out and comes back, piercing enemies. Can cause knockback."
+404,x-scissor,X-Scissor,bug,physical,boomerang,80,14.387692307692308,1.564,1,0.8,17,1.3,99,poison,0.12,0,0,0,,,,,100,0,"Throws something that goes out and comes back, piercing enemies. Can cause poisoned."
+405,bug-buzz,Bug Buzz,bug,special,nova,90,23.455384615384613,2.444,1,6.5,0,0,99,poison,0.12,0,0,0,,,,,100,0,Releases a wave that hits everything around you. Can cause poisoned.
+406,dragon-pulse,Dragon Pulse,dragon,special,beam,85,7.3284615384615375,2.0460000000000003,1,1.1,18,0.45,99,,0.12,0,0,0,,,,,100,0,Fires a continuous beam that pierces everything.
+407,dragon-rush,Dragon Rush,dragon,physical,dash,100,22.092307692307692,2.2079999999999997,1,1.8,13,0,99,,0.12,0,0,0.2,,,,,75,0,A charge that sweeps through in a straight line.
+408,power-gem,Power Gem,rock,special,barrage,80,5.138461538461538,1.058,4,0.35,30,0.6,0,stun,0.12,0,0,0,,,,,100,0,Fires a rapid burst of projectiles. Can cause stunned.
+409,drain-punch,Drain Punch,fighting,physical,strike,75,17.143846153846155,0.8644999999999999,1,3.3,0,0,99,knock,0.12,0.15,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause knockback. Steals life.
+410,vacuum-wave,Vacuum Wave,fighting,special,bolt,40,11.36,0.7224999999999999,1,0.5,24,0.8,0,knock,0.12,0,0,0,,,,,100,1,Fires projectiles at the closest enemy. Can cause knockback.
+411,focus-blast,Focus Blast,fighting,special,orb,120,17.72307692307692,1.5,1,2.6,17,1.05,0,knock,0.12,0,0,0,,,,,70,0,Throws an orb that explodes on impact. Can cause knockback.
+412,energy-ball,Energy Ball,grass,special,orb,90,15.99230769230769,1.41,1,2.6,17,1.05,0,root,0.12,0,0,0,,,,,100,0,Throws an orb that explodes on impact. Can cause rooted.
+413,brave-bird,Brave Bird,flying,physical,dash,120,23.63076923076923,2.3,1,1.8,13,0,99,knock,0.12,0,0,0,,,,,100,0,A charge that sweeps through in a straight line. Can cause knockback.
+414,earth-power,Earth Power,ground,special,smite,90,25.587692307692304,1.5979999999999999,2,1.9,0,0,99,stun,0.12,0,0,0,,,,,100,0,Strikes fall from the sky on nearby enemies. Can cause stunned.
+416,giga-impact,Giga Impact,normal,physical,meteor,150,58.36153846153846,4.24,1,4.2,0,0.7,99,,0.12,0,0,0,,,,,90,0,Summons a devastating meteor after a moment.
+417,nasty-plot,Nasty Plot,dark,special,buff,70,0,12.6,1,0,0,6,0,healblock,0.8,0,0,0,,nasty-plot,,,,0,"Powers you up: +damage, +attack speed and +speed for a few seconds."
+418,bullet-punch,Bullet Punch,steel,physical,barrage,40,4.369230769230769,0.8308749999999998,4,0.35,30,0.6,0,knock,0.12,0,0,0,,,,,100,1,Fires a rapid burst of projectiles. Can cause knockback.
+419,avalanche,Avalanche,ice,physical,meteor,60,42.784615384615385,3.52,1,4.2,0,0.7,99,freeze,0.12,0,0,0,,,,,100,-4,Summons a devastating meteor after a moment. Can cause frozen.
+420,ice-shard,Ice Shard,ice,physical,bolt,40,11.36,0.7224999999999999,1,0.5,24,0.8,0,freeze,0.12,0,0,0,,,,,100,1,Fires projectiles at the closest enemy. Can cause frozen.
+421,shadow-claw,Shadow Claw,ghost,physical,strike,70,16.816923076923075,0.855,1,3.3,0,0,99,curse,0.12,0,0.15,0,,,,,100,0,An arcing strike against the closest enemy. Can cause cursed. High crit.
+422,thunder-fang,Thunder Fang,electric,physical,strike,65,16.49,0.8454999999999999,1,3.3,0,0,99,paralysis,0.35,0,0,0.1,,,,,95,0,An arcing strike against the closest enemy. Can cause paralyzed.
+423,ice-fang,Ice Fang,ice,physical,strike,65,16.49,0.8454999999999999,1,3.3,0,0,99,freeze,0.16000000000000003,0,0,0.1,,,,,95,0,An arcing strike against the closest enemy. Can cause frozen.
+424,fire-fang,Fire Fang,fire,physical,strike,65,16.49,0.8454999999999999,1,3.3,0,0,99,burn,0.16000000000000003,0,0,0.1,,,,,95,0,An arcing strike against the closest enemy. Can cause burned.
+425,shadow-sneak,Shadow Sneak,ghost,physical,dash,40,17.476923076923075,1.6617499999999996,1,1.8,13,0,99,curse,0.35,0,0,0,,,,,100,1,A charge that sweeps through in a straight line. Can cause cursed.
+426,mud-bomb,Mud Bomb,ground,special,lob,65,19.4,1.6909999999999998,1,3.2,15,3,0,stun,0.12,0,0,0,,,,,85,0,Lobs a bomb in an arc that explodes in an area. Can cause stunned.
+427,psycho-cut,Psycho Cut,psychic,physical,boomerang,70,9.694461538461537,1.53,2,0.8,17,1.3,99,confusion,0.12,0,0.15,0,,,,0.25,100,0,"Throws 2 projectiles in a fan that go out and come back, piercing enemies. Can cause confused. High crit."
+428,zen-headbutt,Zen Headbutt,psychic,physical,dash,80,20.553846153846152,2.116,1,1.8,13,0,99,confusion,0.12,0,0,0.2,,,,,90,0,A charge that sweeps through in a straight line. Can cause confused.
+429,mirror-shot,Mirror Shot,steel,special,orb,65,14.549999999999999,1.335,1,2.6,17,1.05,0,charm,0.25,0,0,0,,,,,85,0,Throws an orb that explodes on impact. Can cause charmed.
+430,flash-cannon,Flash Cannon,steel,special,beam,80,7.193846153846154,2.0240000000000005,1,1.1,18,0.45,99,knock,0.12,0,0,0,,,,,100,0,Fires a continuous beam that pierces everything. Can cause knockback.
+431,rock-climb,Rock Climb,normal,physical,spin,90,9.595384615384614,0.752,1,3.2,0,0,99,confusion,0.3,0,0,0,,,,,85,0,"You spin, hitting and pushing everyone around you. Can cause confused."
+433,trick-room,Trick Room,psychic,special,vortex,70,33.63384615384615,3.24,1,5,7,2.2,99,stun,0.5,0,0,0,,,,,,-7,A whirlwind that pulls in enemies and then explodes. Can cause stunned.
+434,draco-meteor,Draco Meteor,dragon,special,meteor,130,54.9,4.08,1,4.2,0,0.7,99,,0.12,0,0,0,,,,,90,0,Summons a devastating meteor after a moment.
+435,discharge,Discharge,electric,special,nova,80,22.60923076923077,2.3920000000000003,1,6.5,0,0,99,paralysis,0.48,0,0,0,,,,,100,0,Releases a wave that hits everything around you. Can cause paralyzed.
+436,lava-plume,Lava Plume,fire,special,nova,80,22.60923076923077,2.3920000000000003,1,6.5,0,0,99,burn,0.48,0,0,0,,,,,100,0,Releases a wave that hits everything around you. Can cause burned.
+437,leaf-storm,Leaf Storm,grass,special,nova,130,26.84,2.652,1,6.5,0,0,99,root,0.12,0,0,0,,,,,90,0,Releases a wave that hits everything around you. Can cause rooted.
+438,power-whip,Power Whip,grass,physical,spin,120,10.633846153846154,0.8,1,3.2,0,0,99,root,0.12,0,0,0,,,,,85,0,"You spin, hitting and pushing everyone around you. Can cause rooted."
+439,rock-wrecker,Rock Wrecker,rock,physical,meteor,150,58.36153846153846,4.24,1,4.2,0,0.7,99,stun,0.12,0,0,0,,,,,90,0,Summons a devastating meteor after a moment. Can cause stunned.
+440,cross-poison,Cross Poison,poison,physical,boomerang,70,13.849230769230768,1.53,1,0.8,17,1.3,99,poison,0.16000000000000003,0,0.15,0,,,,,100,0,"Throws something that goes out and comes back, piercing enemies. Can cause poisoned. High crit."
+441,gunk-shot,Gunk Shot,poison,physical,meteor,120,53.169230769230765,4,1,4.2,0,0.7,99,poison,0.48,0,0,0,,,,,80,0,Summons a devastating meteor after a moment. Can cause poisoned.
+442,iron-head,Iron Head,steel,physical,dash,80,20.553846153846152,2.116,1,1.8,13,0,99,stun,0.3,0,0,0.3,,,,,100,0,A charge that sweeps through in a straight line. Can cause stunned.
+443,magnet-bomb,Magnet Bomb,steel,physical,homing,60,8.556923076923077,1.1,2,0.5,15,1.6,0,knock,0.12,0,0,0,,,,,,0,Projectiles that chase their targets. They never miss. Can cause knockback.
+444,stone-edge,Stone Edge,rock,physical,orbit,100,9.94153846153846,5.279999999999999,2,3.2,3.2,4,99,stun,0.12,0,0.15,0,,,,,80,0,Items that spin around you hitting enemies. Can cause stunned. High crit.
+446,stealth-rock,Stealth Rock,rock,special,trap,70,27,2.3400000000000003,3,3,0,14,0,stun,0.8,0,0,0,,,,,,0,Lays traps that explode on contact. Can cause stunned.
+447,grass-knot,Grass Knot,grass,special,smite,70,23.74153846153846,1.53,2,1.9,0,0,99,stun,0.3,0,0,0,,,,,100,0,Strikes fall from the sky on nearby enemies. Can cause stunned.
+448,chatter,Chatter,flying,special,vortex,65,32.98,3.204,1,5,7,2.2,99,confusion,0.8,0,0,0,,,,,100,0,A whirlwind that pulls in enemies and then explodes. Can cause confused.
+449,judgment,Judgment,normal,special,nova,100,24.30153846153846,2.496,1,6.5,0,0,99,,0.12,0,0,0,,,,,100,0,Releases a wave that hits everything around you.
+450,bug-bite,Bug Bite,bug,physical,strike,60,16.163076923076925,0.836,1,3.3,0,0,99,poison,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause poisoned.
+451,charge-beam,Charge Beam,electric,special,beam,50,6.386153846153846,1.8920000000000001,1,1.1,18,0.45,99,paralysis,0.12,0,0,0,,,,,90,0,Fires a continuous beam that pierces everything. Can cause paralyzed.
+452,wood-hammer,Wood Hammer,grass,physical,strike,120,20.086153846153845,0.95,1,3.3,0,0,99,root,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause rooted.
+453,aqua-jet,Aqua Jet,water,physical,dash,40,17.476923076923075,1.6617499999999996,1,1.8,13,0,99,wet,0.12,0,0,0,,,,,100,1,A charge that sweeps through in a straight line. Can cause wet.
+454,attack-order,Attack Order,bug,physical,homing,90,9.595384615384614,1.1749999999999998,2,0.5,15,1.6,0,poison,0.12,0,0.15,0,,,,,100,0,Projectiles that chase their targets. They never miss. Can cause poisoned. High crit.
+457,head-smash,Head Smash,rock,physical,dash,150,33.72,2.4379999999999997,1,1.8,13,0,99,stun,0.12,0,0,0,,,,,80,0,A charge that sweeps through in a straight line. Can cause stunned.
+458,double-hit,Double Hit,normal,physical,barrage,35,6.836923076923077,0.9774999999999999,2,0.35,30,0.6,0,,0.12,0,0,0,,,,,90,0,Fires a rapid burst of projectiles.
+459,roar-of-time,Roar of Time,dragon,special,nova,150,28.53230769230769,2.7560000000000002,1,6.5,0,0,99,,0.12,0,0,0,,,,,90,0,Releases a wave that hits everything around you.
+460,spacial-rend,Spacial Rend,dragon,special,wave,100,16.569230769230767,2.304,1,4,13,1.1,99,,0.12,0,0.15,0,,,,,95,0,A wide wave that sweeps everything in its path. High crit.
+462,crush-grip,Crush Grip,normal,physical,strike,70,16.816923076923075,0.855,1,3.3,0,0,99,,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy.
+463,magma-storm,Magma Storm,fire,special,vortex,100,37.55692307692308,3.456,1,5,7,2.2,99,root,0.8,0,0,0,,,,,75,0,A whirlwind that pulls in enemies and then explodes. Can cause rooted.
+465,seed-flare,Seed Flare,grass,special,beam,120,8.270769230769229,2.2,1,1.1,18,0.45,99,root,0.12,0,0,0,,,,,85,0,Fires a continuous beam that pierces everything. Can cause rooted.
+466,ominous-wind,Ominous Wind,ghost,special,cone,60,3.0424615384615388,1.76,1,7,0,1,99,curse,0.12,0,0,0,,,,,100,0,Fires a cone-shaped torrent in front of you. Can cause cursed.
+467,shadow-force,Shadow Force,ghost,physical,strike,120,20.086153846153845,0.95,1,3.3,0,0,99,curse,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause cursed.
+468,hone-claws,Hone Claws,dark,special,buff,70,0,12.6,1,0,0,6,0,healblock,0.8,0,0,0,,hone-claws,,,,0,"Powers you up: +damage, +attack speed and +speed for a few seconds."
+473,psyshock,Psyshock,psychic,special,orb,80,15.415384615384616,1.3800000000000001,1,2.6,17,1.05,0,confusion,0.12,0,0,0,,,,,100,0,Throws an orb that explodes on impact. Can cause confused.
+474,venoshock,Venoshock,poison,special,chain,65,12.61,1.246,3,8,0,0,0,poison,0.35,0,0,0,,,,,100,0,Hits an enemy and jumps to other nearby ones. Can cause poisoned.
+475,autotomize,Autotomize,steel,special,buff,70,0,12.6,1,0,0,6,0,knock,0.8,0,0,0,,autotomize,,,,0,"Powers you up: +damage, +attack speed and +speed for a few seconds."
+479,smack-down,Smack Down,rock,physical,bolt,50,11.86,0.86,1,0.5,24,0.8,0,stun,0.25,0,0,0,,,,,100,0,Fires projectiles at the closest enemy. Can cause stunned.
+480,storm-throw,Storm Throw,fighting,physical,strike,60,16.163076923076925,0.836,1,3.3,0,0,99,knock,0.12,0,0.15,0,,,,,100,0,An arcing strike against the closest enemy. Can cause knockback. High crit.
+481,flame-burst,Flame Burst,fire,special,orb,70,14.838461538461537,1.35,1,2.6,17,1.05,0,burn,0.12,0,0,0,,,,,100,0,Throws an orb that explodes on impact. Can cause burned.
+482,sludge-wave,Sludge Wave,poison,special,wave,95,16.28076923076923,2.28,1,4,13,1.1,99,poison,0.16000000000000003,0,0,0,,,,,100,0,A wide wave that sweeps everything in its path. Can cause poisoned.
+483,quiver-dance,Quiver Dance,bug,special,buff,70,0,12.6,1,0,0,6,0,poison,0.8,0,0,0,,quiver-dance,,,,0,"Powers you up: +damage, +attack speed and +speed for a few seconds."
+484,heavy-slam,Heavy Slam,steel,physical,smite,70,30.864,1.53,1,1.9,0,0,99,stun,0.5,0,0,0,,,,,100,0,Strikes fall from the sky on nearby enemies. Can cause stunned.
+485,synchronoise,Synchronoise,psychic,special,homing,120,10.633846153846154,1.25,2,0.5,15,1.6,0,confusion,0.12,0,0,0,,,,,100,0,Projectiles that chase their targets. They never miss. Can cause confused.
+486,electro-ball,Electro Ball,electric,special,orb,70,14.838461538461537,1.35,1,2.6,17,1.05,0,paralysis,0.12,0,0,0,,,,,100,0,Throws an orb that explodes on impact. Can cause paralyzed.
+487,soak,Soak,water,special,cone,70,3.7986461538461533,1.8,1,7,0,1,99,wet,1,0,0,0,,,,,100,0,Fires a cone-shaped torrent in front of you. Can cause wet.
+488,flame-charge,Flame Charge,fire,physical,dash,50,18.246153846153845,1.9779999999999998,1,1.8,13,0,99,burn,0.12,0,0,0,,,,,100,0,A charge that sweeps through in a straight line. Can cause burned.
+489,coil,Coil,poison,special,buff,70,0,12.6,1,0,0,6,0,poison,0.8,0,0,0,,coil,,,,0,"Powers you up: +damage, +attack speed and +speed for a few seconds."
+490,low-sweep,Low Sweep,fighting,physical,strike,65,16.49,0.8454999999999999,1,3.3,0,0,99,knock,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause knockback.
+491,acid-spray,Acid Spray,poison,special,lob,40,17.476923076923075,1.615,1,3.2,15,3,0,poison,0.12,0,0,0,,,,,100,0,Lobs a bomb in an arc that explodes in an area. Can cause poisoned.
+492,foul-play,Foul Play,dark,physical,smite,95,26.049230769230768,1.615,2,1.9,0,0,99,healblock,0.12,0,0,0,,,,,100,0,Strikes fall from the sky on nearby enemies. Can cause heal block.
+496,round,Round,normal,special,homing,60,8.556923076923077,1.1,2,0.5,15,1.6,0,,0.12,0,0,0,,,,,100,0,Projectiles that chase their targets. They never miss.
+497,echoed-voice,Echoed Voice,normal,special,wave,40,13.107692307692307,2.04,1,4,13,1.1,99,,0.12,0,0,0,,,,,100,0,A wide wave that sweeps everything in its path.
+498,chip-away,Chip Away,normal,physical,strike,70,16.816923076923075,0.855,1,3.3,0,0,99,,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy.
+499,clear-smog,Clear Smog,poison,special,orb,50,13.684615384615384,1.29,1,2.6,17,1.05,0,poison,0.12,0,0,0,,,,,,0,Throws an orb that explodes on impact. Can cause poisoned.
+500,stored-power,Stored Power,psychic,special,homing,20,7.6499999999999995,1.0625,2,0.5,15,1.6,0,confusion,0.12,0,0,0,,,,,100,0,Projectiles that chase their targets. They never miss. Can cause confused.
+503,scald,Scald,water,special,cone,80,3.288615384615385,1.84,1,7,0,1,99,burn,0.3,0,0,0,,,,,100,0,Fires a cone-shaped torrent in front of you. Can cause burned.
+504,shell-smash,Shell Smash,normal,special,buff,70,0,12.6,1,0,0,6,0,,0.8,0,0,0,,shell-smash,,,,0,"Powers you up: +damage, +attack speed and +speed for a few seconds."
+506,hex,Hex,ghost,special,chain,65,12.61,1.246,3,8,0,0,0,curse,0.12,0,0,0,,,,,100,0,Hits an enemy and jumps to other nearby ones. Can cause cursed.
+507,sky-drop,Sky Drop,flying,physical,boomerang,60,13.310769230769232,1.496,1,0.8,17,1.3,99,knock,0.12,0,0,0,,,,,100,0,"Throws something that goes out and comes back, piercing enemies. Can cause knockback."
+508,shift-gear,Shift Gear,steel,special,buff,70,0,12.6,1,0,0,6,0,knock,0.8,0,0,0,,shift-gear,,,,0,"Powers you up: +damage, +attack speed and +speed for a few seconds."
+509,circle-throw,Circle Throw,fighting,physical,spin,60,8.556923076923077,0.7040000000000001,1,3.2,0,0,99,knock,1,0,0,0,,,,,90,-6,"You spin, hitting and pushing everyone around you. Can cause knockback."
+510,incinerate,Incinerate,fire,special,cone,60,3.0424615384615388,1.76,1,7,0,1,99,burn,0.4,0,0,0,,,,,100,0,Fires a cone-shaped torrent in front of you. Can cause burned.
+512,acrobatics,Acrobatics,flying,physical,dash,55,18.630769230769232,2.001,1,1.8,13,0,99,knock,0.12,0,0,0,,,,,100,0,A charge that sweeps through in a straight line. Can cause knockback.
+514,retaliate,Retaliate,normal,physical,strike,70,16.816923076923075,0.855,1,3.3,0,0,99,,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy.
+515,final-gambit,Final Gambit,fighting,special,meteor,70,51.1926923076923,3.6,1,4.2,0,0.7,99,knock,0.12,0,0,0,,,,,100,0,Summons a devastating meteor after a moment. Can cause knockback.
+517,inferno,Inferno,fire,special,orb,100,16.569230769230767,1.44,1,2.6,17,1.05,0,burn,1,0,0,0,,,,,50,0,Throws an orb that explodes on impact. Can cause burned.
+518,water-pledge,Water Pledge,water,special,strike,80,17.470769230769232,0.874,1,3.3,0,0,99,wet,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause wet.
+519,fire-pledge,Fire Pledge,fire,special,strike,80,17.470769230769232,0.874,1,3.3,0,0,99,burn,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause burned.
+520,grass-pledge,Grass Pledge,grass,special,strike,80,17.470769230769232,0.874,1,3.3,0,0,99,root,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause rooted.
+521,volt-switch,Volt Switch,electric,special,boomerang,70,13.849230769230768,1.53,1,0.8,17,1.3,99,paralysis,0.12,0,0,0,,,,,100,0,"Throws something that goes out and comes back, piercing enemies. Can cause paralyzed."
+522,struggle-bug,Struggle Bug,bug,special,cone,50,2.9193846153846152,1.72,1,7,0,1,99,poison,0.12,0,0,0,,,,,100,0,Fires a cone-shaped torrent in front of you. Can cause poisoned.
+523,bulldoze,Bulldoze,ground,physical,nova,60,20.916923076923077,2.2880000000000003,1,6.5,0,0,99,stun,0.12,0,0,0,,,,,100,0,Releases a wave that hits everything around you. Can cause stunned.
+524,frost-breath,Frost Breath,ice,special,cone,60,3.0424615384615388,1.76,1,7,0,1,99,freeze,0.6,0,0.15,0,,,,,90,0,Fires a cone-shaped torrent in front of you. Can cause frozen. High crit.
+525,dragon-tail,Dragon Tail,dragon,physical,strike,60,16.163076923076925,0.836,1,3.3,0,0,99,,0.12,0,0,0,,,,,90,-6,An arcing strike against the closest enemy.
+526,work-up,Work Up,normal,special,buff,70,0,12.6,1,0,0,6,0,,0.8,0,0,0,,work-up,,,,0,"Powers you up: +damage, +attack speed and +speed for a few seconds."
+527,electroweb,Electroweb,electric,special,cone,55,2.980923076923077,1.74,1,7,0,1,99,root,0.3,0,0,0,,,,,95,0,Fires a cone-shaped torrent in front of you. Can cause rooted.
+528,wild-charge,Wild Charge,electric,physical,dash,90,21.32307692307692,2.162,1,1.8,13,0,99,paralysis,0.12,0,0,0,,,,,100,0,A charge that sweeps through in a straight line. Can cause paralyzed.
+529,drill-run,Drill Run,ground,physical,dash,80,20.553846153846152,2.116,1,1.8,13,0,99,stun,0.12,0,0.15,0,,,,,95,0,A charge that sweeps through in a straight line. Can cause stunned. High crit.
+530,dual-chop,Dual Chop,dragon,physical,strike,40,14.855384615384615,0.8075,1,3.3,0,0,99,,0.12,0,0,0,,,,,90,0,An arcing strike against the closest enemy.
+531,heart-stamp,Heart Stamp,psychic,physical,strike,60,16.163076923076925,0.836,1,3.3,0,0,99,stun,0.3,0,0,0.3,,,,,100,0,An arcing strike against the closest enemy. Can cause stunned.
+532,horn-leech,Horn Leech,grass,physical,dash,75,20.169230769230772,2.093,1,1.8,13,0,99,root,0.12,0.15,0,0,,,,,100,0,A charge that sweeps through in a straight line. Can cause rooted. Steals life.
+533,sacred-sword,Sacred Sword,fighting,physical,boomerang,90,10.44830769230769,1.5979999999999999,2,0.8,17,1.3,99,knock,0.12,0,0,0,,,,0.3,100,0,"Throws 2 projectiles in a fan that go out and come back, piercing enemies. Can cause knockback."
+534,razor-shell,Razor Shell,water,physical,strike,75,12.857884615384616,0.8644999999999999,2,3.3,0,0,99,wet,0.12,0,0,0,,,,,95,0,An arcing strike against the closest enemy. Can cause wet.
+535,heat-crash,Heat Crash,fire,physical,strike,70,16.816923076923075,0.855,1,3.3,0,0,99,burn,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause burned.
+536,leaf-tornado,Leaf Tornado,grass,special,vortex,65,32.98,3.204,1,5,7,2.2,99,root,0.12,0,0,0,,,,,90,0,A whirlwind that pulls in enemies and then explodes. Can cause rooted.
+537,steamroller,Steamroller,bug,physical,strike,65,16.49,0.8454999999999999,1,3.3,0,0,99,poison,0.12,0,0,0.3,,,,,100,0,An arcing strike against the closest enemy. Can cause poisoned.
+539,night-daze,Night Daze,dark,special,orb,85,15.703846153846152,1.395,1,2.6,17,1.05,0,healblock,0.12,0,0,0,,,,,95,0,Throws an orb that explodes on impact. Can cause heal block.
+540,psystrike,Psystrike,psychic,special,orb,100,16.569230769230767,1.44,1,2.6,17,1.05,0,confusion,0.3,0,0,0,,,,,100,0,Throws an orb that explodes on impact. Can cause confused.
+541,tail-slap,Tail Slap,normal,physical,barrage,25,4.25,0.9774999999999999,4,0.35,30,0.6,0,,0.12,0,0,0,,,,,85,0,Fires a rapid burst of projectiles.
+542,hurricane,Hurricane,flying,special,vortex,110,38.864615384615384,3.528,1,5,7,2.2,99,confusion,0.48,0,0,0,,,,,70,0,A whirlwind that pulls in enemies and then explodes. Can cause confused.
+543,head-charge,Head Charge,normal,physical,dash,120,23.63076923076923,2.3,1,1.8,13,0,99,,0.12,0,0,0,,,,,100,0,A charge that sweeps through in a straight line.
+544,gear-grind,Gear Grind,steel,physical,barrage,50,4.561538461538461,0.9889999999999999,4,0.35,30,0.6,0,knock,0.12,0,0,0,,,,,85,0,Fires a rapid burst of projectiles. Can cause knockback.
+545,searing-shot,Searing Shot,fire,special,orb,100,16.569230769230767,1.44,1,2.6,17,1.05,0,burn,0.5,0,0,0,,,,,100,0,Throws an orb that explodes on impact. Can cause burned.
+546,techno-blast,Techno Blast,normal,special,beam,120,8.270769230769229,2.2,1,1.1,18,0.45,99,,0.12,0,0,0,,,,,100,0,Fires a continuous beam that pierces everything.
+547,relic-song,Relic Song,normal,special,nova,75,22.186153846153847,2.366,1,6.5,0,0,99,sleep,0.16000000000000003,0,0,0,,,,,100,0,Releases a wave that hits everything around you. Can cause asleep.
+548,secret-sword,Secret Sword,fighting,special,boomerang,85,14.656923076923075,1.581,1,0.8,17,1.3,99,knock,0.12,0,0,0,,,,,100,0,"Throws something that goes out and comes back, piercing enemies. Can cause knockback."
+549,glaciate,Glaciate,ice,special,wave,65,14.549999999999999,2.136,1,4,13,1.1,99,freeze,0.6,0,0,0,,,,,95,0,A wide wave that sweeps everything in its path. Can cause frozen.
+550,bolt-strike,Bolt Strike,electric,physical,meteor,130,54.9,4.08,1,4.2,0,0.7,99,paralysis,0.6,0,0,0,,,,,85,0,Summons a devastating meteor after a moment. Can cause paralyzed.
+551,blue-flare,Blue Flare,fire,special,meteor,130,54.9,4.08,1,4.2,0,0.7,99,burn,0.32000000000000006,0,0,0,,,,,85,0,Summons a devastating meteor after a moment. Can cause burned.
+552,fiery-dance,Fiery Dance,fire,special,spin,80,9.249230769230769,0.7360000000000001,1,3.2,0,0,99,burn,0.12,0,0,0,,,,,100,0,"You spin, hitting and pushing everyone around you. Can cause burned."
+553,freeze-shock,Freeze Shock,ice,physical,strike,140,21.393846153846155,0.988,1,3.3,0,0,99,paralysis,0.48,0,0,0,,,,,90,0,An arcing strike against the closest enemy. Can cause paralyzed.
+554,ice-burn,Ice Burn,ice,special,bolt,140,16.36,1.04,1,0.5,24,0.8,0,burn,0.48,0,0,0,,,,,90,0,Fires projectiles at the closest enemy. Can cause burned.
+555,snarl,Snarl,dark,special,cone,55,2.980923076923077,1.74,1,7,0,1,99,healblock,0.12,0,0,0,,,,,95,0,Fires a cone-shaped torrent in front of you. Can cause heal block.
+556,icicle-crash,Icicle Crash,ice,physical,smite,85,16.332,1.581,3,1.9,0,0,99,stun,0.3,0,0,0.3,,,,,90,0,Strikes fall from the sky on nearby enemies. Can cause stunned.
+557,v-create,V-create,fire,physical,strike,180,22.1,1.064,1,3.3,0,0,99,burn,0.12,0,0,0,,,,,95,0,An arcing strike against the closest enemy. Can cause burned.
+558,fusion-flare,Fusion Flare,fire,special,orb,100,16.569230769230767,1.44,1,2.6,17,1.05,0,burn,0.12,0,0,0,,,,,100,0,Throws an orb that explodes on impact. Can cause burned.
+559,fusion-bolt,Fusion Bolt,electric,physical,chain,100,14.36,1.3439999999999999,3,8,0,0,0,paralysis,0.3,0,0,0,,,,,100,0,Hits an enemy and jumps to other nearby ones. Can cause paralyzed.
+560,flying-press,Flying Press,fighting,physical,strike,100,18.77846153846154,0.9119999999999999,1,3.3,0,0,99,knock,0.12,0,0,0,,,,,95,0,An arcing strike against the closest enemy. Can cause knockback.
+562,belch,Belch,poison,special,cone,120,4.348061538461538,2,1,7,0,1,99,poison,0.5,0,0,0,,,,,90,0,Fires a cone-shaped torrent in front of you. Can cause poisoned.
+564,sticky-web,Sticky Web,bug,special,trap,70,27,2.3400000000000003,2,3,0,14,0,poison,0.8,0,0,0,,,,,,0,Lays traps that explode on contact. Can cause poisoned.
+565,fell-stinger,Fell Stinger,bug,physical,bolt,50,11.86,0.86,1,0.5,24,0.8,0,poison,0.12,0,0,0,,,,,100,0,Fires projectiles at the closest enemy. Can cause poisoned.
+566,phantom-force,Phantom Force,ghost,physical,dash,90,21.32307692307692,2.162,1,1.8,13,0,99,curse,0.12,0,0,0,,,,,100,0,A charge that sweeps through in a straight line. Can cause cursed.
+570,parabolic-charge,Parabolic Charge,electric,special,aura,65,4.365,0.4005,1,3.6,0,0,99,paralysis,0.12,0.15,0,0,,,,,100,0,An aura that continuously damages nearby enemies. Can cause paralyzed. Steals life.
+572,petal-blizzard,Petal Blizzard,grass,physical,nova,90,23.455384615384613,2.444,1,6.5,0,0,99,root,0.12,0,0,0,,,,,100,0,Releases a wave that hits everything around you. Can cause rooted.
+573,freeze-dry,Freeze-Dry,ice,special,orb,70,14.838461538461537,1.35,1,2.6,17,1.05,0,freeze,0.4,0,0,0,,,,,100,0,Throws an orb that explodes on impact. Can cause frozen.
+574,disarming-voice,Disarming Voice,fairy,special,nova,40,19.224615384615383,2.21,1,6.5,0,0,99,charm,0.12,0,0,0,,,,,,0,Releases a wave that hits everything around you. Can cause charmed.
+577,draining-kiss,Draining Kiss,fairy,special,drain,50,9.123076923076923,1.118,1,0.5,18,1.1,0,charm,0.12,0.22499999999999998,0,0,,,,,100,0,Projectiles that steal life on impact. Can cause charmed.
+583,play-rough,Play Rough,fairy,physical,spin,90,9.595384615384614,0.752,1,3.2,0,0,99,charm,0.12,0,0,0,,,,,90,0,"You spin, hitting and pushing everyone around you. Can cause charmed."
+584,fairy-wind,Fairy Wind,fairy,special,cone,40,2.7963076923076926,1.7,1,7,0,1,99,charm,0.12,0,0,0,,,,,100,0,Fires a cone-shaped torrent in front of you. Can cause charmed.
+585,moonblast,Moonblast,fairy,special,orb,95,16.28076923076923,1.4249999999999998,1,2.6,17,1.05,0,charm,0.12,0,0,0,,,,,100,0,Throws an orb that explodes on impact. Can cause charmed.
+586,boomburst,Boomburst,normal,special,nova,140,27.686153846153847,2.704,1,6.5,0,0,99,,0.12,0,0,0,,,,,100,0,Releases a wave that hits everything around you.
+591,diamond-storm,Diamond Storm,rock,physical,nova,100,24.30153846153846,2.496,1,6.5,0,0,99,stun,0.12,0,0,0,,,,,95,0,Releases a wave that hits everything around you. Can cause stunned.
+592,steam-eruption,Steam Eruption,water,special,nova,110,25.14769230769231,2.548,1,6.5,0,0,99,burn,0.48,0,0,0,,,,,95,0,Releases a wave that hits everything around you. Can cause burned.
+593,hyperspace-hole,Hyperspace Hole,psychic,special,homing,80,9.249230769230769,1.1500000000000001,2,0.5,15,1.6,0,confusion,0.12,0,0,0,,,,,,0,Projectiles that chase their targets. They never miss. Can cause confused.
+594,water-shuriken,Water Shuriken,water,special,barrage,15,4.25,0.8308749999999998,4,0.35,30,0.6,0,wet,0.12,0,0,0,,,,,100,1,Fires a rapid burst of projectiles. Can cause wet.
+595,mystical-fire,Mystical Fire,fire,special,homing,75,9.076153846153847,1.1375,2,0.5,15,1.6,0,burn,0.12,0,0,0,,,,,100,0,Projectiles that chase their targets. They never miss. Can cause burned.
+605,dazzling-gleam,Dazzling Gleam,fairy,special,nova,80,22.60923076923077,2.3920000000000003,1,6.5,0,0,99,charm,0.12,0,0,0,,,,,100,0,Releases a wave that hits everything around you. Can cause charmed.
+609,nuzzle,Nuzzle,electric,physical,strike,20,14.45,0.8075,1,3.3,0,0,99,paralysis,0.8,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause paralyzed.
+610,hold-back,Hold Back,normal,physical,strike,40,14.855384615384615,0.8075,1,3.3,0,0,99,,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy.
+611,infestation,Infestation,bug,special,barrage,20,4.25,0.9774999999999999,4,0.35,30,0.6,0,root,0.8,0,0,0,,,,,100,0,Fires a rapid burst of projectiles. Can cause rooted.
+612,power-up-punch,Power-Up Punch,fighting,physical,strike,40,14.855384615384615,0.8075,1,3.3,0,0,99,knock,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause knockback.
+613,oblivion-wing,Oblivion Wing,flying,special,drain,80,10.276923076923076,1.1960000000000002,1,0.5,18,1.1,0,knock,0.12,0.22499999999999998,0,0,,,,,100,0,Projectiles that steal life on impact. Can cause knockback.
+614,thousand-arrows,Thousand Arrows,ground,physical,smite,90,25.587692307692304,1.5979999999999999,2,1.9,0,0,99,stun,0.12,0,0,0,,,,,100,0,Strikes fall from the sky on nearby enemies. Can cause stunned.
+615,thousand-waves,Thousand Waves,ground,physical,wave,90,15.99230769230769,2.256,1,4,13,1.1,99,stun,0.12,0,0,0,,,,,100,0,A wide wave that sweeps everything in its path. Can cause stunned.
+616,lands-wrath,Land’s Wrath,ground,physical,strike,90,18.12461538461538,0.8929999999999999,1,3.3,0,0,99,stun,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause stunned.
+617,light-of-ruin,Light of Ruin,fairy,special,beam,140,8.80923076923077,2.2880000000000003,1,1.1,18,0.45,99,charm,0.12,0,0,0,,,,,90,0,Fires a continuous beam that pierces everything. Can cause charmed.
+618,origin-pulse,Origin Pulse,water,special,nova,110,25.14769230769231,2.548,1,6.5,0,0,99,wet,0.12,0,0,0,,,,,85,0,Releases a wave that hits everything around you. Can cause wet.
+619,precipice-blades,Precipice Blades,ground,physical,nova,120,25.99384615384615,2.6,1,6.5,0,0,99,stun,0.12,0,0,0,,,,,85,0,Releases a wave that hits everything around you. Can cause stunned.
+620,dragon-ascent,Dragon Ascent,flying,physical,meteor,120,58.48615384615385,4,1,4.2,0,0.7,99,knock,0.12,0,0,0,,,,,100,0,Summons a devastating meteor after a moment. Can cause knockback.
+621,hyperspace-fury,Hyperspace Fury,dark,physical,strike,100,18.77846153846154,0.9119999999999999,1,3.3,0,0,99,healblock,0.12,0,0,0,,,,,,0,An arcing strike against the closest enemy. Can cause heal block.
+622,breakneck-blitz--physical,Breakneck Blitz,normal,physical,strike,70,16.816923076923075,0.855,1,3.3,0,0,99,,0.12,0,0,0,,,,,,0,An arcing strike against the closest enemy.
+623,breakneck-blitz--special,Breakneck Blitz,normal,special,homing,70,8.903076923076922,1.125,2,0.5,15,1.6,0,,0.12,0,0,0,,,,,,0,Projectiles that chase their targets. They never miss.
+624,all-out-pummeling--physical,All-Out Pummeling,fighting,physical,strike,70,16.816923076923075,0.855,1,3.3,0,0,99,knock,0.12,0,0,0,,,,,,0,An arcing strike against the closest enemy. Can cause knockback.
+625,all-out-pummeling--special,All-Out Pummeling,fighting,special,homing,70,8.903076923076922,1.125,2,0.5,15,1.6,0,knock,0.12,0,0,0,,,,,,0,Projectiles that chase their targets. They never miss. Can cause knockback.
+626,supersonic-skystrike--physical,Supersonic Skystrike,flying,physical,strike,70,16.816923076923075,0.855,1,3.3,0,0,99,knock,0.12,0,0,0,,,,,,0,An arcing strike against the closest enemy. Can cause knockback.
+627,supersonic-skystrike--special,Supersonic Skystrike,flying,special,strike,70,16.816923076923075,0.855,1,3.3,0,0,99,knock,0.12,0,0,0,,,,,,0,An arcing strike against the closest enemy. Can cause knockback.
+628,acid-downpour--physical,Acid Downpour,poison,physical,strike,70,16.816923076923075,0.855,1,3.3,0,0,99,poison,0.12,0,0,0,,,,,,0,An arcing strike against the closest enemy. Can cause poisoned.
+629,acid-downpour--special,Acid Downpour,poison,special,homing,70,8.903076923076922,1.125,2,0.5,15,1.6,0,poison,0.12,0,0,0,,,,,,0,Projectiles that chase their targets. They never miss. Can cause poisoned.
+630,tectonic-rage--physical,Tectonic Rage,ground,physical,strike,70,16.816923076923075,0.855,1,3.3,0,0,99,stun,0.12,0,0,0,,,,,,0,An arcing strike against the closest enemy. Can cause stunned.
+631,tectonic-rage--special,Tectonic Rage,ground,special,homing,70,8.903076923076922,1.125,2,0.5,15,1.6,0,stun,0.12,0,0,0,,,,,,0,Projectiles that chase their targets. They never miss. Can cause stunned.
+632,continental-crush--physical,Continental Crush,rock,physical,strike,70,16.816923076923075,0.855,1,3.3,0,0,99,stun,0.12,0,0,0,,,,,,0,An arcing strike against the closest enemy. Can cause stunned.
+633,continental-crush--special,Continental Crush,rock,special,dash,70,19.784615384615382,2.07,1,1.8,13,0,99,stun,0.12,0,0,0,,,,,,0,A charge that sweeps through in a straight line. Can cause stunned.
+634,savage-spin-out--physical,Savage Spin-Out,bug,physical,strike,70,16.816923076923075,0.855,1,3.3,0,0,99,poison,0.12,0,0,0,,,,,,0,An arcing strike against the closest enemy. Can cause poisoned.
+635,savage-spin-out--special,Savage Spin-Out,bug,special,homing,70,8.903076923076922,1.125,2,0.5,15,1.6,0,poison,0.12,0,0,0,,,,,,0,Projectiles that chase their targets. They never miss. Can cause poisoned.
+636,never-ending-nightmare--physical,Never-Ending Nightmare,ghost,physical,strike,70,16.816923076923075,0.855,1,3.3,0,0,99,curse,0.12,0,0,0,,,,,,0,An arcing strike against the closest enemy. Can cause cursed.
+637,never-ending-nightmare--special,Never-Ending Nightmare,ghost,special,homing,70,8.903076923076922,1.125,2,0.5,15,1.6,0,curse,0.12,0,0,0,,,,,,0,Projectiles that chase their targets. They never miss. Can cause cursed.
+638,corkscrew-crash--physical,Corkscrew Crash,steel,physical,strike,70,16.816923076923075,0.855,1,3.3,0,0,99,knock,0.12,0,0,0,,,,,,0,An arcing strike against the closest enemy. Can cause knockback.
+639,corkscrew-crash--special,Corkscrew Crash,steel,special,dash,70,19.784615384615382,2.07,1,1.8,13,0,99,knock,0.12,0,0,0,,,,,,0,A charge that sweeps through in a straight line. Can cause knockback.
+640,inferno-overdrive--physical,Inferno Overdrive,fire,physical,strike,70,16.816923076923075,0.855,1,3.3,0,0,99,burn,0.12,0,0,0,,,,,,0,An arcing strike against the closest enemy. Can cause burned.
+641,inferno-overdrive--special,Inferno Overdrive,fire,special,homing,70,8.903076923076922,1.125,2,0.5,15,1.6,0,burn,0.12,0,0,0,,,,,,0,Projectiles that chase their targets. They never miss. Can cause burned.
+642,hydro-vortex--physical,Hydro Vortex,water,physical,strike,70,16.816923076923075,0.855,1,3.3,0,0,99,wet,0.12,0,0,0,,,,,,0,An arcing strike against the closest enemy. Can cause wet.
+643,hydro-vortex--special,Hydro Vortex,water,special,vortex,70,33.63384615384615,3.24,1,5,7,2.2,99,wet,0.12,0,0,0,,,,,,0,A whirlwind that pulls in enemies and then explodes. Can cause wet.
+644,bloom-doom--physical,Bloom Doom,grass,physical,strike,70,16.816923076923075,0.855,1,3.3,0,0,99,root,0.12,0,0,0,,,,,,0,An arcing strike against the closest enemy. Can cause rooted.
+645,bloom-doom--special,Bloom Doom,grass,special,homing,70,8.903076923076922,1.125,2,0.5,15,1.6,0,root,0.12,0,0,0,,,,,,0,Projectiles that chase their targets. They never miss. Can cause rooted.
+646,gigavolt-havoc--physical,Gigavolt Havoc,electric,physical,strike,70,16.816923076923075,0.855,1,3.3,0,0,99,paralysis,0.12,0,0,0,,,,,,0,An arcing strike against the closest enemy. Can cause paralyzed.
+647,gigavolt-havoc--special,Gigavolt Havoc,electric,special,homing,70,8.903076923076922,1.125,2,0.5,15,1.6,0,paralysis,0.12,0,0,0,,,,,,0,Projectiles that chase their targets. They never miss. Can cause paralyzed.
+648,shattered-psyche--physical,Shattered Psyche,psychic,physical,strike,70,16.816923076923075,0.855,1,3.3,0,0,99,confusion,0.12,0,0,0,,,,,,0,An arcing strike against the closest enemy. Can cause confused.
+649,shattered-psyche--special,Shattered Psyche,psychic,special,homing,70,8.903076923076922,1.125,2,0.5,15,1.6,0,confusion,0.12,0,0,0,,,,,,0,Projectiles that chase their targets. They never miss. Can cause confused.
+650,subzero-slammer--physical,Subzero Slammer,ice,physical,strike,70,16.816923076923075,0.855,1,3.3,0,0,99,freeze,0.12,0,0,0,,,,,,0,An arcing strike against the closest enemy. Can cause frozen.
+651,subzero-slammer--special,Subzero Slammer,ice,special,dash,70,19.784615384615382,2.07,1,1.8,13,0,99,freeze,0.12,0,0,0,,,,,,0,A charge that sweeps through in a straight line. Can cause frozen.
+652,devastating-drake--physical,Devastating Drake,dragon,physical,strike,70,16.816923076923075,0.855,1,3.3,0,0,99,,0.12,0,0,0,,,,,,0,An arcing strike against the closest enemy.
+653,devastating-drake--special,Devastating Drake,dragon,special,homing,70,8.903076923076922,1.125,2,0.5,15,1.6,0,,0.12,0,0,0,,,,,,0,Projectiles that chase their targets. They never miss.
+654,black-hole-eclipse--physical,Black Hole Eclipse,dark,physical,strike,70,16.816923076923075,0.855,1,3.3,0,0,99,healblock,0.12,0,0,0,,,,,,0,An arcing strike against the closest enemy. Can cause heal block.
+655,black-hole-eclipse--special,Black Hole Eclipse,dark,special,homing,70,8.903076923076922,1.125,2,0.5,15,1.6,0,healblock,0.12,0,0,0,,,,,,0,Projectiles that chase their targets. They never miss. Can cause heal block.
+656,twinkle-tackle--physical,Twinkle Tackle,fairy,physical,strike,70,16.816923076923075,0.855,1,3.3,0,0,99,charm,0.12,0,0,0,,,,,,0,An arcing strike against the closest enemy. Can cause charmed.
+657,twinkle-tackle--special,Twinkle Tackle,fairy,special,dash,70,19.784615384615382,2.07,1,1.8,13,0,99,charm,0.12,0,0,0,,,,,,0,A charge that sweeps through in a straight line. Can cause charmed.
+658,catastropika,Catastropika,electric,physical,strike,210,22.1,1.0924999999999998,1,3.3,0,0,99,paralysis,0.12,0,0,0,,,,,,0,An arcing strike against the closest enemy. Can cause paralyzed.
+660,first-impression,First Impression,bug,physical,dash,90,21.32307692307692,1.8376999999999997,1,1.8,13,0,99,poison,0.12,0,0,0,,,,,100,2,A charge that sweeps through in a straight line. Can cause poisoned.
+662,spirit-shackle,Spirit Shackle,ghost,physical,boomerang,80,14.387692307692308,1.564,1,0.8,17,1.3,99,curse,0.12,0,0,0,,,,,100,0,"Throws something that goes out and comes back, piercing enemies. Can cause cursed."
+663,darkest-lariat,Darkest Lariat,dark,physical,spin,85,9.422307692307692,0.7440000000000001,1,3.2,0,0,99,healblock,0.12,0,0,0,,,,,100,0,"You spin, hitting and pushing everyone around you. Can cause heal block."
+664,sparkling-aria,Sparkling Aria,water,special,nova,90,23.455384615384613,2.444,1,6.5,0,0,99,wet,0.12,0,0,0,,,,,100,0,Releases a wave that hits everything around you. Can cause wet.
+665,ice-hammer,Ice Hammer,ice,physical,strike,100,18.77846153846154,0.9119999999999999,1,3.3,0,0,99,freeze,0.12,0,0,0,,,,,90,0,An arcing strike against the closest enemy. Can cause frozen.
+667,high-horsepower,High Horsepower,ground,physical,dash,95,21.70769230769231,2.1849999999999996,1,1.8,13,0,99,stun,0.12,0,0,0,,,,,95,0,A charge that sweeps through in a straight line. Can cause stunned.
+669,solar-blade,Solar Blade,grass,physical,beam,125,8.405384615384616,2.2220000000000004,1,1.1,18,0.45,99,root,0.12,0,0,0,,,,,100,0,Fires a continuous beam that pierces everything. Can cause rooted.
+670,leafage,Leafage,grass,physical,bolt,40,11.36,0.85,1,0.5,24,0.8,0,root,0.12,0,0,0,,,,,100,0,Fires projectiles at the closest enemy. Can cause rooted.
+675,throat-chop,Throat Chop,dark,physical,strike,80,17.470769230769232,0.874,1,3.3,0,0,99,healblock,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause heal block.
+676,pollen-puff,Pollen Puff,bug,special,lob,90,21.32307692307692,1.7859999999999998,1,3.2,15,3,0,poison,0.12,0,0,0,,,,,100,0,Lobs a bomb in an arc that explodes in an area. Can cause poisoned.
+677,anchor-shot,Anchor Shot,steel,physical,boomerang,80,14.387692307692308,1.564,1,0.8,17,1.3,99,knock,0.12,0,0,0,,,,,100,0,"Throws something that goes out and comes back, piercing enemies. Can cause knockback."
+679,lunge,Lunge,bug,physical,dash,80,20.553846153846152,2.116,1,1.8,13,0,99,poison,0.12,0,0,0,,,,,100,0,A charge that sweeps through in a straight line. Can cause poisoned.
+680,fire-lash,Fire Lash,fire,physical,strike,80,17.470769230769232,0.874,1,3.3,0,0,99,burn,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause burned.
+681,power-trip,Power Trip,dark,physical,strike,20,14.45,0.8075,1,3.3,0,0,99,healblock,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause heal block.
+682,burn-up,Burn Up,fire,special,nova,130,26.84,2.652,1,6.5,0,0,99,burn,0.12,0,0,0,,,,,100,0,Releases a wave that hits everything around you. Can cause burned.
+684,smart-strike,Smart Strike,steel,physical,homing,70,8.903076923076922,1.125,2,0.5,15,1.6,0,knock,0.12,0,0,0,,,,,,0,Projectiles that chase their targets. They never miss. Can cause knockback.
+686,revelation-dance,Revelation Dance,normal,special,homing,90,9.595384615384614,1.1749999999999998,2,0.5,15,1.6,0,,0.12,0,0,0,,,,,100,0,Projectiles that chase their targets. They never miss.
+687,core-enforcer,Core Enforcer,dragon,special,wave,100,16.569230769230767,2.304,1,4,13,1.1,99,,0.12,0,0,0,,,,,100,0,A wide wave that sweeps everything in its path.
+688,trop-kick,Trop Kick,grass,physical,strike,70,16.816923076923075,0.855,1,3.3,0,0,99,root,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause rooted.
+690,beak-blast,Beak Blast,flying,physical,nova,100,24.30153846153846,2.496,1,6.5,0,0,99,knock,0.12,0,0,0,,,,,100,-3,Releases a wave that hits everything around you. Can cause knockback.
+691,clanging-scales,Clanging Scales,dragon,special,nova,110,25.14769230769231,2.548,1,6.5,0,0,99,,0.12,0,0,0,,,,,100,0,Releases a wave that hits everything around you.
+692,dragon-hammer,Dragon Hammer,dragon,physical,strike,90,18.12461538461538,0.8929999999999999,1,3.3,0,0,99,,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy.
+693,brutal-swing,Brutal Swing,dark,physical,strike,60,16.163076923076925,0.836,1,3.3,0,0,99,healblock,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause heal block.
+695,sinister-arrow-raid,Sinister Arrow Raid,ghost,physical,strike,180,22.1,1.064,1,3.3,0,0,99,curse,0.12,0,0,0,,,,,,0,An arcing strike against the closest enemy. Can cause cursed.
+696,malicious-moonsault,Malicious Moonsault,dark,physical,strike,180,22.1,1.064,1,3.3,0,0,99,healblock,0.12,0,0,0,,,,,,0,An arcing strike against the closest enemy. Can cause heal block.
+697,oceanic-operetta,Oceanic Operetta,water,special,homing,195,11.700000000000001,1.4375,2,0.5,15,1.6,0,wet,0.12,0,0,0,,,,,,0,Projectiles that chase their targets. They never miss. Can cause wet.
+698,guardian-of-alola,Guardian of Alola,fairy,special,homing,70,8.903076923076922,1.125,2,0.5,15,1.6,0,charm,0.12,0,0,0,,,,,,0,Projectiles that chase their targets. They never miss. Can cause charmed.
+699,soul-stealing-7-star-strike,Soul-Stealing 7-Star Strike,ghost,physical,strike,195,22.1,1.0924999999999998,1,3.3,0,0,99,curse,0.12,0,0,0,,,,,,0,An arcing strike against the closest enemy. Can cause cursed.
+700,stoked-sparksurfer,Stoked Sparksurfer,electric,special,homing,175,11.700000000000001,1.3875000000000002,2,0.5,15,1.6,0,paralysis,0.8,0,0,0,,,,,,0,Projectiles that chase their targets. They never miss. Can cause paralyzed.
+701,pulverizing-pancake,Pulverizing Pancake,normal,physical,strike,210,22.1,1.0924999999999998,1,3.3,0,0,99,,0.12,0,0,0,,,,,,0,An arcing strike against the closest enemy.
+703,genesis-supernova,Genesis Supernova,psychic,special,homing,185,11.700000000000001,1.4124999999999999,2,0.5,15,1.6,0,confusion,0.12,0,0,0,,,,,,0,Projectiles that chase their targets. They never miss. Can cause confused.
+704,shell-trap,Shell Trap,fire,special,trap,150,38.90769230769231,2.7560000000000002,2,3,0,14,0,burn,0.12,0,0,0,,,,,100,-3,Lays traps that explode on contact. Can cause burned.
+705,fleur-cannon,Fleur Cannon,fairy,special,beam,130,8.54,2.244,1,1.1,18,0.45,99,charm,0.12,0,0,0,,,,,90,0,Fires a continuous beam that pierces everything. Can cause charmed.
+706,psychic-fangs,Psychic Fangs,psychic,physical,strike,85,17.797692307692305,0.8835,1,3.3,0,0,99,confusion,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause confused.
+707,stomping-tantrum,Stomping Tantrum,ground,physical,nova,75,22.186153846153847,2.366,1,6.5,0,0,99,stun,0.12,0,0,0,,,,,100,0,Releases a wave that hits everything around you. Can cause stunned.
+708,shadow-bone,Shadow Bone,ghost,physical,boomerang,85,10.259846153846151,1.581,3,0.8,17,1.3,99,curse,0.12,0,0,0,,,,0.32,100,0,"Throws 3 projectiles in a fan that go out and come back, piercing enemies. Can cause cursed."
+709,accelerock,Accelerock,rock,physical,dash,40,17.476923076923075,1.6617499999999996,1,1.8,13,0,99,stun,0.12,0,0,0,,,,,100,1,A charge that sweeps through in a straight line. Can cause stunned.
+710,liquidation,Liquidation,water,physical,dash,85,20.93846153846154,2.139,1,1.8,13,0,99,wet,0.12,0,0,0,,,,,100,0,A charge that sweeps through in a straight line. Can cause wet.
+711,prismatic-laser,Prismatic Laser,psychic,special,beam,160,9.1,2.3760000000000003,1,1.1,18,0.45,99,confusion,0.12,0,0,0,,,,,100,0,Fires a continuous beam that pierces everything. Can cause confused.
+712,spectral-thief,Spectral Thief,ghost,physical,strike,90,18.12461538461538,0.8929999999999999,1,3.3,0,0,99,curse,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause cursed.
+713,sunsteel-strike,Sunsteel Strike,steel,physical,dash,100,22.092307692307692,2.2079999999999997,1,1.8,13,0,99,knock,0.12,0,0,0,,,,,100,0,A charge that sweeps through in a straight line. Can cause knockback.
+714,moongeist-beam,Moongeist Beam,ghost,special,beam,100,7.732307692307692,2.112,1,1.1,18,0.45,99,curse,0.12,0,0,0,,,,,100,0,Fires a continuous beam that pierces everything. Can cause cursed.
+716,zing-zap,Zing Zap,electric,physical,strike,80,17.470769230769232,0.874,1,3.3,0,0,99,paralysis,0.12,0,0,0.3,,,,,100,0,An arcing strike against the closest enemy. Can cause paralyzed.
+717,natures-madness,Nature’s Madness,fairy,special,orb,70,14.838461538461537,1.35,1,2.6,17,1.05,0,charm,0.12,0,0,0,,,,,90,0,Throws an orb that explodes on impact. Can cause charmed.
+718,multi-attack,Multi-Attack,normal,physical,strike,120,20.086153846153845,0.95,1,3.3,0,0,99,,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy.
+719,10-000-000-volt-thunderbolt,"10,000,000 Volt Thunderbolt",electric,special,chain,195,16.900000000000002,1.6099999999999999,3,8,0,0,0,paralysis,0.12,0,0.15,0,,,,,,0,Hits an enemy and jumps to other nearby ones. Can cause paralyzed. High crit.
+720,mind-blown,Mind Blown,fire,special,orb,150,19.453846153846154,1.59,1,2.6,17,1.05,0,burn,0.12,0,0,0,,,,,100,0,Throws an orb that explodes on impact. Can cause burned.
+721,plasma-fists,Plasma Fists,electric,physical,strike,100,18.77846153846154,0.9119999999999999,1,3.3,0,0,99,paralysis,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause paralyzed.
+722,photon-geyser,Photon Geyser,psychic,special,beam,100,7.732307692307692,2.112,1,1.1,18,0.45,99,confusion,0.12,0,0,0,,,,,100,0,Fires a continuous beam that pierces everything. Can cause confused.
+723,light-that-burns-the-sky,Light That Burns the Sky,psychic,special,homing,200,11.700000000000001,1.4375,2,0.5,15,1.6,0,confusion,0.12,0,0,0,,,,,,0,Projectiles that chase their targets. They never miss. Can cause confused.
+724,searing-sunraze-smash,Searing Sunraze Smash,steel,physical,strike,200,22.1,1.0924999999999998,1,3.3,0,0,99,knock,0.12,0,0,0,,,,,,0,An arcing strike against the closest enemy. Can cause knockback.
+725,menacing-moonraze-maelstrom,Menacing Moonraze Maelstrom,ghost,special,homing,200,11.700000000000001,1.4375,2,0.5,15,1.6,0,curse,0.12,0,0,0,,,,,,0,Projectiles that chase their targets. They never miss. Can cause cursed.
+726,lets-snuggle-forever,Let’s Snuggle Forever,fairy,physical,strike,190,22.1,1.083,1,3.3,0,0,99,charm,0.12,0,0,0,,,,,,0,An arcing strike against the closest enemy. Can cause charmed.
+727,splintered-stormshards,Splintered Stormshards,rock,physical,vortex,190,44.2,4.104000000000001,1,5,7,2.2,99,stun,0.12,0,0,0,,,,,,0,A whirlwind that pulls in enemies and then explodes. Can cause stunned.
+728,clangorous-soulblaze,Clangorous Soulblaze,dragon,special,homing,185,11.700000000000001,1.4124999999999999,2,0.5,15,1.6,0,,0.12,0,0,0,,,,,,0,Projectiles that chase their targets. They never miss.
+729,zippy-zap,Zippy Zap,electric,physical,strike,80,17.470769230769232,0.7429,1,3.3,0,0,99,paralysis,0.12,0,0,0,,,,,100,2,An arcing strike against the closest enemy. Can cause paralyzed.
+730,splishy-splash,Splishy Splash,water,special,bolt,90,13.859999999999998,0.94,1,0.5,24,0.8,0,paralysis,0.48,0,0,0,,,,,100,0,Fires projectiles at the closest enemy. Can cause paralyzed.
+731,floaty-fall,Floaty Fall,flying,physical,meteor,90,47.97692307692307,3.76,1,4.2,0,0.7,99,knock,0.12,0,0,0.3,,,,,95,0,Summons a devastating meteor after a moment. Can cause knockback.
+732,pika-papow,Pika Papow,electric,special,homing,70,8.903076923076922,1.125,2,0.5,15,1.6,0,paralysis,0.12,0,0,0,,,,,,0,Projectiles that chase their targets. They never miss. Can cause paralyzed.
+733,bouncy-bubble,Bouncy Bubble,water,special,drain,60,9.507692307692308,1.1440000000000001,1,0.5,18,1.1,0,wet,0.12,0.25,0,0,,,,,100,0,Projectiles that steal life on impact. Can cause wet.
+734,buzzy-buzz,Buzzy Buzz,electric,special,chain,60,12.360000000000001,1.232,3,8,0,0,0,paralysis,0.8,0,0,0,,,,,100,0,Hits an enemy and jumps to other nearby ones. Can cause paralyzed.
+735,sizzly-slide,Sizzly Slide,fire,physical,strike,60,16.163076923076925,0.836,1,3.3,0,0,99,burn,0.8,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause burned.
+736,glitzy-glow,Glitzy Glow,psychic,special,homing,80,9.249230769230769,1.1500000000000001,2,0.5,15,1.6,0,confusion,0.12,0,0,0,,,,,95,0,Projectiles that chase their targets. They never miss. Can cause confused.
+737,baddy-bad,Baddy Bad,dark,special,orb,80,15.415384615384616,1.3800000000000001,1,2.6,17,1.05,0,healblock,0.12,0,0,0,,,,,95,0,Throws an orb that explodes on impact. Can cause heal block.
+738,sappy-seed,Sappy Seed,grass,physical,strike,100,18.77846153846154,0.9119999999999999,1,3.3,0,0,99,root,0.8,0,0,0,,,,,90,0,An arcing strike against the closest enemy. Can cause rooted.
+739,freezy-frost,Freezy Frost,ice,special,bolt,100,14.36,0.96,1,0.5,24,0.8,0,freeze,0.12,0,0,0,,,,,90,0,Fires projectiles at the closest enemy. Can cause frozen.
+740,sparkly-swirl,Sparkly Swirl,fairy,special,orb,120,17.72307692307692,1.5,1,2.6,17,1.05,0,charm,0.12,0,0,0,,,,,85,0,Throws an orb that explodes on impact. Can cause charmed.
+741,veevee-volley,Veevee Volley,normal,physical,strike,70,16.816923076923075,0.855,1,3.3,0,0,99,,0.12,0,0,0,,,,,,0,An arcing strike against the closest enemy.
+742,double-iron-bash,Double Iron Bash,steel,physical,barrage,60,4.753846153846154,1.012,4,0.35,30,0.6,0,knock,0.12,0,0,0.3,,,,,100,0,Fires a rapid burst of projectiles. Can cause knockback.
+744,dynamax-cannon,Dynamax Cannon,dragon,special,beam,100,7.732307692307692,2.112,1,1.1,18,0.45,99,,0.12,0,0,0,,,,,100,0,Fires a continuous beam that pierces everything.
+745,snipe-shot,Snipe Shot,water,special,bolt,80,13.36,0.92,1,0.5,24,0.8,0,wet,0.12,0,0.15,0,,,,,100,0,Fires projectiles at the closest enemy. Can cause wet. High crit.
+746,jaw-lock,Jaw Lock,dark,physical,strike,80,17.470769230769232,0.874,1,3.3,0,0,99,healblock,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause heal block.
+751,dragon-darts,Dragon Darts,dragon,physical,homing,50,8.21076923076923,1.075,2,0.5,15,1.6,0,,0.12,0,0,0,,,,,100,0,Projectiles that chase their targets. They never miss.
+754,bolt-beak,Bolt Beak,electric,physical,dash,85,20.93846153846154,2.139,1,1.8,13,0,99,paralysis,0.25,0,0,0,,,,,100,0,A charge that sweeps through in a straight line. Can cause paralyzed.
+755,fishious-rend,Fishious Rend,water,physical,strike,85,17.797692307692305,0.8835,1,3.3,0,0,99,wet,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause wet.
+757,max-flare,Max Flare,fire,physical,strike,100,18.77846153846154,0.9119999999999999,1,3.3,0,0,99,burn,0.12,0,0,0,,,,,,0,An arcing strike against the closest enemy. Can cause burned.
+758,max-flutterby,Max Flutterby,bug,physical,strike,10,14.45,0.8075,1,3.3,0,0,99,poison,0.12,0,0,0,,,,,,0,An arcing strike against the closest enemy. Can cause poisoned.
+759,max-lightning,Max Lightning,electric,physical,chain,10,11.049999999999999,1.19,3,8,0,0,0,paralysis,0.12,0,0,0,,,,,,0,Hits an enemy and jumps to other nearby ones. Can cause paralyzed.
+760,max-strike,Max Strike,normal,physical,strike,10,14.45,0.8075,1,3.3,0,0,99,,0.12,0,0,0,,,,,,0,An arcing strike against the closest enemy.
+761,max-knuckle,Max Knuckle,fighting,physical,strike,10,14.45,0.8075,1,3.3,0,0,99,knock,0.12,0,0,0,,,,,,0,An arcing strike against the closest enemy. Can cause knockback.
+762,max-phantasm,Max Phantasm,ghost,physical,strike,10,14.45,0.8075,1,3.3,0,0,99,curse,0.12,0,0,0,,,,,,0,An arcing strike against the closest enemy. Can cause cursed.
+763,max-hailstorm,Max Hailstorm,ice,physical,vortex,10,28.9,3.06,1,5,7,2.2,99,freeze,0.12,0,0,0,,,,,,0,A whirlwind that pulls in enemies and then explodes. Can cause frozen.
+764,max-ooze,Max Ooze,poison,physical,strike,10,14.45,0.8075,1,3.3,0,0,99,poison,0.12,0,0,0,,,,,,0,An arcing strike against the closest enemy. Can cause poisoned.
+765,max-geyser,Max Geyser,water,physical,dash,10,17,1.9549999999999998,1,1.8,13,0,99,wet,0.12,0,0,0,,,,,,0,A charge that sweeps through in a straight line. Can cause wet.
+766,max-airstream,Max Airstream,flying,physical,boomerang,10,11.9,1.4449999999999998,1,0.8,17,1.3,99,knock,0.12,0,0,0,,,,,,0,"Throws something that goes out and comes back, piercing enemies. Can cause knockback."
+767,max-starfall,Max Starfall,fairy,physical,meteor,10,38.25,3.4,1,4.2,0,0.7,99,charm,0.12,0,0,0,,,,,,0,Summons a devastating meteor after a moment. Can cause charmed.
+768,max-wyrmwind,Max Wyrmwind,dragon,physical,cone,10,2.72,1.7,1,7,0,1,99,,0.12,0,0,0,,,,,,0,Fires a cone-shaped torrent in front of you.
+769,max-mindstorm,Max Mindstorm,psychic,physical,vortex,10,28.9,3.06,1,5,7,2.2,99,confusion,0.12,0,0,0,,,,,,0,A whirlwind that pulls in enemies and then explodes. Can cause confused.
+770,max-rockfall,Max Rockfall,rock,physical,meteor,10,38.25,3.4,1,4.2,0,0.7,99,stun,0.12,0,0,0,,,,,,0,Summons a devastating meteor after a moment. Can cause stunned.
+771,max-quake,Max Quake,ground,physical,nova,10,18.7,2.21,1,6.5,0,0,99,stun,0.12,0,0,0,,,,,,0,Releases a wave that hits everything around you. Can cause stunned.
+772,max-darkness,Max Darkness,dark,physical,strike,10,14.45,0.8075,1,3.3,0,0,99,healblock,0.12,0,0,0,,,,,,0,An arcing strike against the closest enemy. Can cause heal block.
+773,max-overgrowth,Max Overgrowth,grass,physical,strike,10,14.45,0.8075,1,3.3,0,0,99,root,0.12,0,0,0,,,,,,0,An arcing strike against the closest enemy. Can cause rooted.
+774,max-steelspike,Max Steelspike,steel,physical,trap,10,25.5,2.21,2,3,0,14,0,knock,0.12,0,0,0,,,,,,0,Lays traps that explode on contact. Can cause knockback.
+776,body-press,Body Press,fighting,physical,nova,80,22.60923076923077,2.3920000000000003,1,6.5,0,0,99,knock,0.12,0,0,0,,,,,100,0,Releases a wave that hits everything around you. Can cause knockback.
+778,drum-beating,Drum Beating,grass,physical,strike,80,17.470769230769232,0.874,1,3.3,0,0,99,root,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause rooted.
+779,snap-trap,Snap Trap,grass,physical,trap,35,25.638461538461538,2.21,2,3,0,14,0,root,0.8,0,0,0,,,,,100,0,Lays traps that explode on contact. Can cause rooted.
+780,pyro-ball,Pyro Ball,fire,physical,lob,120,23.63076923076923,1.9,1,3.2,15,3,0,burn,0.16000000000000003,0,0,0,,,,,90,0,Lobs a bomb in an arc that explodes in an area. Can cause burned.
+781,behemoth-blade,Behemoth Blade,steel,physical,strike,100,18.77846153846154,0.9119999999999999,1,3.3,0,0,99,knock,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause knockback.
+782,behemoth-bash,Behemoth Bash,steel,physical,strike,100,18.77846153846154,0.9119999999999999,1,3.3,0,0,99,knock,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause knockback.
+783,aura-wheel,Aura Wheel,electric,physical,strike,110,19.432307692307692,0.9309999999999999,1,3.3,0,0,99,paralysis,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause paralyzed.
+784,breaking-swipe,Breaking Swipe,dragon,physical,strike,60,16.163076923076925,0.836,1,3.3,0,0,99,,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy.
+785,branch-poke,Branch Poke,grass,physical,strike,40,14.855384615384615,0.8075,1,3.3,0,0,99,root,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause rooted.
+786,overdrive,Overdrive,electric,special,chain,80,13.36,1.288,3,8,0,0,0,paralysis,0.12,0,0,0,,,,,100,0,Hits an enemy and jumps to other nearby ones. Can cause paralyzed.
+787,apple-acid,Apple Acid,grass,special,lob,80,20.553846153846152,1.748,1,3.2,15,3,0,root,0.12,0,0,0,,,,,100,0,Lobs a bomb in an arc that explodes in an area. Can cause rooted.
+788,grav-apple,Grav Apple,grass,physical,meteor,80,46.246153846153845,3.68,1,4.2,0,0.7,99,root,0.12,0,0,0,,,,,100,0,Summons a devastating meteor after a moment. Can cause rooted.
+789,spirit-break,Spirit Break,fairy,physical,strike,75,17.143846153846155,0.8644999999999999,1,3.3,0,0,99,charm,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause charmed.
+790,strange-steam,Strange Steam,fairy,special,cone,90,3.4116923076923076,1.88,1,7,0,1,99,confusion,0.32000000000000006,0,0,0,,,,,95,0,Fires a cone-shaped torrent in front of you. Can cause confused.
+793,false-surrender,False Surrender,dark,physical,strike,80,17.470769230769232,0.874,1,3.3,0,0,99,healblock,0.12,0,0,0,,,,,,0,An arcing strike against the closest enemy. Can cause heal block.
+794,meteor-assault,Meteor Assault,fighting,physical,meteor,150,70.03384615384614,4.24,1,4.2,0,0.7,99,knock,0.12,0,0,0,,,,,100,0,Summons a devastating meteor after a moment. Can cause knockback.
+795,eternabeam,Eternabeam,dragon,special,beam,160,9.1,2.3760000000000003,1,1.1,18,0.45,99,,0.12,0,0,0,,,,,90,0,Fires a continuous beam that pierces everything.
+796,steel-beam,Steel Beam,steel,special,beam,140,8.80923076923077,2.2880000000000003,1,1.1,18,0.45,99,knock,0.12,0,0,0,,,,,95,0,Fires a continuous beam that pierces everything. Can cause knockback.
+797,expanding-force,Expanding Force,psychic,special,nova,80,22.60923076923077,2.3920000000000003,1,6.5,0,0,99,confusion,0.12,0,0,0,,,,,100,0,Releases a wave that hits everything around you. Can cause confused.
+798,steel-roller,Steel Roller,steel,physical,trail,130,7.32,0.2856,1,1.7,0,3,99,knock,0.12,0,0,0,,,,,100,0,You leave a damaging trail as you move. Can cause knockback.
+799,scale-shot,Scale Shot,dragon,physical,barrage,25,3.6125,0.9774999999999999,5,0.35,30,0.6,0,,0.12,0,0,0,,,,,90,0,Fires a rapid burst of projectiles.
+800,meteor-beam,Meteor Beam,rock,special,beam,120,8.270769230769229,2.2,1,1.1,18,0.45,99,stun,0.12,0,0,0,,,,,90,0,Fires a continuous beam that pierces everything. Can cause stunned.
+801,shell-side-arm,Shell Side Arm,poison,special,lob,90,21.32307692307692,1.7859999999999998,1,3.2,15,3,0,poison,0.32000000000000006,0,0,0,,,,,100,0,Lobs a bomb in an arc that explodes in an area. Can cause poisoned.
+802,misty-explosion,Misty Explosion,fairy,special,nova,100,29.16184615384615,2.496,1,6.5,0,0,99,charm,0.35,0,0,0,,,,,100,0,Releases a wave that hits everything around you. Can cause charmed.
+803,grassy-glide,Grassy Glide,grass,physical,dash,55,18.630769230769232,2.001,1,1.8,13,0,99,root,0.12,0,0,0,,,,,100,0,A charge that sweeps through in a straight line. Can cause rooted.
+804,rising-voltage,Rising Voltage,electric,special,smite,70,23.74153846153846,1.53,2,1.9,0,0,99,paralysis,0.12,0,0,0,,,,,100,0,Strikes fall from the sky on nearby enemies. Can cause paralyzed.
+805,terrain-pulse,Terrain Pulse,normal,special,orb,50,13.684615384615384,1.29,1,2.6,17,1.05,0,,0.12,0,0,0,,,,,100,0,Throws an orb that explodes on impact.
+806,skitter-smack,Skitter Smack,bug,physical,strike,70,16.816923076923075,0.855,1,3.3,0,0,99,poison,0.12,0,0,0,,,,,90,0,An arcing strike against the closest enemy. Can cause poisoned.
+807,burning-jealousy,Burning Jealousy,fire,special,orb,70,14.838461538461537,1.35,1,2.6,17,1.05,0,burn,0.8,0,0,0,,,,,100,0,Throws an orb that explodes on impact. Can cause burned.
+808,lash-out,Lash Out,dark,physical,strike,75,17.143846153846155,0.8644999999999999,1,3.3,0,0,99,healblock,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause heal block.
+809,poltergeist,Poltergeist,ghost,physical,smite,110,27.433846153846154,1.666,2,1.9,0,0,99,curse,0.12,0,0,0,,,,,90,0,Strikes fall from the sky on nearby enemies. Can cause cursed.
+812,flip-turn,Flip Turn,water,physical,dash,60,19.015384615384615,2.024,1,1.8,13,0,99,wet,0.12,0,0,0,,,,,100,0,A charge that sweeps through in a straight line. Can cause wet.
+813,triple-axel,Triple Axel,ice,physical,spin,20,7.6499999999999995,0.68,1,3.2,0,0,99,freeze,0.12,0,0,0,,,,,90,0,"You spin, hitting and pushing everyone around you. Can cause frozen."
+814,dual-wingbeat,Dual Wingbeat,flying,physical,barrage,40,7.864615384615384,0.9774999999999999,2,0.35,30,0.6,0,knock,0.12,0,0,0,,,,,90,0,Fires a rapid burst of projectiles. Can cause knockback.
+815,scorching-sands,Scorching Sands,ground,special,cone,70,3.1655384615384614,1.8,1,7,0,1,99,burn,0.48,0,0,0,,,,,100,0,Fires a cone-shaped torrent in front of you. Can cause burned.
+817,wicked-blow,Wicked Blow,dark,physical,strike,75,17.143846153846155,0.8644999999999999,1,3.3,0,0,99,healblock,0.12,0,0.15,0,,,,,100,0,An arcing strike against the closest enemy. Can cause heal block. High crit.
+818,surging-strikes,Surging Strikes,water,physical,barrage,25,4.25,0.9774999999999999,4,0.35,30,0.6,0,wet,0.12,0,0.15,0,,,,,100,0,Fires a rapid burst of projectiles. Can cause wet. High crit.
+819,thunder-cage,Thunder Cage,electric,special,vortex,80,34.941538461538464,3.3120000000000003,1,5,7,2.2,99,root,0.8,0,0,0,,,,,90,0,A whirlwind that pulls in enemies and then explodes. Can cause rooted.
+820,dragon-energy,Dragon Energy,dragon,special,beam,150,9.078461538461537,2.3320000000000003,1,1.1,18,0.45,99,,0.12,0,0,0,,,,,100,0,Fires a continuous beam that pierces everything.
+821,freezing-glare,Freezing Glare,psychic,special,homing,90,9.595384615384614,1.1749999999999998,2,0.5,15,1.6,0,freeze,0.16000000000000003,0,0,0,,,,,100,0,Projectiles that chase their targets. They never miss. Can cause frozen.
+822,fiery-wrath,Fiery Wrath,dark,special,nova,90,23.455384615384613,2.444,1,6.5,0,0,99,healblock,0.12,0,0,0.2,,,,,100,0,Releases a wave that hits everything around you. Can cause heal block.
+823,thunderous-kick,Thunderous Kick,fighting,physical,strike,90,18.12461538461538,0.8929999999999999,1,3.3,0,0,99,knock,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause knockback.
+824,glacial-lance,Glacial Lance,ice,physical,strike,120,20.086153846153845,0.95,1,3.3,0,0,99,freeze,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause frozen.
+825,astral-barrage,Astral Barrage,ghost,special,homing,120,10.633846153846154,1.25,2,0.5,15,1.6,0,curse,0.12,0,0,0,,,,,100,0,Projectiles that chase their targets. They never miss. Can cause cursed.
+826,eerie-spell,Eerie Spell,psychic,special,homing,80,9.249230769230769,1.1500000000000001,2,0.5,15,1.6,0,confusion,0.12,0,0,0,,,,,100,0,Projectiles that chase their targets. They never miss. Can cause confused.
+827,dire-claw,Dire Claw,poison,physical,strike,80,17.470769230769232,0.874,1,3.3,0,0,99,poison,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause poisoned.
+828,psyshield-bash,Psyshield Bash,psychic,physical,dash,70,19.784615384615382,2.07,1,1.8,13,0,99,confusion,0.12,0,0,0,,,,,90,0,A charge that sweeps through in a straight line. Can cause confused.
+830,stone-axe,Stone Axe,rock,physical,trap,65,29.099999999999998,2.314,2,3,0,14,0,stun,0.12,0,0,0,,,,,90,0,Lays traps that explode on contact. Can cause stunned.
+831,springtide-storm,Springtide Storm,fairy,special,vortex,100,37.55692307692308,3.456,1,5,7,2.2,99,charm,0.12,0,0,0,,,,,80,0,A whirlwind that pulls in enemies and then explodes. Can cause charmed.
+832,mystical-power,Mystical Power,psychic,special,homing,70,8.903076923076922,1.125,2,0.5,15,1.6,0,confusion,0.12,0,0,0,,,,,90,0,Projectiles that chase their targets. They never miss. Can cause confused.
+833,raging-fury,Raging Fury,fire,physical,strike,120,20.086153846153845,0.95,1,3.3,0,0,99,burn,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause burned.
+834,wave-crash,Wave Crash,water,physical,dash,120,23.63076923076923,2.3,1,1.8,13,0,99,wet,0.12,0,0,0,,,,,100,0,A charge that sweeps through in a straight line. Can cause wet.
+835,chloroblast,Chloroblast,grass,special,nova,150,28.53230769230769,2.7560000000000002,1,6.5,0,0,99,root,0.12,0,0,0,,,,,95,0,Releases a wave that hits everything around you. Can cause rooted.
+836,mountain-gale,Mountain Gale,ice,physical,meteor,100,49.707692307692305,3.84,1,4.2,0,0.7,99,freeze,0.12,0,0,0,,,,,85,0,Summons a devastating meteor after a moment. Can cause frozen.
+837,victory-dance,Victory Dance,fighting,special,buff,0,0,11.9,1,0,0,6,0,knock,0.8,0,0,0,,victory-dance,,,,0,"Powers you up: +damage, +attack speed and +speed for a few seconds."
+838,headlong-rush,Headlong Rush,ground,physical,meteor,120,63.803076923076915,4,1,4.2,0,0.7,99,stun,0.5,0,0,0,,,,,100,0,Summons a devastating meteor after a moment. Can cause stunned.
+839,barb-barrage,Barb Barrage,poison,physical,barrage,60,4.753846153846154,1.012,4,0.35,30,0.6,0,poison,0.12,0,0,0,,,,,100,0,Fires a rapid burst of projectiles. Can cause poisoned.
+840,esper-wing,Esper Wing,psychic,special,boomerang,80,14.387692307692308,1.564,1,0.8,17,1.3,99,confusion,0.12,0,0,0,,,,,100,0,"Throws something that goes out and comes back, piercing enemies. Can cause confused."
+841,bitter-malice,Bitter Malice,ghost,special,cone,75,3.2270769230769236,1.82,1,7,0,1,99,curse,0.12,0,0,0,,,,,100,0,Fires a cone-shaped torrent in front of you. Can cause cursed.
+843,triple-arrows,Triple Arrows,fighting,physical,strike,90,18.12461538461538,0.8929999999999999,1,3.3,0,0,99,knock,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause knockback.
+844,infernal-parade,Infernal Parade,ghost,special,orbit,60,8.556923076923077,4.84,2,3.2,3.2,4,99,curse,0.12,0,0,0,,,,,100,0,Items that spin around you hitting enemies. Can cause cursed.
+845,ceaseless-edge,Ceaseless Edge,dark,physical,trap,65,29.099999999999998,2.314,2,3,0,14,0,healblock,0.12,0,0,0,,,,,90,0,Lays traps that explode on contact. Can cause heal block.
+846,bleakwind-storm,Bleakwind Storm,flying,special,cone,100,3.5347692307692307,1.92,1,7,0,1,99,freeze,0.3,0,0,0,,,,,80,0,Fires a cone-shaped torrent in front of you. Can cause frozen.
+847,wildbolt-storm,Wildbolt Storm,electric,special,cone,100,3.5347692307692307,1.92,1,7,0,1,99,paralysis,0.35,0,0,0,,,,,80,0,Fires a cone-shaped torrent in front of you. Can cause paralyzed.
+848,sandsear-storm,Sandsear Storm,ground,special,vortex,100,37.55692307692308,3.456,1,5,7,2.2,99,stun,0.12,0,0,0,,,,,80,0,A whirlwind that pulls in enemies and then explodes. Can cause stunned.
+851,tera-blast,Tera Blast,normal,special,nova,80,22.60923076923077,2.3920000000000003,1,6.5,0,0,99,,0.12,0,0,0,,,,,100,0,Releases a wave that hits everything around you.
+853,axe-kick,Axe Kick,fighting,physical,smite,120,28.356923076923074,1.7,2,1.9,0,0,99,knock,0.12,0,0,0,,,,,90,0,Strikes fall from the sky on nearby enemies. Can cause knockback.
+854,last-respects,Last Respects,ghost,physical,meteor,50,41.05384615384615,3.44,1,4.2,0,0.7,99,curse,0.12,0,0,0,,,,,100,0,Summons a devastating meteor after a moment. Can cause cursed.
+855,lumina-crash,Lumina Crash,psychic,special,nova,80,22.60923076923077,2.3920000000000003,1,6.5,0,0,99,confusion,0.12,0,0,0,,,,,100,0,Releases a wave that hits everything around you. Can cause confused.
+856,order-up,Order Up,dragon,physical,strike,80,17.470769230769232,0.874,1,3.3,0,0,99,,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy.
+857,jet-punch,Jet Punch,water,physical,strike,60,16.163076923076925,0.7106,1,3.3,0,0,99,wet,0.12,0,0,0,,,,,100,1,An arcing strike against the closest enemy. Can cause wet.
+859,spin-out,Spin Out,steel,physical,spin,100,9.94153846153846,0.768,1,3.2,0,0,99,knock,0.12,0,0,0,,,,,100,0,"You spin, hitting and pushing everyone around you. Can cause knockback."
+860,population-bomb,Population Bomb,normal,physical,barrage,20,4.25,0.9774999999999999,4,0.35,30,0.6,0,,0.12,0,0,0,,,,,90,0,Fires a rapid burst of projectiles.
+861,ice-spinner,Ice Spinner,ice,physical,spin,80,9.249230769230769,0.7360000000000001,1,3.2,0,0,99,freeze,0.3,0,0,0,,,,,100,0,"You spin, hitting and pushing everyone around you. Can cause frozen."
+862,glaive-rush,Glaive Rush,dragon,physical,dash,120,23.63076923076923,2.3,1,1.8,13,0,99,,0.12,0,0,0,,,,,100,0,A charge that sweeps through in a straight line.
+864,salt-cure,Salt Cure,rock,physical,aura,40,3.9323076923076923,0.3825,1,3.6,0,0,99,stun,0.12,0,0,0,,,,,100,0,An aura that continuously damages nearby enemies. Can cause stunned.
+865,triple-dive,Triple Dive,water,physical,dash,30,17,1.9549999999999998,1,1.8,13,0,99,wet,0.12,0,0,0,,,,,95,0,A charge that sweeps through in a straight line. Can cause wet.
+866,mortal-spin,Mortal Spin,poison,physical,spin,30,7.6499999999999995,0.68,1,3.2,0,0,99,poison,0.12,0,0,0,,,,,100,0,"You spin, hitting and pushing everyone around you. Can cause poisoned."
+869,kowtow-cleave,Kowtow Cleave,dark,physical,strike,85,17.797692307692305,0.8835,1,3.3,0,0,99,healblock,0.12,0,0,0,,,,,,0,An arcing strike against the closest enemy. Can cause heal block.
+870,flower-trick,Flower Trick,grass,physical,homing,70,8.903076923076922,1.125,2,0.5,15,1.6,0,root,0.12,0,0,0,,,,,,0,Projectiles that chase their targets. They never miss. Can cause rooted.
+871,torch-song,Torch Song,fire,special,homing,80,9.249230769230769,1.1500000000000001,2,0.5,15,1.6,0,burn,0.12,0,0,0,,,,,100,0,Projectiles that chase their targets. They never miss. Can cause burned.
+872,aqua-step,Aqua Step,water,physical,spin,80,9.249230769230769,0.7360000000000001,1,3.2,0,0,99,wet,0.12,0,0,0,,,,,100,0,"You spin, hitting and pushing everyone around you. Can cause wet."
+873,raging-bull,Raging Bull,normal,physical,dash,90,24.521538461538455,2.162,1,1.8,13,0,99,,0.12,0,0,0,,,,,100,0,A charge that sweeps through in a straight line.
+874,make-it-rain,Make It Rain,steel,special,smite,120,28.356923076923074,1.7,2,1.9,0,0,99,knock,0.12,0,0,0,,,,,100,0,Strikes fall from the sky on nearby enemies. Can cause knockback.
+875,psyblade,Psyblade,psychic,physical,strike,80,17.470769230769232,0.874,1,3.3,0,0,99,confusion,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause confused.
+876,hydro-steam,Hydro Steam,water,special,bolt,80,13.36,0.92,1,0.5,24,0.8,0,wet,0.12,0,0,0,,,,,100,0,Fires projectiles at the closest enemy. Can cause wet.
+877,ruination,Ruination,dark,special,orb,1,12.75,1.275,1,2.6,17,1.05,0,healblock,0.12,0,0,0,,,,,90,0,Throws an orb that explodes on impact. Can cause heal block.
+878,collision-course,Collision Course,fighting,physical,meteor,100,49.707692307692305,3.84,1,4.2,0,0.7,99,knock,0.12,0,0,0,,,,,100,0,Summons a devastating meteor after a moment. Can cause knockback.
+879,electro-drift,Electro Drift,electric,special,chain,100,14.36,1.3439999999999999,3,8,0,0,0,paralysis,0.12,0,0,0,,,,,100,0,Hits an enemy and jumps to other nearby ones. Can cause paralyzed.
+882,tidy-up,Tidy Up,normal,special,buff,0,0,11.9,1,0,0,6,0,,0.8,0,0,0,,tidy-up,,,,0,"Powers you up: +damage, +attack speed and +speed for a few seconds."
+883,snowscape,Snowscape,ice,special,weather,0,0,27.2,1,0,0,14,0,freeze,0.8,0,0,0,hail,,,,,0,Hail: damages and gradually freezes enemies.
+884,pounce,Pounce,bug,physical,dash,50,18.246153846153845,1.9779999999999998,1,1.8,13,0,99,poison,0.12,0,0,0,,,,,100,0,A charge that sweeps through in a straight line. Can cause poisoned.
+885,trailblaze,Trailblaze,grass,physical,strike,50,15.509230769230768,0.817,1,3.3,0,0,99,root,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause rooted.
+886,chilling-water,Chilling Water,water,special,cone,50,2.9193846153846152,1.72,1,7,0,1,99,wet,0.12,0,0,0,,,,,100,0,Fires a cone-shaped torrent in front of you. Can cause wet.
+887,hyper-drill,Hyper Drill,normal,physical,strike,100,18.77846153846154,0.9119999999999999,1,3.3,0,0,99,,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy.
+888,twin-beam,Twin Beam,psychic,special,beam,40,6.116923076923077,1.87,1,1.1,18,0.45,99,confusion,0.12,0,0,0,,,,,100,0,Fires a continuous beam that pierces everything. Can cause confused.
+889,rage-fist,Rage Fist,ghost,physical,homing,50,8.21076923076923,1.075,2,0.5,15,1.6,0,curse,0.12,0,0,0,,,,,100,0,Projectiles that chase their targets. They never miss. Can cause cursed.
+890,armor-cannon,Armor Cannon,fire,special,beam,120,8.270769230769229,2.2,1,1.1,18,0.45,99,burn,0.12,0,0,0,,,,,100,0,Fires a continuous beam that pierces everything. Can cause burned.
+891,bitter-blade,Bitter Blade,fire,physical,strike,90,18.12461538461538,0.8929999999999999,1,3.3,0,0,99,burn,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause burned.
+892,double-shock,Double Shock,electric,physical,strike,120,20.086153846153845,0.95,1,3.3,0,0,99,paralysis,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause paralyzed.
+893,gigaton-hammer,Gigaton Hammer,steel,physical,nova,160,28.6,2.8080000000000003,1,6.5,0,0,99,knock,0.12,0,0,0,,,,,100,0,Releases a wave that hits everything around you. Can cause knockback.
+894,comeuppance,Comeuppance,dark,physical,strike,1,14.45,0.8075,1,3.3,0,0,99,healblock,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause heal block.
+895,aqua-cutter,Aqua Cutter,water,physical,boomerang,70,13.849230769230768,1.53,1,0.8,17,1.3,99,wet,0.12,0,0,0,,,,,100,0,"Throws something that goes out and comes back, piercing enemies. Can cause wet."
+896,blazing-torque,Blazing Torque,fire,physical,strike,80,17.470769230769232,0.874,1,3.3,0,0,99,burn,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause burned.
+897,wicked-torque,Wicked Torque,dark,physical,strike,80,17.470769230769232,0.874,1,3.3,0,0,99,healblock,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause heal block.
+898,noxious-torque,Noxious Torque,poison,physical,dash,100,22.092307692307692,2.2079999999999997,1,1.8,13,0,99,poison,0.12,0,0,0,,,,,100,0,A charge that sweeps through in a straight line. Can cause poisoned.
+899,combat-torque,Combat Torque,fighting,physical,strike,100,18.77846153846154,0.9119999999999999,1,3.3,0,0,99,knock,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause knockback.
+900,magical-torque,Magical Torque,fairy,physical,homing,100,9.94153846153846,1.2,2,0.5,15,1.6,0,charm,0.12,0,0,0,,,,,100,0,Projectiles that chase their targets. They never miss. Can cause charmed.
+901,blood-moon,Blood Moon,normal,special,beam,140,8.80923076923077,2.2880000000000003,1,1.1,18,0.45,99,,0.12,0,0,0,,,,,100,0,Fires a continuous beam that pierces everything.
+902,matcha-gotcha,Matcha Gotcha,grass,special,barrage,80,5.138461538461538,1.058,4,0.35,30,0.6,0,root,0.12,0,0,0,,,,,90,0,Fires a rapid burst of projectiles. Can cause rooted.
+903,syrup-bomb,Syrup Bomb,grass,special,lob,60,19.015384615384615,1.672,1,3.2,15,3,0,root,0.12,0,0,0,,,,,85,0,Lobs a bomb in an arc that explodes in an area. Can cause rooted.
+904,ivy-cudgel,Ivy Cudgel,grass,physical,strike,100,18.77846153846154,0.9119999999999999,1,3.3,0,0,99,root,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause rooted.
+905,electro-shot,Electro Shot,electric,special,beam,130,8.54,2.244,1,1.1,18,0.45,99,paralysis,0.25,0,0,0,,,,,100,0,Fires a continuous beam that pierces everything. Can cause paralyzed.
+906,tera-starstorm,Tera Starstorm,normal,special,meteor,120,53.169230769230765,4,1,4.2,0,0.7,99,,0.12,0,0,0,,,,,100,0,Summons a devastating meteor after a moment.
+907,fickle-beam,Fickle Beam,dragon,special,beam,80,7.193846153846154,2.0240000000000005,1,1.1,18,0.45,99,,0.12,0,0,0,,,,,100,0,Fires a continuous beam that pierces everything.
+909,thunderclap,Thunderclap,electric,special,smite,70,15.432,1.3005,3,1.9,0,0,99,paralysis,0.5,0,0,0,,,,,100,1,Strikes fall from the sky on nearby enemies. Can cause paralyzed.
+910,mighty-cleave,Mighty Cleave,rock,physical,strike,95,18.451538461538462,0.9025,1,3.3,0,0,99,stun,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause stunned.
+911,tachyon-cutter,Tachyon Cutter,steel,special,strike,50,15.509230769230768,0.817,1,3.3,0,0,99,knock,0.12,0,0,0,,,,,0,0,An arcing strike against the closest enemy. Can cause knockback.
+912,hard-press,Hard Press,steel,physical,strike,0,14.45,0.8075,1,3.3,0,0,99,knock,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause knockback.
+914,alluring-voice,Alluring Voice,fairy,special,homing,80,9.249230769230769,1.1500000000000001,2,0.5,15,1.6,0,charm,0.12,0,0,0,,,,,100,0,Projectiles that chase their targets. They never miss. Can cause charmed.
+915,temper-flare,Temper Flare,fire,physical,strike,75,17.143846153846155,0.8644999999999999,1,3.3,0,0,99,burn,0.12,0,0,0,,,,,100,0,An arcing strike against the closest enemy. Can cause burned.
+916,supercell-slam,Supercell Slam,electric,physical,dash,100,22.092307692307692,2.2079999999999997,1,1.8,13,0,99,paralysis,0.12,0,0,0,,,,,95,0,A charge that sweeps through in a straight line. Can cause paralyzed.
+917,psychic-noise,Psychic Noise,psychic,special,wave,75,15.126923076923077,2.184,1,4,13,1.1,99,healblock,0.5,0,0,0,,,,,100,0,A wide wave that sweeps everything in its path. Can cause heal block.
+918,upper-hand,Upper Hand,fighting,physical,strike,65,16.49,0.718675,1,3.3,0,0,99,knock,0.12,0,0,0,,,,,100,3,An arcing strike against the closest enemy. Can cause knockback.
+919,malignant-chain,Malignant Chain,poison,special,lob,100,22.092307692307692,1.8239999999999998,1,3.2,15,3,0,poison,0.12,0,0,0,,,,,100,0,Lobs a bomb in an arc that explodes in an area. Can cause poisoned.

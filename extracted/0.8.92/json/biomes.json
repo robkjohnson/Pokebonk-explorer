@@ -1,0 +1,1310 @@
+[
+ {
+  "id": "forest",
+  "name": "Viridian Forest",
+  "desc": "A lush forest full of life. And of Pokémon who don't want to share it.",
+  "size": 360,
+  "types": [
+   "grass",
+   "bug",
+   "normal",
+   "flying"
+  ],
+  "late": [
+   "fairy",
+   "poison"
+  ],
+  "residents": [
+   60,
+   54,
+   79,
+   118,
+   25,
+   100,
+   81,
+   74,
+   50,
+   27,
+   96,
+   63,
+   77,
+   58,
+   37,
+   56,
+   92
+  ],
+  "sky": [
+   3838207,
+   11066623
+  ],
+  "fog": 10409215,
+  "fogNear": 45,
+  "fogFar": 170,
+  "light": 1,
+  "sun": 16773590,
+  "hemiGround": 6982218,
+  "ground": [
+   7327562,
+   9099350,
+   11067504,
+   5945406
+  ],
+  "path": 14205066,
+  "cliff": [
+   10127994,
+   8220258,
+   11904918
+  ],
+  "water": 0,
+  "waterColor": 3846399,
+  "props": [
+   "tree",
+   "tree",
+   "pine",
+   "bush",
+   "rock",
+   "mushroom"
+  ],
+  "propDensity": 1,
+  "relief": {
+   "levels": 5,
+   "massifs": 2
+  },
+  "weather": [
+   "clear",
+   "clear",
+   "rain"
+  ],
+  "bosses": [
+   123,
+   127,
+   34
+  ],
+  "legendaries": [
+   151
+  ],
+  "zones": [
+   {
+    "name": "Golden afternoon",
+    "sky": [
+     4161496,
+     16766882
+    ],
+    "fog": 15912860,
+    "fogNear": 42,
+    "fogFar": 160,
+    "light": 0.97,
+    "sun": 16764810,
+    "hemiGround": 8026682,
+    "sunDir": [
+     0.66,
+     0.72,
+     0.16
+    ],
+    "sunH": 0.3,
+    "tint": [
+     1.07,
+     0.99,
+     0.85
+    ],
+    "clouds": [
+     1.05,
+     0.93,
+     0.8
+    ],
+    "cover": 0.04,
+    "glow": 16757864,
+    "glowK": 0.5,
+    "stars": 0,
+    "motes": "leaves"
+   },
+   {
+    "name": "Twilight",
+    "sky": [
+     2895736,
+     16751226
+    ],
+    "fog": 11566236,
+    "fogNear": 36,
+    "fogFar": 140,
+    "light": 0.84,
+    "sun": 16752752,
+    "hemiGround": 3816026,
+    "sunDir": [
+     0.74,
+     0.68,
+     -0.12
+    ],
+    "sunH": 0.1,
+    "tint": [
+     0.95,
+     0.9,
+     1.04
+    ],
+    "clouds": [
+     1,
+     0.78,
+     0.88
+    ],
+    "cover": 0.06,
+    "glow": 16742984,
+    "glowK": 0.65,
+    "stars": 0.55,
+    "motes": "fireflies"
+   }
+  ],
+  "guardians": [
+   [
+    123,
+    26,
+    55
+   ],
+   [
+    127,
+    62,
+    53
+   ],
+   [
+    34,
+    76,
+    59
+   ]
+  ],
+  "totems": [
+   [
+    20,
+    47,
+    24,
+    17
+   ],
+   [
+    71,
+    18,
+    49,
+    115
+   ],
+   [
+    22,
+    36,
+    110,
+    114
+   ]
+  ],
+  "summoners": [
+   [
+    12,
+    15
+   ],
+   [
+    30,
+    33
+   ],
+   [
+    103,
+    45
+   ]
+  ],
+  "sanctuary": {
+   "name": "Viridian Forest Shrine",
+   "arena": "forest",
+   "heart": "Heart of the forest",
+   "pack": "sanctum",
+   "legendaries": [
+    151
+   ],
+   "shrine": "shrine",
+   "portal": "sanct_portal",
+   "color": 9109354,
+   "sky": [
+    1923666,
+    9426616
+   ],
+   "fog": 6266506,
+   "fogNear": 34,
+   "fogFar": 120,
+   "light": 0.92,
+   "sun": 15400920,
+   "hemiGround": 2775610,
+   "music": {
+    "root": 57,
+    "scale": [
+     0,
+     2,
+     3,
+     7,
+     9
+    ],
+    "bpm": 104,
+    "mood": "mystic"
+   }
+  },
+  "music": {
+   "root": 60,
+   "scale": [
+    0,
+    2,
+    4,
+    7,
+    9
+   ],
+   "bpm": 112,
+   "mood": "bright"
+  },
+  "tex": {
+   "top": [
+    7128656,
+    8837218,
+    5811782
+   ],
+   "detail": "grass",
+   "side": [
+    10126448,
+    12626834,
+    6179904
+   ],
+   "lip": 6076490,
+   "path": [
+    14204040,
+    9072720
+   ],
+   "leaf": 4102724,
+   "bark": 8016438,
+   "rock": 10131086,
+   "accent": 16743080,
+   "deco": [
+    0,
+    1,
+    2,
+    3,
+    0,
+    1,
+    4,
+    5,
+    6,
+    10,
+    11,
+    12,
+    7
+   ]
+  },
+  "unlock": "Available"
+ },
+ {
+  "id": "desert",
+  "name": "Rocky Desert",
+  "desc": "Scorching sand, rock cannons and blinding storms.",
+  "size": 340,
+  "types": [
+   "ground",
+   "rock",
+   "fighting"
+  ],
+  "late": [
+   "steel",
+   "fire"
+  ],
+  "residents": [
+   23,
+   21,
+   84,
+   128,
+   115,
+   77,
+   52,
+   19,
+   41,
+   37,
+   58,
+   102,
+   54,
+   29,
+   32
+  ],
+  "sky": [
+   6990056,
+   16771264
+  ],
+  "fog": 15916208,
+  "fogNear": 40,
+  "fogFar": 160,
+  "light": 1.1,
+  "sun": 16769712,
+  "hemiGround": 11569744,
+  "ground": [
+   15782024,
+   15253616,
+   16178332,
+   14200928
+  ],
+  "path": 13146714,
+  "cliff": [
+   13666896,
+   11563068,
+   14721128
+  ],
+  "water": null,
+  "waterColor": 4243664,
+  "props": [
+   "cactus",
+   "rock",
+   "rock",
+   "deadtree",
+   "pillar"
+  ],
+  "propDensity": 0.7,
+  "weather": [
+   "clear",
+   "sand",
+   "sun"
+  ],
+  "bosses": [
+   28,
+   105,
+   149
+  ],
+  "legendaries": [
+   146
+  ],
+  "zones": [
+   {
+    "name": "Heat haze",
+    "sky": [
+     7906512,
+     16765596
+    ],
+    "fog": 15778958,
+    "fogNear": 32,
+    "fogFar": 132,
+    "light": 1.1,
+    "sun": 16765066,
+    "hemiGround": 11565632,
+    "sunDir": [
+     0.6,
+     0.74,
+     0.22
+    ],
+    "sunH": 0.36,
+    "tint": [
+     1.05,
+     0.99,
+     0.9
+    ],
+    "clouds": [
+     1.05,
+     0.95,
+     0.85
+    ],
+    "cover": -0.08,
+    "glow": 16760944,
+    "glowK": 0.35,
+    "stars": 0,
+    "motes": "heat"
+   },
+   {
+    "name": "Sunset",
+    "sky": [
+     3812458,
+     16747090
+    ],
+    "fog": 14192762,
+    "fogNear": 36,
+    "fogFar": 140,
+    "light": 0.88,
+    "sun": 16170146,
+    "hemiGround": 6964312,
+    "sunDir": [
+     0.74,
+     0.68,
+     -0.1
+    ],
+    "sunH": 0.09,
+    "tint": [
+     0.95,
+     0.92,
+     1.03
+    ],
+    "clouds": [
+     1,
+     0.72,
+     0.72
+    ],
+    "cover": 0.02,
+    "glow": 16738864,
+    "glowK": 0.7,
+    "stars": 0.6,
+    "motes": "embers"
+   }
+  ],
+  "guardians": [
+   [
+    28,
+    106,
+    85
+   ],
+   [
+    105,
+    68,
+    112
+   ],
+   [
+    31,
+    142,
+    149
+   ]
+  ],
+  "totems": [
+   [
+    57,
+    95,
+    75
+   ],
+   [
+    107,
+    111,
+    141
+   ],
+   [
+    128,
+    78,
+    139
+   ]
+  ],
+  "summoners": [
+   [
+    51,
+    75
+   ],
+   [
+    34,
+    75
+   ],
+   [
+    51,
+    34,
+    76
+   ]
+  ],
+  "sanctuary": {
+   "name": "Rocky Desert Shrine",
+   "arena": "desert",
+   "heart": "Heart of the desert",
+   "pack": "ruins",
+   "legendaries": [
+    146
+   ],
+   "shrine": "ruin_altar",
+   "portal": "ruin_portal",
+   "color": 16747066,
+   "sky": [
+    9062954,
+    16763018
+   ],
+   "fog": 14721136,
+   "fogNear": 34,
+   "fogFar": 125,
+   "light": 1.05,
+   "sun": 16765088,
+   "hemiGround": 9067056,
+   "music": {
+    "root": 50,
+    "scale": [
+     0,
+     1,
+     4,
+     5,
+     7,
+     8,
+     10
+    ],
+    "bpm": 116,
+    "mood": "tense"
+   }
+  },
+  "music": {
+   "root": 57,
+   "scale": [
+    0,
+    1,
+    4,
+    5,
+    7,
+    8,
+    10
+   ],
+   "bpm": 104,
+   "mood": "tense"
+  },
+  "tex": {
+   "top": [
+    15517828,
+    16177824,
+    14200940
+   ],
+   "detail": "sand",
+   "side": [
+    13137994,
+    15243874,
+    9062958
+   ],
+   "lip": 15254138,
+   "path": [
+    14200960,
+    9068608
+   ],
+   "leaf": 14716986,
+   "bark": 10121288,
+   "rock": 12617306,
+   "accent": 16751178,
+   "deco": [
+    7,
+    13,
+    9,
+    7,
+    13,
+    3
+   ]
+  },
+  "unlock": "Complete Viridian Forest"
+ },
+ {
+  "id": "coast",
+  "name": "Storm Coast",
+  "desc": "Beaches, reefs and electrical storms over the sea. Watch out for the tide.",
+  "size": 340,
+  "types": [
+   "water",
+   "electric",
+   "flying"
+  ],
+  "late": [
+   "dragon",
+   "steel"
+  ],
+  "residents": [
+   102,
+   52,
+   50,
+   74,
+   27,
+   138,
+   140,
+   113,
+   108,
+   128
+  ],
+  "sky": [
+   3835616,
+   12576502
+  ],
+  "fog": 12116206,
+  "fogNear": 42,
+  "fogFar": 165,
+  "light": 1.02,
+  "sun": 16773852,
+  "hemiGround": 5933728,
+  "ground": [
+   8703068,
+   10279022,
+   15785120,
+   7124558
+  ],
+  "path": 14731408,
+  "cliff": [
+   9082528,
+   6977152,
+   11187388
+  ],
+  "water": 0,
+  "waterColor": 1740512,
+  "props": [
+   "palm",
+   "palm",
+   "coral",
+   "rock",
+   "bush"
+  ],
+  "propDensity": 0.85,
+  "weather": [
+   "clear",
+   "rain",
+   "clear"
+  ],
+  "zones": [
+   {
+    "name": "Tropical sunset",
+    "sky": [
+     3828424,
+     16763024
+    ],
+    "fog": 15780000,
+    "fogNear": 40,
+    "fogFar": 158,
+    "light": 0.98,
+    "sun": 16763016,
+    "hemiGround": 6978154,
+    "sunDir": [
+     0.66,
+     0.72,
+     0.16
+    ],
+    "sunH": 0.28,
+    "tint": [
+     1.05,
+     0.99,
+     0.9
+    ],
+    "clouds": [
+     1.05,
+     0.92,
+     0.85
+    ],
+    "cover": 0.06,
+    "glow": 16754784,
+    "glowK": 0.55,
+    "stars": 0,
+    "motes": "spray"
+   },
+   {
+    "name": "Stormy night",
+    "sky": [
+     1713232,
+     6978232
+    ],
+    "fog": 5925528,
+    "fogNear": 34,
+    "fogFar": 135,
+    "light": 0.8,
+    "sun": 12110079,
+    "hemiGround": 2765912,
+    "sunDir": [
+     0.5,
+     0.78,
+     -0.2
+    ],
+    "sunH": 0.55,
+    "tint": [
+     0.9,
+     0.94,
+     1.08
+    ],
+    "clouds": [
+     0.75,
+     0.8,
+     0.95
+    ],
+    "cover": 0.18,
+    "glow": 9083647,
+    "glowK": 0.3,
+    "stars": 0.35,
+    "motes": "fireflies"
+   }
+  ],
+  "bosses": [
+   99,
+   130,
+   121
+  ],
+  "legendaries": [
+   145
+  ],
+  "guardians": [
+   [
+    99,
+    101
+   ],
+   [
+    130,
+    73
+   ],
+   [
+    121,
+    125
+   ]
+  ],
+  "totems": [
+   [
+    55,
+    22,
+    117,
+    26
+   ],
+   [
+    82,
+    119,
+    85,
+    62
+   ],
+   [
+    148,
+    141,
+    139,
+    135
+   ]
+  ],
+  "summoners": [
+   [
+    119,
+    61
+   ],
+   [
+    55,
+    82
+   ],
+   [
+    117,
+    99
+   ]
+  ],
+  "sanctuary": {
+   "name": "Thunder Cape",
+   "arena": "coast",
+   "heart": "Eye of the storm",
+   "pack": "stormcape",
+   "legendaries": [
+    145
+   ],
+   "shrine": "storm_altar",
+   "portal": "storm_portal",
+   "color": 16769594,
+   "sky": [
+    2767464,
+    9085128
+   ],
+   "fog": 6979240,
+   "fogNear": 34,
+   "fogFar": 125,
+   "light": 0.95,
+   "sun": 15266047,
+   "hemiGround": 3424346,
+   "music": {
+    "root": 59,
+    "scale": [
+     0,
+     2,
+     3,
+     7,
+     9
+    ],
+    "bpm": 124,
+    "mood": "tense"
+   }
+  },
+  "music": {
+   "root": 59,
+   "scale": [
+    0,
+    2,
+    4,
+    5,
+    7,
+    9,
+    11
+   ],
+   "bpm": 118,
+   "mood": "bright"
+  },
+  "tex": {
+   "top": [
+    8703068,
+    10279022,
+    7124558
+   ],
+   "detail": "grass",
+   "side": [
+    9082528,
+    11187388,
+    5924464
+   ],
+   "lip": 8045656,
+   "path": [
+    15786160,
+    11575408
+   ],
+   "leaf": 3844170,
+   "bark": 11042890,
+   "rock": 9082528,
+   "accent": 16765498,
+   "deco": [
+    0,
+    1,
+    2,
+    4,
+    5,
+    7,
+    10,
+    12
+   ]
+  },
+  "unlock": "Complete the Rocky Desert"
+ },
+ {
+  "id": "glacier",
+  "name": "Celestial Glacier",
+  "desc": "Eternal ice beneath auroras. Frozen lakes are slippery and the cold freezes even attacks.",
+  "size": 340,
+  "types": [
+   "ice",
+   "water",
+   "psychic"
+  ],
+  "late": [
+   "fairy",
+   "dragon"
+  ],
+  "residents": [
+   41,
+   74,
+   95,
+   35,
+   39,
+   133,
+   143,
+   147
+  ],
+  "sky": [
+   5934832,
+   13822207
+  ],
+  "fog": 13163764,
+  "fogNear": 40,
+  "fogFar": 150,
+  "light": 0.93,
+  "sun": 15922943,
+  "hemiGround": 8032448,
+  "ground": [
+   16055295,
+   14873343,
+   16777215,
+   13427956
+  ],
+  "path": 11061472,
+  "cliff": [
+   9089240,
+   6983872,
+   11061484
+  ],
+  "water": 0,
+  "waterColor": 5951743,
+  "props": [
+   "snowpine",
+   "snowpine",
+   "crystal",
+   "rock"
+  ],
+  "propDensity": 0.85,
+  "weather": [
+   "clear",
+   "hail",
+   "clear"
+  ],
+  "zones": [
+   {
+    "name": "Frozen afternoon",
+    "sky": [
+     6977744,
+     16763096
+    ],
+    "fog": 15782112,
+    "fogNear": 38,
+    "fogFar": 145,
+    "light": 1,
+    "sun": 16767176,
+    "hemiGround": 10129592,
+    "sunDir": [
+     0.66,
+     0.72,
+     0.16
+    ],
+    "sunH": 0.3,
+    "tint": [
+     1.03,
+     0.98,
+     1
+    ],
+    "clouds": [
+     1.05,
+     0.94,
+     0.98
+    ],
+    "cover": 0.05,
+    "glow": 16754872,
+    "glowK": 0.45,
+    "stars": 0,
+    "motes": "snow"
+   },
+   {
+    "name": "Aurora",
+    "sky": [
+     1055304,
+     3836570
+    ],
+    "fog": 4876938,
+    "fogNear": 34,
+    "fogFar": 135,
+    "light": 0.84,
+    "sun": 12118271,
+    "hemiGround": 2767450,
+    "sunDir": [
+     0.5,
+     0.78,
+     -0.2
+    ],
+    "sunH": 0.5,
+    "tint": [
+     0.92,
+     1,
+     1.08
+    ],
+    "clouds": [
+     0.8,
+     0.95,
+     1
+    ],
+    "cover": 0.02,
+    "glow": 5963720,
+    "glowK": 0.5,
+    "stars": 0.75,
+    "motes": "snow"
+   }
+  ],
+  "bosses": [
+   87,
+   91,
+   131
+  ],
+  "legendaries": [
+   144
+  ],
+  "guardians": [
+   [
+    87,
+    97
+   ],
+   [
+    91,
+    124
+   ],
+   [
+    131,
+    65
+   ]
+  ],
+  "totems": [
+   [
+    80,
+    64,
+    40,
+    42
+   ],
+   [
+    36,
+    122,
+    134,
+    76
+   ],
+   [
+    143,
+    148,
+    9,
+    62
+   ]
+  ],
+  "summoners": [
+   [
+    42,
+    64
+   ],
+   [
+    87,
+    80
+   ],
+   [
+    9,
+    149
+   ]
+  ],
+  "sanctuary": {
+   "name": "Sky Lake",
+   "arena": "glacier",
+   "heart": "Heart of the ice",
+   "pack": "frostlake",
+   "legendaries": [
+    144
+   ],
+   "shrine": "frost_altar",
+   "portal": "frost_portal",
+   "color": 9103615,
+   "sky": [
+    1321562,
+    5943496
+   ],
+   "fog": 6983864,
+   "fogNear": 34,
+   "fogFar": 125,
+   "light": 0.95,
+   "sun": 14218495,
+   "hemiGround": 3821680,
+   "music": {
+    "root": 62,
+    "scale": [
+     0,
+     2,
+     4,
+     7,
+     9,
+     11
+    ],
+    "bpm": 100,
+    "mood": "mystic"
+   }
+  },
+  "music": {
+   "root": 62,
+   "scale": [
+    0,
+    2,
+    4,
+    6,
+    9,
+    11
+   ],
+   "bpm": 96,
+   "mood": "calm"
+  },
+  "tex": {
+   "top": [
+    15267071,
+    16777215,
+    12113132
+   ],
+   "detail": "snow",
+   "side": [
+    8036560,
+    11061488,
+    4876960
+   ],
+   "lip": 16055295,
+   "path": [
+    11060444,
+    6981800
+   ],
+   "leaf": 3045994,
+   "bark": 5917248,
+   "rock": 9087176,
+   "accent": 9103615,
+   "deco": [
+    15,
+    8,
+    7,
+    15,
+    3
+   ]
+  },
+  "unlock": "Complete the Storm Coast"
+ },
+ {
+  "id": "graveyard",
+  "name": "Lavender Tower",
+  "desc": "Mist, gravestones and whispers. Here the ghosts never rest.",
+  "types": [
+   "ghost",
+   "poison",
+   "dark"
+  ],
+  "late": [
+   "psychic"
+  ],
+  "sky": [
+   3811930,
+   10123976
+  ],
+  "fog": 8022682,
+  "fogNear": 25,
+  "fogFar": 120,
+  "light": 0.75,
+  "sun": 13152511,
+  "hemiGround": 3813456,
+  "ground": [
+   6982250,
+   5929570,
+   8034936,
+   4876888
+  ],
+  "path": 9076848,
+  "cliff": [
+   6972536,
+   5591146,
+   8419984
+  ],
+  "water": 0,
+  "waterColor": 6963392,
+  "props": [
+   "grave",
+   "grave",
+   "deadtree",
+   "pillar",
+   "mushroom"
+  ],
+  "propDensity": 0.9,
+  "weather": [
+   "fog",
+   "clear",
+   "rain"
+  ],
+  "bosses": [
+   94,
+   110,
+   97
+  ],
+  "legendaries": [
+   150
+  ],
+  "music": {
+   "root": 55,
+   "scale": [
+    0,
+    2,
+    3,
+    7,
+    8
+   ],
+   "bpm": 92,
+   "mood": "mystic"
+  },
+  "tex": {
+   "top": [
+    6192736,
+    7245418,
+    5139542
+   ],
+   "detail": "moss",
+   "side": [
+    6972536,
+    9077914,
+    4209232
+   ],
+   "lip": 5929562,
+   "path": [
+    9077908,
+    4077640
+   ],
+   "leaf": 4872776,
+   "bark": 4865594,
+   "rock": 8025224,
+   "accent": 11565823,
+   "deco": [
+    0,
+    1,
+    9,
+    13,
+    6,
+    8,
+    2
+   ]
+  },
+  "unlock": "Complete the Celestial Glacier"
+ },
+ {
+  "id": "volcano",
+  "name": "Volcano Island",
+  "desc": "Rivers of lava and ash. Only the strongest survive the heat.",
+  "types": [
+   "fire",
+   "dragon",
+   "rock"
+  ],
+  "late": [
+   "steel",
+   "dark"
+  ],
+  "sky": [
+   9058858,
+   16756848
+  ],
+  "fog": 14191194,
+  "fogNear": 35,
+  "fogFar": 140,
+  "light": 0.95,
+  "sun": 16756864,
+  "hemiGround": 5909024,
+  "ground": [
+   6969936,
+   5917250,
+   8022618,
+   4864564
+  ],
+  "path": 9068616,
+  "cliff": [
+   3812908,
+   2761248,
+   5259322
+  ],
+  "water": -1,
+  "waterColor": 16734736,
+  "props": [
+   "lavarock",
+   "rock",
+   "deadtree",
+   "crystal"
+  ],
+  "propDensity": 0.8,
+  "weather": [
+   "ash",
+   "sun",
+   "clear"
+  ],
+  "bosses": [
+   126,
+   78,
+   6
+  ],
+  "legendaries": [
+   146
+  ],
+  "music": {
+   "root": 52,
+   "scale": [
+    0,
+    1,
+    3,
+    5,
+    7,
+    8,
+    11
+   ],
+   "bpm": 128,
+   "mood": "tense"
+  },
+  "tex": {
+   "top": [
+    5917254,
+    7232596,
+    3812908
+   ],
+   "detail": "ash",
+   "side": [
+    4076080,
+    5916736,
+    2234906
+   ],
+   "lip": null,
+   "path": [
+    6967368,
+    2760220
+   ],
+   "leaf": 5925434,
+   "bark": 3811876,
+   "rock": 4865080,
+   "accent": 16742954,
+   "deco": [
+    14,
+    7,
+    13,
+    8,
+    14,
+    9
+   ]
+  },
+  "unlock": "Defeat the guardian of Lavender Tower"
+ }
+]

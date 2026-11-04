@@ -1,0 +1,61 @@
+{
+ "clear": {
+  "name": "Clear",
+  "boost": [],
+  "nerf": []
+ },
+ "rain": {
+  "name": "Rain",
+  "boost": [
+   "water",
+   "electric"
+  ],
+  "nerf": [
+   "fire"
+  ]
+ },
+ "sun": {
+  "name": "Scorching sun",
+  "boost": [
+   "fire",
+   "grass"
+  ],
+  "nerf": [
+   "water"
+  ]
+ },
+ "sand": {
+  "name": "Sandstorm",
+  "boost": [
+   "rock",
+   "ground",
+   "steel"
+  ],
+  "nerf": []
+ },
+ "hail": {
+  "name": "Hail",
+  "boost": [
+   "ice"
+  ],
+  "nerf": []
+ },
+ "fog": {
+  "name": "Mist",
+  "boost": [
+   "ghost",
+   "dark"
+  ],
+  "nerf": []
+ },
+ "ash": {
+  "name": "Ash rain",
+  "boost": [
+   "fire",
+   "dragon"
+  ],
+  "nerf": [
+   "ice"
+  ]
+ }
+}

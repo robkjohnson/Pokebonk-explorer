@@ -1,0 +1,62 @@
+{
+ "mud": {
+  "cell": 0,
+  "name": {
+   "$fn": "()=>c(`Charca de barro`)"
+  },
+  "say": {
+   "$fn": "()=>c(`¡Terreno hostil! Una charca de barro frena a todo el que la pisa`)"
+  },
+  "color": 9067050,
+  "slow": 0.55,
+  "pull": 0,
+  "hurt": 0,
+  "bite": 0
+ },
+ "bramble": {
+  "cell": 1,
+  "name": {
+   "$fn": "()=>c(`Zarzal venenoso`)"
+  },
+  "say": {
+   "$fn": "()=>c(`¡Terreno hostil! Un zarzal venenoso pincha a todo el que lo cruza`)"
+  },
+  "color": 11553496,
+  "slow": 0.8,
+  "pull": 0,
+  "hurt": 0.025,
+  "bite": 0.05,
+  "type": "poison",
+  "status": "poison"
+ },
+ "quicksand": {
+  "cell": 2,
+  "name": {
+   "$fn": "()=>c(`Arenas movedizas`)"
+  },
+  "say": {
+   "$fn": "()=>c(`¡Terreno hostil! Unas arenas movedizas tragan a todo lo que se acerca`)"
+  },
+  "color": 14200928,
+  "slow": 0.5,
+  "pull": 2.4,
+  "hurt": 0,
+  "bite": 0
+ },
+ "fire": {
+  "cell": 3,
+  "name": {
+   "$fn": "()=>c(`Suelo en llamas`)"
+  },
+  "say": {
+   "$fn": "()=>c(`¡Terreno hostil! El suelo arde: no te quedes encima`)"
+  },
+  "color": 16738842,
+  "slow": 1,
+  "pull": 0,
+  "hurt": 0.03,
+  "bite": 0.07,
+  "type": "fire",
+  "status": "burn"
+ }
+}
